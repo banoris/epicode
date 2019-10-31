@@ -23,17 +23,17 @@ using std::unique_lock;
 using std::condition_variable;
 
 namespace RW {
-int data = 0;
-mutex LRm;
-condition_variable LR;
-int read_count = 0;
-mutex LW;
+    int data = 0;
+    mutex LRm;
+    condition_variable LR;
+    int read_count = 0;
+    mutex LW;
 }
 
 void DoSomethingElse() {
-  static default_random_engine rnd((random_device())());
-  uniform_int_distribution<> wait_time(0, 1000);
-  sleep_for(milliseconds(wait_time(rnd)));
+    static default_random_engine rnd((random_device())());
+    uniform_int_distribution<> wait_time(0, 1000);
+    sleep_for(milliseconds(wait_time(rnd)));
 }
 
 // @include
@@ -41,55 +41,55 @@ void DoSomethingElse() {
 // They serve as read and write locks. The integer
 // variable read_count in RW tracks the number of readers.
 void Reader(string name) {
-  while (true) {
-    {
-      lock_guard<mutex> lock(RW::LRm);
-      ++RW::read_count;
+    while (true) {
+        {
+            lock_guard<mutex> lock(RW::LRm);
+            ++RW::read_count;
+        }
+        // @exclude
+        cout << "Reader " << name << " is about to read" << endl;
+        // @include
+        cout << RW::data << endl;
+        {
+            lock_guard<mutex> lock(RW::LRm);
+            --RW::read_count;
+            RW::LR.notify_one();
+        }
+        DoSomethingElse();
     }
-    // @exclude
-    cout << "Reader " << name << " is about to read" << endl;
-    // @include
-    cout << RW::data << endl;
-    {
-      lock_guard<mutex> lock(RW::LRm);
-      --RW::read_count;
-      RW::LR.notify_one();
-    }
-    DoSomethingElse();
-  }
 }
 
 void Writer(string name) {
-  while (true) {
-    {
-      lock_guard<mutex> lock_w(RW::LW);
-      bool done = false;
-      while (!done) {
-        unique_lock<mutex> lock(RW::LRm);
-        if (RW::read_count == 0) {
-          // @exclude
-          cout << "Writer " << name << " is about to write" << endl;
-          // @include
-          ++RW::data;
-          done = true;
-        } else {
-          // use wait/notify to avoid busy waiting
-          while (RW::read_count != 0) {
-            RW::LR.wait(lock);
-          }
+    while (true) {
+        {
+            lock_guard<mutex> lock_w(RW::LW);
+            bool done = false;
+            while (!done) {
+                unique_lock<mutex> lock(RW::LRm);
+                if (RW::read_count == 0) {
+                    // @exclude
+                    cout << "Writer " << name << " is about to write" << endl;
+                    // @include
+                    ++RW::data;
+                    done = true;
+                } else {
+                    // use wait/notify to avoid busy waiting
+                    while (RW::read_count != 0) {
+                        RW::LR.wait(lock);
+                    }
+                }
+            }
         }
-      }
+        DoSomethingElse();
     }
-    DoSomethingElse();
-  }
 }
 // @exclude
 
 int main(int argc, char* argv[]) {
-  thread r0(Reader, "r0");
-  thread r1(Reader, "r1");
-  thread w0(Writer, "w0");
-  thread w1(Writer, "w1");
-  sleep_for(milliseconds(10000));
-  return 0;
+    thread r0(Reader, "r0");
+    thread r1(Reader, "r1");
+    thread w0(Writer, "w0");
+    thread w1(Writer, "w1");
+    sleep_for(milliseconds(10000));
+    return 0;
 }

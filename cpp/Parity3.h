@@ -9,26 +9,26 @@ using std::array;
 
 namespace Parity3 {
 
-array<short, 1 << 16> BuildTable() {
-  array<short, 1 << 16> result;
-  for (int i = 0; i < (1 << 16); ++i) {
-    result[i] = Parity1::Parity(i);
-  }
-  return result;
-}
+    array<short, 1 << 16> BuildTable() {
+        array<short, 1 << 16> result;
+        for (int i = 0; i < (1 << 16); ++i) {
+            result[i] = Parity1::Parity(i);
+        }
+        return result;
+    }
 
-static array<short, 1 << 16> precomputed_parity = BuildTable();
+    static array<short, 1 << 16> precomputed_parity = BuildTable();
 
-// @include
-short Parity(unsigned long x) {
-  const int kWordSize = 16;
-  const int kBitMask = 0xFFFF;
-  return precomputed_parity[x >> (3 * kWordSize)] ^
-         precomputed_parity[(x >> (2 * kWordSize)) & kBitMask] ^
-         precomputed_parity[(x >> kWordSize) & kBitMask] ^
-         precomputed_parity[x & kBitMask];
-}
-// @exclude
+    // @include
+    short Parity(unsigned long x) {
+        const int kWordSize = 16;
+        const int kBitMask = 0xFFFF;
+        return precomputed_parity[x >> (3 * kWordSize)] ^
+            precomputed_parity[(x >> (2 * kWordSize)) & kBitMask] ^
+            precomputed_parity[(x >> kWordSize) & kBitMask] ^
+            precomputed_parity[x & kBitMask];
+    }
+    // @exclude
 
 }  // namespace Parity3
 

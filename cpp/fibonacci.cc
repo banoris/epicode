@@ -16,33 +16,33 @@ using std::uniform_int_distribution;
 unordered_map<int, int> cache;
 
 int Fibonacci(int n) {
-  if (n <= 1) {
-    return n;
-  } else if (!cache.count(n)) {
-    cache[n] = Fibonacci(n - 1) + Fibonacci(n - 2);
-  }
-  return cache[n];
+    if (n <= 1) {
+        return n;
+    } else if (!cache.count(n)) {
+        cache[n] = Fibonacci(n - 1) + Fibonacci(n - 2);
+    }
+    return cache[n];
 }
 // @exclude
 
 void SmallTest() {
-  assert(Fibonacci(10) == 55);
-  assert(Fibonacci(0) == 0);
-  assert(Fibonacci(1) == 1);
-  assert(Fibonacci(16) == 987);
-  assert(Fibonacci(40) == 102334155);
+    assert(Fibonacci(10) == 55);
+    assert(Fibonacci(0) == 0);
+    assert(Fibonacci(1) == 1);
+    assert(Fibonacci(16) == 987);
+    assert(Fibonacci(40) == 102334155);
 }
 
 int main(int argc, char* argv[]) {
-  SmallTest();
-  int n;
-  if (argc == 2) {
-    n = atoi(argv[1]);
-  } else {
-    default_random_engine gen((random_device())());
-    uniform_int_distribution<int> n_dis(0, 40);
-    n = n_dis(gen);
-  }
-  cout << "F(" << n << ") = " << Fibonacci(n) << endl;
-  return 0;
+    SmallTest();
+    int n;
+    if (argc == 2) {
+        n = atoi(argv[1]);
+    } else {
+        default_random_engine gen((random_device())());
+        uniform_int_distribution<int> n_dis(0, 40);
+        n = n_dis(gen);
+    }
+    cout << "F(" << n << ") = " << Fibonacci(n) << endl;
+    return 0;
 }

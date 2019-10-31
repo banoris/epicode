@@ -10,9 +10,9 @@ using std::unique_ptr;
 // @include
 template <typename T>
 struct BinaryTreeNode {
-  T data;
-  unique_ptr<BinaryTreeNode<T>> left, right;
-  BinaryTreeNode<T>* parent;
+    T data;
+    unique_ptr<BinaryTreeNode<T>> left, right;
+    BinaryTreeNode<T>* parent;
 };
 // @exclude
 #endif  // SOLUTIONS_BINARY_TREE_WITH_PARENT_PROTOTYPE_H_

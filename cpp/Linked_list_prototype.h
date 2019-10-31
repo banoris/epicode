@@ -10,8 +10,8 @@ using std::shared_ptr;
 // @include
 template <typename T>
 struct ListNode {
-  T data;
-  shared_ptr<ListNode<T>> next;
+    T data;
+    shared_ptr<ListNode<T>> next;
 };
 // @exclude
 #endif  // SOLUTIONS_LINKED_LIST_PROTOTYPE_H_

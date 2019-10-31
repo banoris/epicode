@@ -18,36 +18,36 @@
 
 //@formatter::off
 namespace type_traits {
-  using std::true_type;
-  using std::false_type;
-  using std::vector;
-  using std::list;
-  using std::set;
-  using std::map;
-  using std::unique_ptr;
-  using std::shared_ptr;
+    using std::true_type;
+    using std::false_type;
+    using std::vector;
+    using std::list;
+    using std::set;
+    using std::map;
+    using std::unique_ptr;
+    using std::shared_ptr;
 
-  template <class T>
-  struct is_container : public false_type {};
-  template <class T>
-  struct is_container<vector<T>> : public true_type {};
-  template <class T>
-  struct is_container<list<T>> : public true_type {};
-  template <class T>
-  struct is_container<set<T>> : public true_type {};
-  template <class K, class V>
-  struct is_container<map<K, V>> : public true_type {};
+    template <class T>
+        struct is_container : public false_type {};
+    template <class T>
+        struct is_container<vector<T>> : public true_type {};
+    template <class T>
+        struct is_container<list<T>> : public true_type {};
+    template <class T>
+        struct is_container<set<T>> : public true_type {};
+    template <class K, class V>
+        struct is_container<map<K, V>> : public true_type {};
 
-  template <class T>
-  struct is_binary_tree : public false_type {};
+    template <class T>
+        struct is_binary_tree : public false_type {};
 
 
-  template <class T>
-  const T* GetRawPtr(const T* ptr) { return ptr; }
-  template <class T>
-  const T* GetRawPtr(const unique_ptr <T>& ptr) { return ptr.get(); }
-  template <class T>
-  const T* GetRawPtr(const shared_ptr <T>& ptr) { return ptr.get(); }
+    template <class T>
+        const T* GetRawPtr(const T* ptr) { return ptr; }
+    template <class T>
+        const T* GetRawPtr(const unique_ptr <T>& ptr) { return ptr.get(); }
+    template <class T>
+        const T* GetRawPtr(const shared_ptr <T>& ptr) { return ptr.get(); }
 }
 
 //@formatter::on

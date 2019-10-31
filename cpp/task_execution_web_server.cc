@@ -22,43 +22,43 @@ using asio::ip::tcp;
 typedef sync_bounded_queue<unique_ptr<tcp::socket>> QueueType;
 
 void ProcessReq(unique_ptr<tcp::socket>& sock) {
-  asio::streambuf sb;
-  while (true) {
-    error_code e;
-    size_t n = asio::read_until(*sock, sb, '\n', e);
-    if (e == asio::error::eof) {
-      cout << endl << "connection closed" << endl;
-      break;
+    asio::streambuf sb;
+    while (true) {
+        error_code e;
+        size_t n = asio::read_until(*sock, sb, '\n', e);
+        if (e == asio::error::eof) {
+            cout << endl << "connection closed" << endl;
+            break;
+        }
+        asio::write(*sock, sb.data());
+        cout << &sb;
     }
-    asio::write(*sock, sb.data());
-    cout << &sb;
-  }
 }
 
 // @include
 void ThreadFunc(QueueType& q) {
-  while (true) {
-    unique_ptr<tcp::socket> sock;
-    q >> sock;
-    ProcessReq(sock);
-  }
+    while (true) {
+        unique_ptr<tcp::socket> sock;
+        q >> sock;
+        ProcessReq(sock);
+    }
 }
 
 const unsigned short kServerPort = 8080;
 const int kNThreads = 2;
 
 int main(int argc, char* argv[]) {
-  QueueType q(kNThreads);
-  for (int i = 0; i < kNThreads; ++i) {
-    thread(ThreadFunc, ref(q)).detach();
-  }
-  asio::io_service io_service;
-  tcp::acceptor acceptor(io_service, tcp::endpoint(tcp::v4(), kServerPort));
-  while (true) {
-    unique_ptr<tcp::socket> sock(new tcp::socket(io_service));
-    acceptor.accept(*sock);
-    q << move(sock);
-  }
-  return 0;
+    QueueType q(kNThreads);
+    for (int i = 0; i < kNThreads; ++i) {
+        thread(ThreadFunc, ref(q)).detach();
+    }
+    asio::io_service io_service;
+    tcp::acceptor acceptor(io_service, tcp::endpoint(tcp::v4(), kServerPort));
+    while (true) {
+        unique_ptr<tcp::socket> sock(new tcp::socket(io_service));
+        acceptor.accept(*sock);
+        q << move(sock);
+    }
+    return 0;
 }
 // @exclude

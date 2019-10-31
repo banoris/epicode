@@ -11,15 +11,15 @@ using std::shared_ptr;
 
 // @include
 shared_ptr<ListNode<int>> ReverseLinkedList(
-    const shared_ptr<ListNode<int>>& head) {
-  shared_ptr<ListNode<int>> prev = nullptr, curr = head;
-  while (curr) {
-    auto next = curr->next;
-    curr->next = prev;
-    prev = curr;
-    curr = next;
-  }
-  return prev;
+        const shared_ptr<ListNode<int>>& head) {
+    shared_ptr<ListNode<int>> prev = nullptr, curr = head;
+    while (curr) {
+        auto next = curr->next;
+        curr->next = prev;
+        prev = curr;
+        curr = next;
+    }
+    return prev;
 }
 // @exclude
 #endif  // SOLUTIONS_REVERSE_LINKED_LIST_ITERATIVE_H_

@@ -15,21 +15,21 @@ using std::stack;
 
 // @include
 void PrintLinkedListInReverse(shared_ptr<ListNode<int>> head) {
-  stack<int> nodes;
-  while (head) {
-    nodes.push(head->data);
-    head = head->next;
-  }
-  while (!nodes.empty()) {
-    cout << nodes.top() << endl;
-    nodes.pop();
-  }
+    stack<int> nodes;
+    while (head) {
+        nodes.push(head->data);
+        head = head->next;
+    }
+    while (!nodes.empty()) {
+        cout << nodes.top() << endl;
+        nodes.pop();
+    }
 }
 // @exclude
 
 int main(int argc, char* argv[]) {
-  PrintLinkedListInReverse(make_shared<ListNode<int>>(ListNode<int>{
-      1, make_shared<ListNode<int>>(ListNode<int>{
-             2, make_shared<ListNode<int>>(ListNode<int>{3, nullptr})})}));
-  return 0;
+    PrintLinkedListInReverse(make_shared<ListNode<int>>(ListNode<int>{
+                1, make_shared<ListNode<int>>(ListNode<int>{
+                        2, make_shared<ListNode<int>>(ListNode<int>{3, nullptr})})}));
+    return 0;
 }

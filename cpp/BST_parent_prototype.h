@@ -11,9 +11,9 @@ using std::unique_ptr;
 // @include
 template <typename T>
 struct BSTNode {
-  T data;
-  unique_ptr<BSTNode<T>> left, right;
-  BSTNode<T>* parent;
+    T data;
+    unique_ptr<BSTNode<T>> left, right;
+    BSTNode<T>* parent;
 };
 // @exclude
 #endif  // SOLUTIONS_BST_PARENT_PROTOTYPE_H_

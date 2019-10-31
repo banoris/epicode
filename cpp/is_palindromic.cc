@@ -11,37 +11,37 @@ using std::uniform_int_distribution;
 
 // @include
 bool IsPalindromic(const string& s) {
-  for (int i = 0, j = s.size() - 1; i < j; ++i, --j) {
-    if (s[i] != s[j]) {
-      return false;
+    for (int i = 0, j = s.size() - 1; i < j; ++i, --j) {
+        if (s[i] != s[j]) {
+            return false;
+        }
     }
-  }
-  return true;
+    return true;
 }
 // @exclude
 
 bool CheckAnswer(const string& s) {
-  string copy(s);
-  reverse(copy.begin(), copy.end());
-  return s == copy;
+    string copy(s);
+    reverse(copy.begin(), copy.end());
+    return s == copy;
 }
 
 string RandString(int len) {
-  default_random_engine gen((random_device())());
-  string ret;
-  while (len--) {
-    uniform_int_distribution<char> dis('a', 'z');
-    ret += dis(gen);
-  }
-  return ret;
+    default_random_engine gen((random_device())());
+    string ret;
+    while (len--) {
+        uniform_int_distribution<char> dis('a', 'z');
+        ret += dis(gen);
+    }
+    return ret;
 }
 
 int main(int argc, char** argv) {
-  default_random_engine gen((random_device())());
-  for (int times = 0; times < 10000; ++times) {
-    uniform_int_distribution<int> dis(1, 1000);
-    string s = RandString(dis(gen));
-    assert(IsPalindromic(s) == CheckAnswer(s));
-  }
-  return 0;
+    default_random_engine gen((random_device())());
+    for (int times = 0; times < 10000; ++times) {
+        uniform_int_distribution<int> dis(1, 1000);
+        string s = RandString(dis(gen));
+        assert(IsPalindromic(s) == CheckAnswer(s));
+    }
+    return 0;
 }

@@ -6,6 +6,6 @@
 //@exclude
 
 int main(int argc, char** argv) {
-  char c = 'a';
-  assert(isvowel(c));
+    char c = 'a';
+    assert(isvowel(c));
 }

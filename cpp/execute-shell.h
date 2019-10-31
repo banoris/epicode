@@ -10,18 +10,18 @@
 using std::string;
 
 string execute_shell(const string& cmd) {
-  FILE* pipe = popen(cmd.c_str(), "r");
-  if (!pipe) {
-    return "ERROR";
-  }
-  char buffer[128];
-  string result;
-  while (!feof(pipe)) {
-    if (!fgets(buffer, 128, pipe)) {
-      result += buffer;
+    FILE* pipe = popen(cmd.c_str(), "r");
+    if (!pipe) {
+        return "ERROR";
     }
-  }
-  pclose(pipe);
-  return result;
+    char buffer[128];
+    string result;
+    while (!feof(pipe)) {
+        if (!fgets(buffer, 128, pipe)) {
+            result += buffer;
+        }
+    }
+    pclose(pipe);
+    return result;
 }
 #endif  // SOLUTIONS_EXECUTE_SHELL_H_
