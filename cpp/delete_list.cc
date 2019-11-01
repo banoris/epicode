@@ -27,9 +27,11 @@ void CheckAnswer(shared_ptr<ListNode<int>> L, const vector<int>& vals) {
 
 int main(int argc, char* argv[]) {
     shared_ptr<ListNode<int>> L;
-    L = make_shared<ListNode<int>>(ListNode<int>{
-            2, make_shared<ListNode<int>>(ListNode<int>{
-                    4, make_shared<ListNode<int>>(ListNode<int>{3, nullptr})})});
+    L = make_shared<ListNode<int>>(ListNode<int> {
+        2, make_shared<ListNode<int>>(ListNode<int>{
+            4, make_shared<ListNode<int>>(ListNode<int>{3, nullptr})
+        })
+    });
     DeleteAfter(L);
     CheckAnswer(L, {2, 3});
     DeleteAfter(L);

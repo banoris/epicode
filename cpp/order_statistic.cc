@@ -50,7 +50,7 @@ int FindKth(int k, Compare comp, vector<int>* A_ptr) {
     default_random_engine gen((random_device())());
     while (left <= right) {
         // Generates a random integer in [left, right].
-        int pivot_idx = uniform_int_distribution<int>{left, right}(gen);
+        int pivot_idx = uniform_int_distribution<int> {left, right}(gen);
         int new_pivot_idx =
             PartitionAroundPivot(left, right, pivot_idx, comp, &A);
         if (new_pivot_idx == k - 1) {
@@ -77,7 +77,7 @@ int FindKth(int k, Compare comp, vector<int>* A_ptr) {
 // Returns the new index of the pivot element after partition.
 template <typename Compare>
 int PartitionAroundPivot(int left, int right, int pivot_idx, Compare comp,
-        vector<int>* A_ptr) {
+                         vector<int>* A_ptr) {
     vector<int>& A = *A_ptr;
     int pivot_value = A[pivot_idx];
     int new_pivot_idx = left;
@@ -195,7 +195,7 @@ static void SimpleTest() {
 }
 
 static void CheckOrderStatistic(int K, bool increasing_order,
-        vector<int>* A_ptr) {
+                                vector<int>* A_ptr) {
     vector<int> B(*A_ptr);
     if (increasing_order) {
         FindKthSmallest(K, A_ptr);

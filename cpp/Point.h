@@ -1,17 +1,17 @@
 using std::hash;
 
 class Point {
-    public:
-        int x;
-        int y;
-        Point(int a, int b) {
-            x = a;
-            y = b;
-        }
+public:
+    int x;
+    int y;
+    Point(int a, int b) {
+        x = a;
+        y = b;
+    }
 
-        bool operator==(const Point& that) const {
-            return x == that.x && y == that.y;
-        }
+    bool operator==(const Point& that) const {
+        return x == that.x && y == that.y;
+    }
 };
 
 struct HashPoint {

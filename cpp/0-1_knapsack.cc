@@ -29,7 +29,7 @@ vector<int> RandVector(int len) {
 
 struct Item;
 int OptimumSubjectToItemAndCapacity(const vector<Item>&, int, int,
-        vector<vector<int>>*);
+                                    vector<vector<int>>*);
 
 // @include
 struct Item {
@@ -41,14 +41,14 @@ int OptimumSubjecToCapacity(const vector<Item>& items, int capacity) {
     // a capacity of j.
     vector<vector<int>> V(items.size(), vector<int>(capacity + 1, -1));
     return OptimumSubjectToItemAndCapacity(items, items.size() - 1, capacity,
-            &V);
+                                           &V);
 }
 
 // Returns the optimum value when we choose from items[0 : k] and have a
 // capacity of available_capacity.
 int OptimumSubjectToItemAndCapacity(const vector<Item>& items, int k,
-        int available_capacity,
-        vector<vector<int>>* V_ptr) {
+                                    int available_capacity,
+                                    vector<vector<int>>* V_ptr) {
     if (k < 0) {
         // No items can be chosen.
         return 0;
@@ -57,14 +57,14 @@ int OptimumSubjectToItemAndCapacity(const vector<Item>& items, int k,
     vector<vector<int>>& V = *V_ptr;
     if (V[k][available_capacity] == -1) {
         int without_curr_item = OptimumSubjectToItemAndCapacity(
-                items, k - 1, available_capacity, V_ptr);
+                                    items, k - 1, available_capacity, V_ptr);
         int with_curr_item =
             available_capacity < items[k].weight
             ? 0
             : items[k].value + OptimumSubjectToItemAndCapacity(
-                    items, k - 1,
-                    available_capacity - items[k].weight,
-                    V_ptr);
+                items, k - 1,
+                available_capacity - items[k].weight,
+                V_ptr);
         V[k][available_capacity] = max(without_curr_item, with_curr_item);
     }
     return V[k][available_capacity];
@@ -76,7 +76,8 @@ void SmallTest() {
     vector<Item> items = {{20, 65},  {8, 35},   {60, 245}, {55, 195},
         {40, 65},  {70, 150}, {85, 275}, {25, 155},
         {30, 120}, {65, 320}, {75, 75},  {10, 40},
-        {95, 200}, {50, 100}, {40, 220}, {10, 99}};
+        {95, 200}, {50, 100}, {40, 220}, {10, 99}
+    };
     assert(695 == OptimumSubjecToCapacity(items, 130));
 
     items = {{5, 60}, {3, 50}, {4, 70}, {2, 30}};

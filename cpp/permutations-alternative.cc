@@ -26,7 +26,7 @@ vector<vector<int>> Permutations(vector<int> A) {
 }
 
 void DirectedPermutations(int i, vector<int> *A_ptr,
-        vector<vector<int>> *result) {
+                          vector<vector<int>> *result) {
     vector<int> &A = *A_ptr;
     if (i == A.size() - 1) {
         result->emplace_back(A);
@@ -48,10 +48,11 @@ void SmallTest() {
     auto result = Permutations(A);
     assert(result.size() == 6);
     vector<vector<int>> golden_result = {{0, 1, 2}, {0, 2, 1}, {1, 0, 2},
-        {1, 2, 0}, {2, 1, 0}, {2, 0, 1}};
+        {1, 2, 0}, {2, 1, 0}, {2, 0, 1}
+    };
     for (int i = 0; i < 6; ++i) {
         assert(equal(result[i].begin(), result[i].end(), golden_result[i].begin(),
-                    golden_result[i].end()));
+                     golden_result[i].end()));
     }
 }
 

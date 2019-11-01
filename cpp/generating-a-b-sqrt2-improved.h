@@ -16,26 +16,26 @@ using GeneratingABSqrt2::ABSqrt2;
 
 namespace GeneratingABSqrt2Improved {
 
-    // @include
-    vector<ABSqrt2> GenerateFirstKABSqrt2(int k) {
-        // Will store the first k numbers of the form a + b sqrt(2).
-        vector<ABSqrt2> result;
-        result.emplace_back(0, 0);
-        int i = 0, j = 0;
-        for (int n = 1; n < k; ++n) {
-            ABSqrt2 result_i_plus_1(result[i].a + 1, result[i].b);
-            ABSqrt2 result_j_plus_sqrt2(result[j].a, result[j].b + 1);
-            result.emplace_back(min(result_i_plus_1, result_j_plus_sqrt2));
-            if (result_i_plus_1.val == result.back().val) {
-                ++i;
-            }
-            if (result_j_plus_sqrt2.val == result.back().val) {
-                ++j;
-            }
+// @include
+vector<ABSqrt2> GenerateFirstKABSqrt2(int k) {
+    // Will store the first k numbers of the form a + b sqrt(2).
+    vector<ABSqrt2> result;
+    result.emplace_back(0, 0);
+    int i = 0, j = 0;
+    for (int n = 1; n < k; ++n) {
+        ABSqrt2 result_i_plus_1(result[i].a + 1, result[i].b);
+        ABSqrt2 result_j_plus_sqrt2(result[j].a, result[j].b + 1);
+        result.emplace_back(min(result_i_plus_1, result_j_plus_sqrt2));
+        if (result_i_plus_1.val == result.back().val) {
+            ++i;
         }
-        return result;
+        if (result_j_plus_sqrt2.val == result.back().val) {
+            ++j;
+        }
     }
-    // @exclude
+    return result;
+}
+// @exclude
 
 }  // namespace GeneratingABSqrt2Improved
 

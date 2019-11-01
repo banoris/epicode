@@ -32,61 +32,65 @@ string RandString(int len) {
 
 // @include
 class Trie {
-    public:
-        // @exclude
-        virtual ~Trie() { Clear(); }
-        // @include
-        bool Insert(const string& s) {
-            auto* p = root_.get();
-            for (char c : s) {
-                if (p->leaves.find(c) == p->leaves.cend()) {
-                    p->leaves[c] = make_unique<TrieNode>(TrieNode());
-                }
-                p = p->leaves[c].get();
+public:
+    // @exclude
+    virtual ~Trie() {
+        Clear();
+    }
+    // @include
+    bool Insert(const string& s) {
+        auto* p = root_.get();
+        for (char c : s) {
+            if (p->leaves.find(c) == p->leaves.cend()) {
+                p->leaves[c] = make_unique<TrieNode>(TrieNode());
             }
-
-            // s already existed in this trie.
-            if (p->isString) {
-                return false;
-            } else {  // p->isString == false.
-                p->isString = true;  // Inserts s into this trie.
-                return true;
-            }
+            p = p->leaves[c].get();
         }
 
-        string GetShortestUniquePrefix(const string& s) {
-            auto* p = root_.get();
-            string prefix;
-            for (char c : s) {
-                prefix += c;
-                if (p->leaves.find(c) == p->leaves.cend()) {
-                    return prefix;
-                }
-                p = p->leaves[c].get();
-            }
-            return {};
+        // s already existed in this trie.
+        if (p->isString) {
+            return false;
+        } else {  // p->isString == false.
+            p->isString = true;  // Inserts s into this trie.
+            return true;
         }
-        // @exclude
-        void Clear() { Clear(&root_); }
-        // @include
+    }
 
-    private:
-        struct TrieNode {
-            bool isString = false;
-            unordered_map<char, unique_ptr<TrieNode>> leaves;
-        };
-
-        unique_ptr<TrieNode> root_ = make_unique<TrieNode>(TrieNode());
-        // @exclude
-        void Clear(unique_ptr<TrieNode>* p) {
-            for (auto& e : (*p)->leaves) {
-                if (e.second) {
-                    Clear(&(e.second));
-                }
+    string GetShortestUniquePrefix(const string& s) {
+        auto* p = root_.get();
+        string prefix;
+        for (char c : s) {
+            prefix += c;
+            if (p->leaves.find(c) == p->leaves.cend()) {
+                return prefix;
             }
-            p->reset(nullptr);
+            p = p->leaves[c].get();
         }
-        // @include
+        return {};
+    }
+    // @exclude
+    void Clear() {
+        Clear(&root_);
+    }
+    // @include
+
+private:
+    struct TrieNode {
+        bool isString = false;
+        unordered_map<char, unique_ptr<TrieNode>> leaves;
+    };
+
+    unique_ptr<TrieNode> root_ = make_unique<TrieNode>(TrieNode());
+    // @exclude
+    void Clear(unique_ptr<TrieNode>* p) {
+        for (auto& e : (*p)->leaves) {
+            if (e.second) {
+                Clear(&(e.second));
+            }
+        }
+        p->reset(nullptr);
+    }
+    // @include
 };
 
 string FindShortestPrefix(const string& s, const unordered_set<string>& D) {
@@ -137,7 +141,7 @@ int main(int argc, char* argv[]) {
             D.emplace(RandString(dis(gen)));
         }
         cout << s << ' ' << "shortest prefix = " << FindShortestPrefix(s, D)
-            << endl;
+             << endl;
         assert(FindShortestPrefix(s, D) == CheckAns(s, D));
     }
     return 0;

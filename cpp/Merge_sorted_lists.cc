@@ -25,7 +25,7 @@ void SimpleTest() {
     auto result = MergeTwoSortedLists(L1, L2);
     assert(result == nullptr);
 
-    L1 = make_shared<ListNode<int>>(ListNode<int>{123, nullptr});
+    L1 = make_shared<ListNode<int>>(ListNode<int> {123, nullptr});
     result = MergeTwoSortedLists(L1, L2);
     assert(result->data == 123);
 
@@ -34,11 +34,11 @@ void SimpleTest() {
     result = MergeTwoSortedLists(L1, L2);
     assert(result->data == 123);
 
-    L1 = make_shared<ListNode<int>>(ListNode<int>{-123, nullptr});
-    L2 = make_shared<ListNode<int>>(ListNode<int>{123, nullptr});
+    L1 = make_shared<ListNode<int>>(ListNode<int> {-123, nullptr});
+    L2 = make_shared<ListNode<int>>(ListNode<int> {123, nullptr});
     result = MergeTwoSortedLists(L1, L2);
     assert(result->data == -123 && result->next->data == 123 &&
-            result->next->next == nullptr);
+           result->next->next == nullptr);
 }
 
 int main(int argc, char* argv[]) {
@@ -57,13 +57,13 @@ int main(int argc, char* argv[]) {
         }
         for (int i = n; i > 0; --i) {
             shared_ptr<ListNode<int>> temp =
-                make_shared<ListNode<int>>(ListNode<int>{i, nullptr});
+                                       make_shared<ListNode<int>>(ListNode<int> {i, nullptr});
             temp->next = F;
             F = temp;
         }
         for (int j = m; j > 0; --j) {
             shared_ptr<ListNode<int>> temp =
-                make_shared<ListNode<int>>(ListNode<int>{j, nullptr});
+                                       make_shared<ListNode<int>>(ListNode<int> {j, nullptr});
             temp->next = L;
             L = temp;
         }

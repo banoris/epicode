@@ -20,7 +20,7 @@ typedef enum { WHITE, BLACK } Color;
 
 struct Coordinate;
 bool SearchMazeHelper(const Coordinate&, const Coordinate&,
-        vector<vector<Color>>*, vector<Coordinate>*);
+                      vector<vector<Color>>*, vector<Coordinate>*);
 bool IsFeasible(const Coordinate&, const vector<vector<Color>>&);
 
 // @include
@@ -33,7 +33,7 @@ struct Coordinate {
 };
 
 vector<Coordinate> SearchMaze(vector<vector<Color>> maze, const Coordinate& s,
-        const Coordinate& e) {
+                              const Coordinate& e) {
     vector<Coordinate> path;
     maze[s.x][s.y] = BLACK;
     path.emplace_back(s);
@@ -45,7 +45,7 @@ vector<Coordinate> SearchMaze(vector<vector<Color>> maze, const Coordinate& s,
 
 // Perform DFS to find a feasible path.
 bool SearchMazeHelper(const Coordinate& cur, const Coordinate& e,
-        vector<vector<Color>>* maze, vector<Coordinate>* path) {
+                      vector<vector<Color>>* maze, vector<Coordinate>* path) {
     if (cur == e) {
         return true;
     }
@@ -68,7 +68,7 @@ bool SearchMazeHelper(const Coordinate& cur, const Coordinate& e,
 // Checks cur is within maze and is a white pixel.
 bool IsFeasible(const Coordinate& cur, const vector<vector<Color>>& maze) {
     return cur.x >= 0 && cur.x < maze.size() && cur.y >= 0 &&
-        cur.y < maze[cur.x].size() && maze[cur.x][cur.y] == WHITE;
+           cur.y < maze[cur.x].size() && maze[cur.x][cur.y] == WHITE;
 }
 // @exclude
 
@@ -115,8 +115,8 @@ int main(int argc, char* argv[]) {
             for (int i = 0; i < path.size(); ++i) {
                 if (i > 0) {
                     assert(abs(path[i - 1].x - path[i].x) +
-                            abs(path[i - 1].y - path[i].y) ==
-                            1);
+                           abs(path[i - 1].y - path[i].y) ==
+                           1);
                 }
                 cout << '(' << path[i].x << ',' << path[i].y << ')' << endl;
             }

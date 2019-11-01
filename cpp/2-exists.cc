@@ -26,8 +26,8 @@ struct GraphVertex {
 
 bool IsDeadlocked(vector<GraphVertex>* G) {
     return any_of(begin(*G), end(*G), [](GraphVertex& vertex) {
-            return vertex.color == GraphVertex::white && HasCycle(&vertex);
-            });
+        return vertex.color == GraphVertex::white && HasCycle(&vertex);
+    });
 }
 
 bool HasCycle(GraphVertex* cur) {

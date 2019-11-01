@@ -27,23 +27,29 @@ using std::lock_guard;
 using std::unique_lock;
 
 class ServiceRequest {
-    public:
-        ServiceRequest(const string& s) : request_(s) {}
+public:
+    ServiceRequest(const string& s) : request_(s) {}
 
-        string ExtractWordToCheckFromRequest() { return request_; }
+    string ExtractWordToCheckFromRequest() {
+        return request_;
+    }
 
-    private:
-        string request_;
+private:
+    string request_;
 };
 
 class ServiceResponse {
-    public:
-        const vector<string>& response() { return response_; }
+public:
+    const vector<string>& response() {
+        return response_;
+    }
 
-        void EncodeIntoResponse(const vector<string>& s) { response_ = s; }
+    void EncodeIntoResponse(const vector<string>& s) {
+        response_ = s;
+    }
 
-    private:
-        vector<string> response_;
+private:
+    vector<string> response_;
 };
 
 vector<string> ClosestInDictionary(const string& w) {
@@ -53,31 +59,31 @@ vector<string> ClosestInDictionary(const string& w) {
 
 // @include
 class SpellCheckService {
-    public:
-        static void Service(ServiceRequest& req, ServiceResponse& resp) {
-            string w = req.ExtractWordToCheckFromRequest();
-            vector<string> result;
-            bool found = false;
-            {
-                lock_guard<mutex> lock(mx);
-                if (w == w_last_) {
-                    result = closest_to_last_word_;
-                    found = true;
-                }
+public:
+    static void Service(ServiceRequest& req, ServiceResponse& resp) {
+        string w = req.ExtractWordToCheckFromRequest();
+        vector<string> result;
+        bool found = false;
+        {
+            lock_guard<mutex> lock(mx);
+            if (w == w_last_) {
+                result = closest_to_last_word_;
+                found = true;
             }
-            if (!found) {
-                result = ClosestInDictionary(w);
-                lock_guard<mutex> lock(mx);
-                w_last_ = move(w);
-                closest_to_last_word_ = result;
-            }
-            resp.EncodeIntoResponse(result);
         }
+        if (!found) {
+            result = ClosestInDictionary(w);
+            lock_guard<mutex> lock(mx);
+            w_last_ = move(w);
+            closest_to_last_word_ = result;
+        }
+        resp.EncodeIntoResponse(result);
+    }
 
-    private:
-        static string w_last_;
-        static vector<string> closest_to_last_word_;
-        static mutex mx;
+private:
+    static string w_last_;
+    static vector<string> closest_to_last_word_;
+    static mutex mx;
 };
 // @exclude
 string SpellCheckService::w_last_;
@@ -91,7 +97,7 @@ void ServiceThread(const string& data) {
     SpellCheckService::Service(req, resp);
     duration<float> running_time = system_clock::now() - start_time;
     cout << data << " -> " << resp.response()[0] << " (" << setprecision(3)
-        << running_time.count() << " sec)" << endl;
+         << running_time.count() << " sec)" << endl;
 }
 
 int main(int argc, char* argv[]) {

@@ -16,7 +16,7 @@ bool IsValidSudoku(const vector<vector<int>>& partial_assignment) {
     // Check row constraints.
     for (int i = 0; i < partial_assignment.size(); ++i) {
         if (HasDuplicate(partial_assignment, i, i + 1, 0,
-                    partial_assignment.size())) {
+                         partial_assignment.size())) {
             return false;
         }
     }
@@ -24,7 +24,7 @@ bool IsValidSudoku(const vector<vector<int>>& partial_assignment) {
     // Check column constraints.
     for (int j = 0; j < partial_assignment.size(); ++j) {
         if (HasDuplicate(partial_assignment, 0, partial_assignment.size(), j,
-                    j + 1)) {
+                         j + 1)) {
             return false;
         }
     }
@@ -34,8 +34,8 @@ bool IsValidSudoku(const vector<vector<int>>& partial_assignment) {
     for (int I = 0; I < region_size; ++I) {
         for (int J = 0; J < region_size; ++J) {
             if (HasDuplicate(partial_assignment, region_size * I,
-                        region_size * (I + 1), region_size * J,
-                        region_size * (J + 1))) {
+                             region_size * (I + 1), region_size * J,
+                             region_size * (J + 1))) {
                 return false;
             }
         }
@@ -47,7 +47,7 @@ bool IsValidSudoku(const vector<vector<int>>& partial_assignment) {
 // 1][start_col : end_col - 1] contains any duplicates in {1, 2, ...,
 // partial_assignment.size()}; otherwise return false.
 bool HasDuplicate(const vector<vector<int>>& partial_assignment,
-        int start_row, int end_row, int start_col, int end_col) {
+                  int start_row, int end_row, int start_col, int end_col) {
     deque<bool> is_present(partial_assignment.size() + 1, false);
     for (int i = start_row; i < end_row; ++i) {
         for (int j = start_col; j < end_col; ++j) {

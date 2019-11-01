@@ -47,8 +47,8 @@ Ordering Compare(double a, double b) {
     // Uses normalization for precision problem.
     double diff = (a - b) / b;
     return diff < -numeric_limits<double>::epsilon()
-        ? SMALLER
-        : diff > numeric_limits<double>::epsilon() ? LARGER : EQUAL;
+           ? SMALLER
+           : diff > numeric_limits<double>::epsilon() ? LARGER : EQUAL;
 }
 // @exclude
 

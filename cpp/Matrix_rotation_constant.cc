@@ -27,20 +27,20 @@ void RotateMatrix(vector<vector<int>>* A_ptr) {
 
 // @include
 class RotatedMatrix {
-    public:
-        explicit RotatedMatrix(vector<vector<int>>* square_matrix)
-            : square_matrix_(*square_matrix) {}
+public:
+    explicit RotatedMatrix(vector<vector<int>>* square_matrix)
+        : square_matrix_(*square_matrix) {}
 
-        int ReadEntry(int i, int j) const {
-            return square_matrix_[square_matrix_.size() - 1 - j][i];
-        }
+    int ReadEntry(int i, int j) const {
+        return square_matrix_[square_matrix_.size() - 1 - j][i];
+    }
 
-        void WriteEntry(int i, int j, int v) {
-            square_matrix_[square_matrix_.size() - 1 - j][i] = v;
-        }
+    void WriteEntry(int i, int j, int v) {
+        square_matrix_[square_matrix_.size() - 1 - j][i] = v;
+    }
 
-    private:
-        vector<vector<int>>& square_matrix_;
+private:
+    vector<vector<int>>& square_matrix_;
 };
 // @exclude
 

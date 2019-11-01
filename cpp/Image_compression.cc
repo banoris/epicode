@@ -28,18 +28,20 @@ struct TreeNode;
 struct HashPoint;
 
 bool is_monochromatic(const vector<vector<int>>& image_sum,
-        const Point& lower_left, const Point& upper_right);
+                      const Point& lower_left, const Point& upper_right);
 
 shared_ptr<TreeNode> calculate_optimal_2D_tree_helper(
-        const vector<vector<int>>& image, const vector<vector<int>>& image_sum,
-        const Point& lower_left, const Point& upper_right,
-        unordered_map<Point,
-        unordered_map<Point, shared_ptr<TreeNode>, HashPoint>,
-        HashPoint>& table);
+    const vector<vector<int>>& image, const vector<vector<int>>& image_sum,
+    const Point& lower_left, const Point& upper_right,
+    unordered_map<Point,
+    unordered_map<Point, shared_ptr<TreeNode>, HashPoint>,
+    HashPoint>& table);
 
 // @include
 struct Point {
-    bool operator>(const Point& that) const { return i > that.i || j > that.j; }
+    bool operator>(const Point& that) const {
+        return i > that.i || j > that.j;
+    }
 
     // Equal function for hash.
     bool operator==(const Point& that) const {
@@ -66,28 +68,28 @@ struct TreeNode {
 };
 
 shared_ptr<TreeNode> calculate_optimal_2D_tree(
-        const vector<vector<int>>& image) {
+    const vector<vector<int>>& image) {
     vector<vector<int>> image_sum(image);
     for (int i = 0; i < image.size(); ++i) {
         partial_sum(image_sum[i].cbegin(), image_sum[i].cend(),
-                image_sum[i].begin());
+                    image_sum[i].begin());
         for (int j = 0; i > 0 && j < image[i].size(); ++j) {
             image_sum[i][j] += image_sum[i - 1][j];
         }
     }
 
     unordered_map<Point, unordered_map<Point, shared_ptr<TreeNode>, HashPoint>,
-        HashPoint>
-            table;
+                  HashPoint>
+                  table;
     return calculate_optimal_2D_tree_helper(
-            image, image_sum, Point{0, 0},
-            Point{static_cast<int>(image.size() - 1),
-            static_cast<int>(image[0].size() - 1)},
-            table);
+               image, image_sum, Point{0, 0},
+               Point{static_cast<int>(image.size() - 1),
+                     static_cast<int>(image[0].size() - 1)},
+               table);
 }
 
 bool is_monochromatic(const vector<vector<int>>& image_sum,
-        const Point& lower_left, const Point& upper_right) {
+                      const Point& lower_left, const Point& upper_right) {
     int pixel_sum = image_sum[upper_right.i][upper_right.j];
     if (lower_left.i >= 1) {
         pixel_sum -= image_sum[lower_left.i - 1][upper_right.j];
@@ -99,17 +101,17 @@ bool is_monochromatic(const vector<vector<int>>& image_sum,
         pixel_sum += image_sum[lower_left.i - 1][lower_left.j - 1];
     }
     return pixel_sum == 0 ||  // totally white.
-        pixel_sum ==
-        (upper_right.i - lower_left.i + 1) *  // totally black.
-        (upper_right.j - lower_left.j + 1);
+           pixel_sum ==
+           (upper_right.i - lower_left.i + 1) *  // totally black.
+           (upper_right.j - lower_left.j + 1);
 }
 
 shared_ptr<TreeNode> calculate_optimal_2D_tree_helper(
-        const vector<vector<int>>& image, const vector<vector<int>>& image_sum,
-        const Point& lower_left, const Point& upper_right,
-        unordered_map<Point,
-        unordered_map<Point, shared_ptr<TreeNode>, HashPoint>,
-        HashPoint>& table) {
+    const vector<vector<int>>& image, const vector<vector<int>>& image_sum,
+    const Point& lower_left, const Point& upper_right,
+    unordered_map<Point,
+    unordered_map<Point, shared_ptr<TreeNode>, HashPoint>,
+    HashPoint>& table) {
     // Illegal rectangle region, returns empty node.
     if (lower_left > upper_right) {
         return shared_ptr<TreeNode>(new TreeNode{0, lower_left, upper_right});
@@ -121,7 +123,7 @@ shared_ptr<TreeNode> calculate_optimal_2D_tree_helper(
             table[lower_left][upper_right] = p;
         } else {
             shared_ptr<TreeNode> p(
-                    new TreeNode{numeric_limits<int>::max(), lower_left, upper_right});
+                new TreeNode{numeric_limits<int>::max(), lower_left, upper_right});
             for (int s = lower_left.i; s <= upper_right.i + 1; ++s) {
                 for (int t = lower_left.j; t <= upper_right.j + 1; ++t) {
                     if ((s != lower_left.i && s != upper_right.i + 1) ||
@@ -129,18 +131,19 @@ shared_ptr<TreeNode> calculate_optimal_2D_tree_helper(
                         vector<shared_ptr<TreeNode>> children = {
                             // SW rectangle.
                             calculate_optimal_2D_tree_helper(image, image_sum, lower_left,
-                                    Point{s - 1, t - 1}, table),
+                            Point{s - 1, t - 1}, table),
                             // NW rectangle.
                             calculate_optimal_2D_tree_helper(
-                                    image, image_sum, Point{lower_left.i, t},
-                                    Point{s - 1, upper_right.j}, table),
+                            image, image_sum, Point{lower_left.i, t},
+                            Point{s - 1, upper_right.j}, table),
                             // NE rectangle.
                             calculate_optimal_2D_tree_helper(
-                                    image, image_sum, Point{s, t}, upper_right, table),
+                            image, image_sum, Point{s, t}, upper_right, table),
                             // SE rectangle.
                             calculate_optimal_2D_tree_helper(
-                                    image, image_sum, Point{s, lower_left.j},
-                                    Point{upper_right.i, t - 1}, table)};
+                            image, image_sum, Point{s, lower_left.j},
+                            Point{upper_right.i, t - 1}, table)
+                        };
 
                         int node_num = 1;  // itself.
                         for (shared_ptr<TreeNode>& child : children) {
@@ -165,7 +168,7 @@ shared_ptr<TreeNode> calculate_optimal_2D_tree_helper(
 
 void recursive_print_tree(const shared_ptr<TreeNode>& r) {
     cout << "(" << r->lowerLeft.i << "," << r->lowerLeft.j << ")-("
-        << r->upperRight.i << "," << r->upperRight.j << ")" << endl;
+         << r->upperRight.i << "," << r->upperRight.j << ")" << endl;
     for (const shared_ptr<TreeNode>& ptr : r->children) {
         if (ptr) {
             recursive_print_tree(ptr);

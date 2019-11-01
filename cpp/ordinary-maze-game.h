@@ -6,19 +6,21 @@
 #include "./maze-game.h"
 
 class OrdinaryRoom : public Room {
-    public:
-        virtual ~OrdinaryRoom() override = default;
+public:
+    virtual ~OrdinaryRoom() override = default;
 
-        void Connect(const Room* that) override {}
+    void Connect(const Room* that) override {}
 };
 
 // @include
 class OrdinaryMazeGameCreator : public MazeGameCreator {
     // @exclude
-    public:
-        virtual ~OrdinaryMazeGameCreator() override = default;
-        // @include
-        Room* MakeRoom() override { return new OrdinaryRoom(); }
+public:
+    virtual ~OrdinaryMazeGameCreator() override = default;
+    // @include
+    Room* MakeRoom() override {
+        return new OrdinaryRoom();
+    }
 };
 // @exclude
 

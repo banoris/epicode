@@ -18,7 +18,7 @@ class PerformanceTimer {
     high_resolution_clock::time_point start_;
     high_resolution_clock::duration duration_;
     mutable int64_t milliseconds_;
-    public:
+public:
     PerformanceTimer() : milliseconds_(0) {}
 
     void StartTimer() {
@@ -38,7 +38,7 @@ class PerformanceTimer {
     friend ostream& operator<<(ostream &out, const PerformanceTimer &t) {
         auto ms = t.GetMilliseconds();
         return out <<  ms / 1000 << '.' <<
-            setfill('0') << setw (3) << ms % 1000 << " s";
+               setfill('0') << setw (3) << ms % 1000 << " s";
     }
 };
 
@@ -46,7 +46,7 @@ class PerformanceMeasure {
     PerformanceTimer reference_;
     PerformanceTimer user_;
     mutable uint64_t limit_ = 0;
-    public:
+public:
     PerformanceMeasure(uint64_t limit = 0) : limit_(limit) {}
 
     PerformanceTimer& GetReferenceTimer() {

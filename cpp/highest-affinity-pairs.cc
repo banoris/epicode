@@ -46,7 +46,7 @@ PagePair HighestAffinityPair(ifstream* ifs) {
         for (advance(b, 1); b != page_users_map.end(); ++b) {
             vector<string> intersect_users;
             set_intersection(a->second.begin(), a->second.end(), b->second.begin(),
-                    b->second.end(), back_inserter(intersect_users));
+                             b->second.end(), back_inserter(intersect_users));
 
             // Updates result if we find larger intersection.
             if (intersect_users.size() > max_count) {
@@ -78,7 +78,7 @@ void SimpleTest() {
     ifstream ifs("/tmp/logs.txt");
     auto result = HighestAffinityPair(&ifs);
     assert((result.page_a == "a" && result.page_b == "c") ||
-            (result.page_a == "c" && result.page_b == "a"));
+           (result.page_a == "c" && result.page_b == "a"));
 }
 
 int main(int argc, char* argv[]) {

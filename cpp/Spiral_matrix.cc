@@ -43,7 +43,7 @@ void SimpleTest() {
     auto result = MatrixInSpiralOrder(A);
     vector<int> golden_result = {1, 2, 3, 6, 9, 8, 7, 4, 5};
     assert(equal(result.begin(), result.end(), golden_result.begin(),
-                golden_result.end()));
+                 golden_result.end()));
 }
 
 int main(int argc, char *argv[]) {

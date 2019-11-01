@@ -17,7 +17,7 @@ using std::uniform_int_distribution;
 
 // @include
 shared_ptr<PostingListNode> CopyPostingsList(
-        const shared_ptr<PostingListNode>& L) {
+    const shared_ptr<PostingListNode>& L) {
     if (L == nullptr) {
         return nullptr;
     }
@@ -28,7 +28,7 @@ shared_ptr<PostingListNode> CopyPostingsList(
     auto iter = L;
     while (iter) {
         auto new_node = make_shared<PostingListNode>(
-                PostingListNode{iter->order, iter->next, nullptr});
+                            PostingListNode{iter->order, iter->next, nullptr});
         iter->next = new_node;
         iter = new_node->next;
     }
@@ -57,13 +57,13 @@ shared_ptr<PostingListNode> CopyPostingsList(
 
 template <typename T>
 void CheckPostingsListEqual(shared_ptr<PostingListNode> a,
-        shared_ptr<PostingListNode> b) {
+                            shared_ptr<PostingListNode> b) {
     while (a && b) {
         cout << a->order << ' ';
         assert(a->order == b->order);
         assert((a->jump == shared_ptr<PostingListNode>(nullptr) &&
-                    b->jump == shared_ptr<PostingListNode>(nullptr)) ||
-                (a->jump && b->jump && a->jump->order == b->jump->order));
+                b->jump == shared_ptr<PostingListNode>(nullptr)) ||
+               (a->jump && b->jump && a->jump->order == b->jump->order));
         if (a->jump) {
             cout << a->jump->order;
         }
@@ -71,7 +71,7 @@ void CheckPostingsListEqual(shared_ptr<PostingListNode> a,
         a = a->next, b = b->next;
     }
     assert(a == shared_ptr<PostingListNode>(nullptr) &&
-            b == shared_ptr<PostingListNode>(nullptr));
+           b == shared_ptr<PostingListNode>(nullptr));
 }
 
 int main(int argc, char* argv[]) {

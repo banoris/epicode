@@ -54,19 +54,19 @@ int main(int argc, char* argv[]) {
     //       4   6
     //        8 9
     unique_ptr<BinaryTreeNode<int>> root = make_unique<BinaryTreeNode<int>>(
-            BinaryTreeNode<int>{3, nullptr, nullptr, nullptr});
+            BinaryTreeNode<int> {3, nullptr, nullptr, nullptr});
     root->left = make_unique<BinaryTreeNode<int>>(
-            BinaryTreeNode<int>{2, nullptr, nullptr, nullptr});
+                     BinaryTreeNode<int> {2, nullptr, nullptr, nullptr});
     root->right = make_unique<BinaryTreeNode<int>>(
-            BinaryTreeNode<int>{5, nullptr, nullptr, nullptr});
+                      BinaryTreeNode<int> {5, nullptr, nullptr, nullptr});
     root->right->left = make_unique<BinaryTreeNode<int>>(
-            BinaryTreeNode<int>{4, nullptr, nullptr, nullptr});
+                            BinaryTreeNode<int> {4, nullptr, nullptr, nullptr});
     root->right->left->right = make_unique<BinaryTreeNode<int>>(
-            BinaryTreeNode<int>{8, nullptr, nullptr, nullptr});
+                                   BinaryTreeNode<int> {8, nullptr, nullptr, nullptr});
     root->right->right = make_unique<BinaryTreeNode<int>>(
-            BinaryTreeNode<int>{6, nullptr, nullptr, nullptr});
+                             BinaryTreeNode<int> {6, nullptr, nullptr, nullptr});
     root->right->right->left = make_unique<BinaryTreeNode<int>>(
-            BinaryTreeNode<int>{9, nullptr, nullptr, nullptr});
+                                   BinaryTreeNode<int> {9, nullptr, nullptr, nullptr});
     populate_next_pointer(root.get());
     assert(root->next == nullptr);
     assert(root->left->next == root->right.get());

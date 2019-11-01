@@ -37,7 +37,8 @@ bool is_prefix(const string& a, const string& b) {
 
 void small_test() {
     const vector<string> A = {"aardvark", "ant", "antelope", "bat",
-        "cat",      "dog", "emu"};
+                              "cat",      "dog", "emu"
+                             };
     assert(prefix_search(A, "ante"));
     assert(prefix_search(A, "ant"));
     assert(!prefix_search(A, "anti"));

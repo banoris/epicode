@@ -25,15 +25,15 @@ double FindMedian(vector<int>*);
 
 // @include
 class Comp {
-    public:
-        explicit Comp(double median) : median_(median){};
+public:
+    explicit Comp(double median) : median_(median) {};
 
-        bool operator()(int a, int b) const {
-            return fabs(a - median_) < fabs(b - median_);
-        }
+    bool operator()(int a, int b) const {
+        return fabs(a - median_) < fabs(b - median_);
+    }
 
-    private:
-        const double median_;
+private:
+    const double median_;
 };
 
 vector<int> FindKClosestToMedian(vector<int> A, int k) {
@@ -61,8 +61,8 @@ double FindMedian(vector<int>* A) {
 void CheckAns(vector<int> A, const vector<int>& res, int k) {
     sort(A.begin(), A.end());
     double median = (A.size() % 2)
-        ? A[A.size() / 2]
-        : 0.5 * (A[(A.size() / 2) - 1] + A[A.size() / 2]);
+                    ? A[A.size() / 2]
+                    : 0.5 * (A[(A.size() / 2) - 1] + A[A.size() / 2]);
     vector<double> temp;
     for (int a : A) {
         temp.emplace_back(fabs(median - a));

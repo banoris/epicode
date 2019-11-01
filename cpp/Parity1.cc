@@ -23,7 +23,7 @@ string ToBinaryString(uint64_t x) {
 }
 
 void UnitTest(TestSentry::Ptr& sentry, const char* description,
-        uint64_t input, short expected) {
+              uint64_t input, short expected) {
     TestStream::Ptr stream = sentry->GetTestStream(TestType::NORMAL, description);
     stream->RegisterInput(ToBinaryString(input));
     stream->RegisterExpectedOutput(expected);
@@ -38,7 +38,7 @@ void UnitTest(TestSentry::Ptr& sentry, const char* description,
 
 template <class T>
 void PerformanceTest(const TestOptions& options, TestSentry::Ptr& sentry,
-        size_t load_multiplier, T reference_function, T user_function) {
+                     size_t load_multiplier, T reference_function, T user_function) {
     TestStream::Ptr stream = sentry->GetTestStream(TestType::PERFORMANCE, "Performance test");
     uint64_t data = 0b0111110011001100110011101110111011101100110011000000000000000000L;
     PerformanceMeasure m;
@@ -65,23 +65,23 @@ void PerformanceTest(const TestOptions& options, TestSentry::Ptr& sentry,
 void DirectedTests(const TestOptions& options) {
     TestSentry::Ptr sentry = options.GetTestSentry(0, "Parity");
     UnitTest(sentry, "Test #1",
-            0b1000000000000000000000000000000000000000000000000000000000000000L,
-            (short) 1);
+             0b1000000000000000000000000000000000000000000000000000000000000000L,
+             (short) 1);
     UnitTest(sentry, "Test #2",
-            0b1000000000000000000000000000000000000000000000000000000000000001L,
-            (short) 0);
+             0b1000000000000000000000000000000000000000000000000000000000000001L,
+             (short) 0);
     UnitTest(sentry, "Test #3",
-            0b0000000000000000000000000000000000000000000000000000000000000001L,
-            (short) 1);
+             0b0000000000000000000000000000000000000000000000000000000000000001L,
+             (short) 1);
     UnitTest(sentry, "Test #4",
-            0b1111111111111111111111111111111111111111111111111111111111111111L,
-            (short) 0);
+             0b1111111111111111111111111111111111111111111111111111111111111111L,
+             (short) 0);
     UnitTest(sentry, "Test #5",
-            0b0111111111111111111111111111111111111111111111111111111111111111L,
-            (short) 1);
+             0b0111111111111111111111111111111111111111111111111111111111111111L,
+             (short) 1);
     UnitTest(sentry, "Test #6",
-            0b1010000101000101101000010100010110100001010001011010000101000101L,
-            (short) 0);
+             0b1010000101000101101000010100010110100001010001011010000101000101L,
+             (short) 0);
 
     PerformanceTest(options, sentry, 10000, Parity1::Parity, Parity1::Parity);
 }

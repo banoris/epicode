@@ -72,9 +72,9 @@ vector<complex<int>> generate_Gaussian_primes(int n) {
 
 bool is_unit(const complex<int>& z) {
     return (z.real() == 1 && z.imag() == 0) ||
-        (z.real() == -1 && z.imag() == 0) ||
-        (z.real() == 0 && z.imag() == 1) ||
-        (z.real() == 0 && z.imag() == -1);
+           (z.real() == -1 && z.imag() == 0) ||
+           (z.real() == 0 && z.imag() == 1) ||
+           (z.real() == 0 && z.imag() == -1);
 }
 // @exclude
 
@@ -121,7 +121,7 @@ int main(int argc, char* argv[]) {
                     first[i].imag() != g_primes[i].imag()) {
                 cout << "(" << first[i].real() << "," << first[i].imag() << ") ";
                 cout << "(" << g_primes[i].real() << "," << g_primes[i].imag()
-                    << ") ";
+                     << ") ";
             }
         }
         for (int i = first.size(); i < g_primes.size(); ++i) {

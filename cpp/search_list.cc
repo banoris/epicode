@@ -20,9 +20,11 @@ shared_ptr<ListNode<int>> SearchList(shared_ptr<ListNode<int>> L, int key) {
 
 int main(int argc, char* argv[]) {
     shared_ptr<ListNode<int>> L;
-    L = make_shared<ListNode<int>>(ListNode<int>{
-            2, make_shared<ListNode<int>>(ListNode<int>{
-                    4, make_shared<ListNode<int>>(ListNode<int>{3, nullptr})})});
+    L = make_shared<ListNode<int>>(ListNode<int> {
+        2, make_shared<ListNode<int>>(ListNode<int>{
+            4, make_shared<ListNode<int>>(ListNode<int>{3, nullptr})
+        })
+    });
     assert(L == SearchList(L, 2));
     assert(L->next == SearchList(L, 4));
     assert(L->next->next == SearchList(L, 3));

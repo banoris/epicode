@@ -64,7 +64,7 @@ void SimpleTest() {
     assert(2 == LongestSubarrayWithDistinctEntries({1, 2, 1}));
     assert(3 == LongestSubarrayWithDistinctEntries({1, 2, 1, 3, 1, 2, 1}));
     assert(2 ==
-            LongestSubarrayWithDistinctEntries({1, 2, 2, 3, 3, 1, 1, 2, 1}));
+           LongestSubarrayWithDistinctEntries({1, 2, 2, 3, 3, 1, 1, 2, 1}));
 }
 
 int main(int argc, char** argv) {

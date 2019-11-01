@@ -62,15 +62,15 @@ int main(int argc, char* argv[]) {
     assert(0.0 == ComputeDiameter(r));
     r = make_unique<TreeNode>(TreeNode());
     r->edges.emplace_back(
-            TreeNode::Edge{make_unique<TreeNode>(TreeNode()), 10});
+        TreeNode::Edge{make_unique<TreeNode>(TreeNode()), 10});
     r->edges[0].root->edges.emplace_back(
-            TreeNode::Edge{make_unique<TreeNode>(TreeNode()), 50});
+        TreeNode::Edge{make_unique<TreeNode>(TreeNode()), 50});
     r->edges.emplace_back(
-            TreeNode::Edge{make_unique<TreeNode>(TreeNode()), 20});
+        TreeNode::Edge{make_unique<TreeNode>(TreeNode()), 20});
     assert(80 == ComputeDiameter(r));
     cout << ComputeDiameter(r) << endl;
     r->edges[0].root->edges.emplace_back(
-            TreeNode::Edge{make_unique<TreeNode>(TreeNode()), 100});
+        TreeNode::Edge{make_unique<TreeNode>(TreeNode()), 100});
     assert(150 == ComputeDiameter(r));
     cout << ComputeDiameter(r) << endl;
     return 0;

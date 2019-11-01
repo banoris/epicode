@@ -34,13 +34,15 @@ MinMax FindMinMax(const vector<int>& A) {
     for (int i = 2; i + 1 < A.size(); i += 2) {
         pair<int, int> local_min_max = minmax(A[i], A[i + 1]);
         global_min_max = {min(global_min_max.first, local_min_max.first),
-            max(global_min_max.second, local_min_max.second)};
+                          max(global_min_max.second, local_min_max.second)
+                         };
     }
     // If there is odd number of elements in the array, we still
     // need to compare the last element with the existing answer.
     if (A.size() % 2) {
         global_min_max = {min(global_min_max.first, A.back()),
-            max(global_min_max.second, A.back())};
+                          max(global_min_max.second, A.back())
+                         };
     }
     return {global_min_max.first, global_min_max.second};
 }
@@ -77,7 +79,7 @@ int main(int argc, char* argv[]) {
         }
         MinMax res = FindMinMax(A);
         assert(res.min == *min_element(A.cbegin(), A.cend()) &&
-                res.max == *max_element(A.cbegin(), A.cend()));
+               res.max == *max_element(A.cbegin(), A.cend()));
     }
     return 0;
 }

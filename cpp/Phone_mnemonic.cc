@@ -29,11 +29,12 @@ const int kNumTelDigits = 10;
 
 // The mapping from digit to corresponding characters.
 const array<string, kNumTelDigits> kMapping = {
-    {"0", "1", "ABC", "DEF", "GHI", "JKL", "MNO", "PQRS", "TUV", "WXYZ"}};
+    {"0", "1", "ABC", "DEF", "GHI", "JKL", "MNO", "PQRS", "TUV", "WXYZ"}
+};
 
 void PhoneMnemonicHelper(const string& phone_number, int digit,
-        string* partial_mnemonic,
-        vector<string>* mnemonics) {
+                         string* partial_mnemonic,
+                         vector<string>* mnemonics) {
     if (digit == phone_number.size()) {
         // All digits are processed, so add partial_mnemonic to mnemonics.
         // (We add a copy since subsequent calls modify partial_mnemonic.)
@@ -43,7 +44,7 @@ void PhoneMnemonicHelper(const string& phone_number, int digit,
         for (char c : kMapping[phone_number[digit] - '0']) {
             (*partial_mnemonic)[digit] = c;
             PhoneMnemonicHelper(phone_number, digit + 1, partial_mnemonic,
-                    mnemonics);
+                                mnemonics);
         }
     }
 }

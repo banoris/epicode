@@ -58,14 +58,14 @@ int main(int argc, char* argv[]) {
     //      3
     //    2   5
     //  1    4 6
-    auto root = make_unique<BinaryTreeNode<int>>(BinaryTreeNode<int>{3});
-    root->left = make_unique<BinaryTreeNode<int>>(BinaryTreeNode<int>{2});
-    root->left->left = make_unique<BinaryTreeNode<int>>(BinaryTreeNode<int>{1});
-    root->right = make_unique<BinaryTreeNode<int>>(BinaryTreeNode<int>{5});
+    auto root = make_unique<BinaryTreeNode<int>>(BinaryTreeNode<int> {3});
+    root->left = make_unique<BinaryTreeNode<int>>(BinaryTreeNode<int> {2});
+    root->left->left = make_unique<BinaryTreeNode<int>>(BinaryTreeNode<int> {1});
+    root->right = make_unique<BinaryTreeNode<int>>(BinaryTreeNode<int> {5});
     root->right->left =
-        make_unique<BinaryTreeNode<int>>(BinaryTreeNode<int>{4});
+        make_unique<BinaryTreeNode<int>>(BinaryTreeNode<int> {4});
     root->right->right =
-        make_unique<BinaryTreeNode<int>>(BinaryTreeNode<int>{6});
+        make_unique<BinaryTreeNode<int>>(BinaryTreeNode<int> {6});
     assert(IsBinaryTreeBST(root) == true);
     cout << boolalpha << IsBinaryTreeBST(root) << endl;
     //      10

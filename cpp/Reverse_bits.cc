@@ -35,9 +35,9 @@ long ReverseBits(long x) {
     const int kWordSize = 16;
     const int kBitMask = 0xFFFF;
     return precomputed_reverse[x & kBitMask] << (3 * kWordSize) |
-        precomputed_reverse[(x >> kWordSize) & kBitMask] << (2 * kWordSize) |
-        precomputed_reverse[(x >> (2 * kWordSize)) & kBitMask] << kWordSize |
-        precomputed_reverse[(x >> (3 * kWordSize)) & kBitMask];
+           precomputed_reverse[(x >> kWordSize) & kBitMask] << (2 * kWordSize) |
+           precomputed_reverse[(x >> (2 * kWordSize)) & kBitMask] << kWordSize |
+           precomputed_reverse[(x >> (3 * kWordSize)) & kBitMask];
 }
 // @exclude
 

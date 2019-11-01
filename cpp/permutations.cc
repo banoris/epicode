@@ -32,10 +32,11 @@ void SmallTest() {
     auto result = Permutations(A);
     assert(result.size() == 6);
     vector<vector<int>> golden_result = {{1, 2, 3}, {1, 3, 2}, {2, 1, 3},
-        {2, 3, 1}, {3, 1, 2}, {3, 2, 1}};
+        {2, 3, 1}, {3, 1, 2}, {3, 2, 1}
+    };
     for (size_t i = 0; i < 6; ++i) {
         assert(equal(result[i].begin(), result[i].end(), golden_result[i].begin(),
-                    golden_result[i].end()));
+                     golden_result[i].end()));
     }
 }
 

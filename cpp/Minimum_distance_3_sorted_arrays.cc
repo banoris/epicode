@@ -27,7 +27,7 @@ using std::vector;
 
 // @include
 int FindClosestElementsInSortedArrays(
-        const vector<vector<int>>& sorted_arrays) {
+    const vector<vector<int>>& sorted_arrays) {
     int min_distance_so_far = numeric_limits<int>::max();
 
     struct IterTail {
@@ -38,8 +38,8 @@ int FindClosestElementsInSortedArrays(
     multimap<int, IterTail> iter_and_tail;
     for (const vector<int>& sorted_array : sorted_arrays) {
         iter_and_tail.emplace(
-                sorted_array.front(),
-                IterTail{sorted_array.cbegin(), sorted_array.cend()});
+            sorted_array.front(),
+            IterTail{sorted_array.cbegin(), sorted_array.cend()});
     }
 
     while (true) {
@@ -47,7 +47,7 @@ int FindClosestElementsInSortedArrays(
             max_value = iter_and_tail.crbegin()->first;
         min_distance_so_far = min(max_value - min_value, min_distance_so_far);
         const auto next_min = next(iter_and_tail.cbegin()->second.iter),
-              next_end = iter_and_tail.cbegin()->second.tail;
+                   next_end = iter_and_tail.cbegin()->second.tail;
         // Return if some array has no remaining elements.
         if (next_min == next_end) {
             return min_distance_so_far;
@@ -59,9 +59,9 @@ int FindClosestElementsInSortedArrays(
 // @exclude
 
 int Distance(const vector<vector<int>>& sorted_arrays,
-        const vector<int>& idx) {
+             const vector<int>& idx) {
     int max_val = numeric_limits<int>::min(),
-    min_val = numeric_limits<int>::max();
+        min_val = numeric_limits<int>::max();
     for (int i = 0; i < idx.size(); ++i) {
         max_val = max(max_val, sorted_arrays[i][idx[i]]);
         min_val = min(min_val, sorted_arrays[i][idx[i]]);
@@ -70,7 +70,7 @@ int Distance(const vector<vector<int>>& sorted_arrays,
 }
 
 void RecGenAnswer(const vector<vector<int>>& sorted_arrays, vector<int>& idx,
-        int level, int* ans) {
+                  int level, int* ans) {
     if (level == sorted_arrays.size()) {
         *ans = min(Distance(sorted_arrays, idx), *ans);
         return;

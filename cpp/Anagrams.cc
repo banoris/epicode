@@ -54,12 +54,13 @@ string RandString(int len) {
 
 void SmallTest() {
     vector<string> D = {"debit card",
-        "bad credit",
-        "the morse code",
-        "here come dots",
-        "the eyes",
-        "they see",
-        "THL"};
+                        "bad credit",
+                        "the morse code",
+                        "here come dots",
+                        "the eyes",
+                        "they see",
+                        "THL"
+                       };
     auto result = FindAnagrams(D);
     // 3 nontrivial groups:
     // {"debit card", "bad credit"},

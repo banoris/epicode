@@ -29,7 +29,7 @@ string rand_string(int len) {
 
 // @include
 bool word_breaking_helper(const string& s, const unordered_set<string>& dict,
-        vector<string>* ret) {
+                          vector<string>* ret) {
     if (s.empty()) {
         return true;
     }
@@ -51,7 +51,7 @@ bool word_breaking_helper(const string& s, const unordered_set<string>& dict,
 }
 
 vector<string> word_breaking(const string& s,
-        const unordered_set<string>& dict) {
+                             const unordered_set<string>& dict) {
     vector<string> ret;
     if (word_breaking_helper(s, dict, &ret)) {
         reverse(ret.begin(), ret.end());

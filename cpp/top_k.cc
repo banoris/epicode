@@ -27,8 +27,10 @@ using std::endl;
 // @include
 vector<string> TopK(int k, istringstream* stream) {
     priority_queue<string, vector<string>, function<bool(string, string)>>
-        min_heap(
-                [](const string& a, const string& b) { return a.size() >= b.size(); });
+            min_heap(
+    [](const string& a, const string& b) {
+        return a.size() >= b.size();
+    });
     string next_string;
     while (*stream >> next_string) {
         min_heap.emplace(next_string);
@@ -72,12 +74,12 @@ int main(int argc, char* argv[]) {
         istringstream sin(input_stream);
         vector<string> result = TopK(k, &sin);
         sort(A.begin(), A.end(), [](const string& a, const string& b) {
-                return a.size() < b.size();
-                });
+            return a.size() < b.size();
+        });
         assert(equal(A.end() - k, A.end(), result.begin(), result.end(),
-                    [](const string& a, const string& b) {
-                    return a.size() == b.size();
-                    }));
+        [](const string& a, const string& b) {
+            return a.size() == b.size();
+        }));
     }
     return 0;
 }

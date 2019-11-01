@@ -54,7 +54,9 @@ int main(int argc, char** argv) {
         cout << "size = " << size << " key = " << target << endl;
         CheckAns(A, size, target);
         auto it = remove_if(copy_A.begin(), copy_A.end(),
-                [&target](int a) { return a == target; });
+        [&target](int a) {
+            return a == target;
+        });
         cout << distance(copy_A.begin(), it) << endl;
         assert(size == distance(copy_A.begin(), it));
     }

@@ -30,24 +30,24 @@ int main(int argc, char* argv[]) {
     //    3
     //  2   5
     // 1   4 6
-    auto tree = make_unique<BSTNode<int>>(BSTNode<int>{3});
-    tree->left = make_unique<BSTNode<int>>(BSTNode<int>{2});
-    tree->left->left = make_unique<BSTNode<int>>(BSTNode<int>{1});
-    tree->right = make_unique<BSTNode<int>>(BSTNode<int>{5});
-    tree->right->left = make_unique<BSTNode<int>>(BSTNode<int>{4});
-    tree->right->right = make_unique<BSTNode<int>>(BSTNode<int>{6});
+    auto tree = make_unique<BSTNode<int>>(BSTNode<int> {3});
+    tree->left = make_unique<BSTNode<int>>(BSTNode<int> {2});
+    tree->left->left = make_unique<BSTNode<int>>(BSTNode<int> {1});
+    tree->right = make_unique<BSTNode<int>>(BSTNode<int> {5});
+    tree->right->left = make_unique<BSTNode<int>>(BSTNode<int> {4});
+    tree->right->right = make_unique<BSTNode<int>>(BSTNode<int> {6});
     assert(!FindFirstEqualK(tree, 7));
     assert(FindFirstEqualK(tree, 6)->data == 6);
 
     //    3
     //  3   5
     // 2   5 6
-    tree = make_unique<BSTNode<int>>(BSTNode<int>{3});
-    tree->left = make_unique<BSTNode<int>>(BSTNode<int>{3});
-    tree->left->left = make_unique<BSTNode<int>>(BSTNode<int>{2});
-    tree->right = make_unique<BSTNode<int>>(BSTNode<int>{5});
-    tree->right->left = make_unique<BSTNode<int>>(BSTNode<int>{5});
-    tree->right->right = make_unique<BSTNode<int>>(BSTNode<int>{6});
+    tree = make_unique<BSTNode<int>>(BSTNode<int> {3});
+    tree->left = make_unique<BSTNode<int>>(BSTNode<int> {3});
+    tree->left->left = make_unique<BSTNode<int>>(BSTNode<int> {2});
+    tree->right = make_unique<BSTNode<int>>(BSTNode<int> {5});
+    tree->right->left = make_unique<BSTNode<int>>(BSTNode<int> {5});
+    tree->right->right = make_unique<BSTNode<int>>(BSTNode<int> {6});
     assert(!FindFirstEqualK(tree, 7));
     assert(FindFirstEqualK(tree, 3) == tree->left.get());
     assert(FindFirstEqualK(tree, 5) == tree->right->left.get());

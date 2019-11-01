@@ -29,10 +29,10 @@ vector<string> GetValidIPAddress(const string& s) {
                 if (IsValidPart(second)) {
                     for (size_t k = 1; i + j + k < s.size() && k < 4; ++k) {
                         const string third = s.substr(i + j, k),
-                              fourth = s.substr(i + j + k);
+                                     fourth = s.substr(i + j + k);
                         if (IsValidPart(third) && IsValidPart(fourth)) {
                             result.emplace_back(first + "." + second + "." + third + "." +
-                                    fourth);
+                                                fourth);
                         }
                     }
                 }

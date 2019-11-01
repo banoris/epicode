@@ -30,7 +30,7 @@ struct Interval {
 struct EndPoint {
     bool operator<(const EndPoint& that) const {
         const int a = is_left ? ptr->left : ptr->right,
-              b = that.is_left ? that.ptr->left : that.ptr->right;
+                  b = that.is_left ? that.ptr->left : that.ptr->right;
         return a < b || (a == b && is_left && !that.is_left);
     }
 

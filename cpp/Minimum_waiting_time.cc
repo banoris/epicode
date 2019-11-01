@@ -27,7 +27,9 @@ int MinimumTotalWaitingTime(vector<int> service_times) {
 }
 // @exclude
 
-void SmallTest() { assert(10 == MinimumTotalWaitingTime({5, 1, 2, 3})); }
+void SmallTest() {
+    assert(10 == MinimumTotalWaitingTime({5, 1, 2, 3}));
+}
 
 int main(int argc, char* argv[]) {
     SmallTest();

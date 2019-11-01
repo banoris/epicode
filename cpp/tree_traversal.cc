@@ -33,17 +33,17 @@ int main(int argc, char* argv[]) {
     //    2   5
     //  1    4 6
     unique_ptr<BinaryTreeNode<int>> tree = make_unique<BinaryTreeNode<int>>(
-            BinaryTreeNode<int>{3, nullptr, nullptr});
+            BinaryTreeNode<int> {3, nullptr, nullptr});
     tree->left = make_unique<BinaryTreeNode<int>>(
-            BinaryTreeNode<int>{2, nullptr, nullptr});
+                     BinaryTreeNode<int> {2, nullptr, nullptr});
     tree->left->left = make_unique<BinaryTreeNode<int>>(
-            BinaryTreeNode<int>{1, nullptr, nullptr});
+                           BinaryTreeNode<int> {1, nullptr, nullptr});
     tree->right = make_unique<BinaryTreeNode<int>>(
-            BinaryTreeNode<int>{5, nullptr, nullptr});
+                      BinaryTreeNode<int> {5, nullptr, nullptr});
     tree->right->left = make_unique<BinaryTreeNode<int>>(
-            BinaryTreeNode<int>{4, nullptr, nullptr});
+                            BinaryTreeNode<int> {4, nullptr, nullptr});
     tree->right->right = make_unique<BinaryTreeNode<int>>(
-            BinaryTreeNode<int>{6, nullptr, nullptr});
+                             BinaryTreeNode<int> {6, nullptr, nullptr});
     TreeTraversal(tree);
     return 0;
 }

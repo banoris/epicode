@@ -1,12 +1,14 @@
 #include <cassert>
 
 class Foo {
-    public:
-        int readA() { return a; }
-        Foo() : a(123) {}
+public:
+    int readA() {
+        return a;
+    }
+    Foo() : a(123) {}
 
-    private:
-        int a;
+private:
+    int a;
 };
 
 int main() {

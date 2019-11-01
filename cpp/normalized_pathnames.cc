@@ -64,7 +64,7 @@ int main(int argc, char* argv[]) {
     assert(ShortestEquivalentPath("123/456") == string("123/456"));
     assert(ShortestEquivalentPath("/123/456") == string("/123/456"));
     assert(ShortestEquivalentPath("usr/lib/../bin/gcc") ==
-            string("usr/bin/gcc"));
+           string("usr/bin/gcc"));
     assert(ShortestEquivalentPath("./../") == string(".."));
     assert(ShortestEquivalentPath("../../local") == string("../../local"));
     assert(ShortestEquivalentPath("./.././../local") == string("../../local"));
@@ -91,7 +91,7 @@ int main(int argc, char* argv[]) {
         cout << e.what() << endl;
     }
     assert(ShortestEquivalentPath("scripts//./../scripts/awkscripts/././") ==
-            string("scripts/awkscripts"));
+           string("scripts/awkscripts"));
     if (argc == 2) {
         cout << ShortestEquivalentPath(argv[1]) << endl;
     }

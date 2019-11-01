@@ -48,8 +48,10 @@ int main(int argc, char* argv[]) {
         vector<ABSqrt2> ans2(GeneratingABSqrt2Improved::GenerateFirstKABSqrt2(k));
         Check(ans2, k);
         assert(equal(
-                    ans1.begin(), ans1.end(), ans2.begin(), ans2.end(),
-                    [](const ABSqrt2& a, const ABSqrt2& b) { return a.val == b.val; }));
+                   ans1.begin(), ans1.end(), ans2.begin(), ans2.end(),
+        [](const ABSqrt2& a, const ABSqrt2& b) {
+            return a.val == b.val;
+        }));
     }
     return 0;
 }

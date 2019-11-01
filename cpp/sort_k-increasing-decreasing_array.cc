@@ -32,7 +32,7 @@ vector<int> SortKIncreasingDecreasingArray(const vector<int>& A) {
                 sorted_subarrays.emplace_back(A.cbegin() + start_idx, A.cbegin() + i);
             } else {
                 sorted_subarrays.emplace_back(A.crbegin() + A.size() - i,
-                        A.crbegin() + A.size() - start_idx);
+                                              A.crbegin() + A.size() - start_idx);
             }
             start_idx = i;
             subarray_type = (subarray_type == INCREASING ? DECREASING : INCREASING);
@@ -49,7 +49,8 @@ void SimpleTest() {
     assert(ans.size() == A.size() && is_sorted(ans.cbegin(), ans.cend()));
 
     A = {numeric_limits<int>::min(), -1, 0, 1, 2, 4, 8,
-        numeric_limits<int>::max()};
+         numeric_limits<int>::max()
+        };
     ans = SortKIncreasingDecreasingArray(A);
     assert(ans.size() == A.size() && is_sorted(ans.cbegin(), ans.cend()));
 

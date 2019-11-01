@@ -102,7 +102,7 @@ int main(int argc, char* argv[]) {
     auto running_time =
         duration_cast<milliseconds>(system_clock::now() - start_time).count();
     cout << "time in milliseconds for checking to " << N << " is "
-        << running_time << '(' << N / running_time << " per ms)";
+         << running_time << '(' << N / running_time << " per ms)";
 
     // @include
     return 0;

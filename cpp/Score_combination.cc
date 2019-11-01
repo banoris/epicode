@@ -14,9 +14,9 @@ using std::vector;
 
 // @include
 int NumCombinationsForFinalScore(int final_score,
-        const vector<int>& individual_play_scores) {
+                                 const vector<int>& individual_play_scores) {
     vector<vector<int>> num_combinations_for_score(
-            individual_play_scores.size(), vector<int>(final_score + 1, 0));
+                         individual_play_scores.size(), vector<int>(final_score + 1, 0));
     for (int i = 0; i < individual_play_scores.size(); ++i) {
         num_combinations_for_score[i][0] = 1;  // One way to reach 0.
         for (int j = 1; j <= final_score; ++j) {
@@ -81,6 +81,6 @@ int main(int argc, char* argv[]) {
     }
     cout << NumCombinationsForFinalScore(k, individual_play_scores) << endl;
     assert(NumCombinationsForFinalScore(k, individual_play_scores) ==
-            CheckAnswer(k, individual_play_scores));
+           CheckAnswer(k, individual_play_scores));
     return 0;
 }

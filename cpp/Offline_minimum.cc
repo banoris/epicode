@@ -94,7 +94,7 @@ void small_test() {
     cout << endl;
     vector<int> expected_ans = {0, 2, 3, 6, 1};
     assert(ans.size() == expected_ans.size() &&
-            equal(ans.begin(), ans.end(), expected_ans.begin()));
+           equal(ans.begin(), ans.end(), expected_ans.begin()));
 }
 
 int main(int argc, char *argv[]) {
@@ -145,7 +145,7 @@ int main(int argc, char *argv[]) {
         //*/
         vector<int> tmp = check_answer(A, E);
         assert(ans.size() == tmp.size() &&
-                equal(ans.begin(), ans.end(), tmp.begin()));
+               equal(ans.begin(), ans.end(), tmp.begin()));
     }
     return 0;
 }

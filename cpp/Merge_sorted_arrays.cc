@@ -19,10 +19,12 @@ using std::vector;
 
 void SimpleTest() {
     vector<vector<int>> S = {
-        {1, 5, 10}, {2, 3, 100}, {2, 12, numeric_limits<int>::max()}};
+        {1, 5, 10}, {2, 3, 100}, {2, 12, numeric_limits<int>::max()}
+    };
     auto ans = MergeSortedArrays(S);
     vector<int> golden = {
-        1, 2, 2, 3, 5, 10, 12, 100, numeric_limits<int>::max()};
+        1, 2, 2, 3, 5, 10, 12, 100, numeric_limits<int>::max()
+    };
     assert(equal(ans.begin(), ans.end(), golden.begin(), golden.end()));
 
     S = {{1}};

@@ -45,8 +45,9 @@ void small_test() {
     assert(equal(res1.begin(), res1.end(), res2.begin(), res2.end()));
     res1 = get_kth_Pascal_triangle_row(20);
     res2 = {1,     20,     190,    1140,   4845,   15504,  38760,
-        77520, 125970, 167960, 184756, 167960, 125970, 77520,
-        38760, 15504,  4845,   1140,   190,    20,     1};
+            77520, 125970, 167960, 184756, 167960, 125970, 77520,
+            38760, 15504,  4845,   1140,   190,    20,     1
+           };
     assert(equal(res1.begin(), res1.end(), res2.begin(), res2.end()));
 }
 

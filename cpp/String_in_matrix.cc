@@ -36,8 +36,8 @@ vector<vector<int>> RandMatrix(int n) {
 struct HashTuple;
 
 bool IsPatternSuffixContainedStartingAtXY(
-        const vector<vector<int>>&, int, int, const vector<int>&, int,
-        unordered_set<tuple<int, int, int>, HashTuple>*);
+    const vector<vector<int>>&, int, int, const vector<int>&, int,
+    unordered_set<tuple<int, int, int>, HashTuple>*);
 
 // @include
 struct HashTuple {
@@ -47,7 +47,7 @@ struct HashTuple {
 };
 
 bool IsPatternContainedInGrid(const vector<vector<int>>& grid,
-        const vector<int>& pattern) {
+                              const vector<int>& pattern) {
     // Each entry in previous_attempts is a point in the grid and suffix of
     // pattern (identified by its offset). Presence in previousAttempts
     // indicates the suffix is not contained in the grid starting from that
@@ -56,7 +56,7 @@ bool IsPatternContainedInGrid(const vector<vector<int>>& grid,
     for (int i = 0; i < grid.size(); ++i) {
         for (int j = 0; j < grid[i].size(); ++j) {
             if (IsPatternSuffixContainedStartingAtXY(grid, i, j, pattern, 0,
-                        &previous_attempts)) {
+                    &previous_attempts)) {
                 return true;
             }
         }
@@ -65,9 +65,9 @@ bool IsPatternContainedInGrid(const vector<vector<int>>& grid,
 }
 
 bool IsPatternSuffixContainedStartingAtXY(
-        const vector<vector<int>>& grid, int x, int y, const vector<int>& pattern,
-        int offset,
-        unordered_set<tuple<int, int, int>, HashTuple>* previous_attempts) {
+    const vector<vector<int>>& grid, int x, int y, const vector<int>& pattern,
+    int offset,
+    unordered_set<tuple<int, int, int>, HashTuple>* previous_attempts) {
     if (pattern.size() == offset) {
         // Nothing left to complete.
         return true;
@@ -80,13 +80,13 @@ bool IsPatternSuffixContainedStartingAtXY(
 
     if (grid[x][y] == pattern[offset] &&
             (IsPatternSuffixContainedStartingAtXY(grid, x - 1, y, pattern,
-                                                  offset + 1, previous_attempts) ||
+                    offset + 1, previous_attempts) ||
              IsPatternSuffixContainedStartingAtXY(grid, x + 1, y, pattern,
-                 offset + 1, previous_attempts) ||
+                     offset + 1, previous_attempts) ||
              IsPatternSuffixContainedStartingAtXY(grid, x, y - 1, pattern,
-                 offset + 1, previous_attempts) ||
+                     offset + 1, previous_attempts) ||
              IsPatternSuffixContainedStartingAtXY(grid, x, y + 1, pattern,
-                 offset + 1, previous_attempts))) {
+                     offset + 1, previous_attempts))) {
         return true;
     }
     previous_attempts->emplace(x, y, offset);

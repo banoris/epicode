@@ -21,8 +21,9 @@ void RandomSampling(int k, vector<int>* A_ptr) {
     default_random_engine seed((random_device())());  // Random num generator.
     for (int i = 0; i < k; ++i) {
         // Generate a random index in [i, A.size() - 1].
-        swap(A[i], A[uniform_int_distribution<int>{
-                i, static_cast<int>(A.size()) - 1}(seed)]);
+        swap(A[i], A[uniform_int_distribution<int> {
+            i, static_cast<int>(A.size()) - 1
+        }(seed)]);
     }
 }
 // @exclude

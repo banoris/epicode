@@ -31,31 +31,31 @@ int main() {
         ++hist_4[std::trunc(4.0 * uniform_01(e1))];
     }
     std::cout << "Uniform int distribution in [1,10) "
-        << ":\n";
+              << ":\n";
     for (auto p : hist_int) {
         std::cout << std::fixed << std::setprecision(1) << std::setw(2) << p.first
-            << ' ' << std::string(p.second / (N / granularity), '*')
-            << '\n';
+                  << ' ' << std::string(p.second / (N / granularity), '*')
+                  << '\n';
     }
     std::cout << "Uniform real distribution in [10.0,100.0) "
-        << ":\n";
+              << ":\n";
     for (auto p : hist_real) {
         std::cout << std::fixed << std::setprecision(1) << std::setw(2) << p.first
-            << ' ' << std::string(p.second / (N / granularity), '*')
-            << '\n';
+                  << ' ' << std::string(p.second / (N / granularity), '*')
+                  << '\n';
     }
     std::cout << "Uniform int distribution in [0,2] "
-        << ":\n";
+              << ":\n";
     for (auto p : hist_3) {
         std::cout << std::fixed << std::setprecision(1) << std::setw(2) << p.first
-            << ' ' << std::string(p.second / (N / granularity), '*')
-            << '\n';
+                  << ' ' << std::string(p.second / (N / granularity), '*')
+                  << '\n';
     }
     std::cout << "Uniform int distribution in [0,3] "
-        << ":\n";
+              << ":\n";
     for (auto p : hist_4) {
         std::cout << std::fixed << std::setprecision(1) << std::setw(2) << p.first
-            << ' ' << std::string(p.second / (N / granularity), '*')
-            << '\n';
+                  << ' ' << std::string(p.second / (N / granularity), '*')
+                  << '\n';
     }
 }

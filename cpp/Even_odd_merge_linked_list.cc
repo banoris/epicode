@@ -18,7 +18,7 @@ using std::shared_ptr;
 using std::uniform_int_distribution;
 
 shared_ptr<ListNode<int>> EvenOddMergeOriginal(
-        const shared_ptr<ListNode<int>>& L) {
+const shared_ptr<ListNode<int>>& L) {
     if (!L) {
         return L;
     }
@@ -53,10 +53,11 @@ shared_ptr<ListNode<int>> EvenOddMerge(const shared_ptr<ListNode<int>>& L) {
     }
 
     auto even_dummy_head =
-        make_shared<ListNode<int>>(ListNode<int>{0, nullptr}),
-        odd_dummy_head = make_shared<ListNode<int>>(ListNode<int>{0, nullptr});
+        make_shared<ListNode<int>>(ListNode<int> {0, nullptr}),
+        odd_dummy_head = make_shared<ListNode<int>>(ListNode<int> {0, nullptr});
     array<shared_ptr<ListNode<int>>, 2> tails = {even_dummy_head,
-        odd_dummy_head};
+                                                 odd_dummy_head
+                                                };
     int turn = 0;
     for (auto iter = L; iter; iter = iter->next) {
         tails[turn]->next = iter;
@@ -70,16 +71,16 @@ shared_ptr<ListNode<int>> EvenOddMerge(const shared_ptr<ListNode<int>>& L) {
 // @exclude
 
 void SimpleTest() {
-    auto L = make_shared<ListNode<int>>(ListNode<int>{0, nullptr});
+    auto L = make_shared<ListNode<int>>(ListNode<int> {0, nullptr});
     auto result = EvenOddMerge(L);
     assert(result->data == 0);
 
-    L->next = make_shared<ListNode<int>>(ListNode<int>{1, nullptr});
+    L->next = make_shared<ListNode<int>>(ListNode<int> {1, nullptr});
     result = EvenOddMerge(L);
     assert(result->data == 0);
     assert(result->next->data == 1);
 
-    L->next->next = make_shared<ListNode<int>>(ListNode<int>{2, nullptr});
+    L->next->next = make_shared<ListNode<int>>(ListNode<int> {2, nullptr});
     result = EvenOddMerge(L);
     assert(result->data == 0);
     assert(result->next->data == 2);
@@ -89,7 +90,7 @@ void SimpleTest() {
 shared_ptr<ListNode<int>> CreateList(int n) {
     shared_ptr<ListNode<int>> head = nullptr;
     for (int i = n - 1; i >= 0; --i) {
-        auto curr = make_shared<ListNode<int>>(ListNode<int>{i, nullptr});
+        auto curr = make_shared<ListNode<int>>(ListNode<int> {i, nullptr});
         curr->next = head;
         head = curr;
     }

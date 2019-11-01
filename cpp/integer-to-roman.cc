@@ -21,7 +21,7 @@ using std::uniform_int_distribution;
 using std::vector;
 
 void append_roman_chars(int digit, size_t idx, const array<char, 9>& kSymbols,
-        string* ret);
+                        string* ret);
 
 // @include
 string int_to_roman(int n) {
@@ -38,7 +38,7 @@ string int_to_roman(int n) {
 }
 
 void append_roman_chars(int digit, size_t idx, const array<char, 9>& kSymbols,
-        string* ret) {
+                        string* ret) {
     if (digit == 0) {
         return;
     } else if (digit <= 3) {

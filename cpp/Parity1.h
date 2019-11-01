@@ -5,16 +5,16 @@
 
 namespace Parity1 {
 
-    // @include
-    short Parity(unsigned long x) {
-        short result = 0;
-        while (x) {
-            result ^= (x & 1);
-            x >>= 1;
-        }
-        return result;
+// @include
+short Parity(unsigned long x) {
+    short result = 0;
+    while (x) {
+        result ^= (x & 1);
+        x >>= 1;
     }
-    // @exclude
+    return result;
+}
+// @exclude
 
 }  // namespace Parity1
 

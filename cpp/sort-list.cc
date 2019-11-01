@@ -52,7 +52,7 @@ int main(int argc, char* argv[]) {
         }
         for (int i = n; i > 0; --i) {
             shared_ptr<ListNode<int>> temp =
-                make_shared<ListNode<int>>(ListNode<int>{dis(gen), nullptr});
+                                       make_shared<ListNode<int>>(ListNode<int> {dis(gen), nullptr});
             temp->next = L;
             L = temp;
         }

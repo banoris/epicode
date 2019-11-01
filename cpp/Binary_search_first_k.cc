@@ -93,7 +93,7 @@ int main(int argc, char* argv[]) {
         }
         auto it = find(A.cbegin(), A.cend(), k);
         assert((it == A.cend() && ans == -1) ||
-                (distance(A.cbegin(), it) == ans));
+               (distance(A.cbegin(), it) == ans));
     }
     return 0;
 }

@@ -39,7 +39,7 @@ double BuyAndSellStockTwice(const vector<double>& prices) {
         max_price_so_far = max(max_price_so_far, prices[i]);
         max_total_profit =
             max(max_total_profit,
-                    max_price_so_far - prices[i] + first_buy_sell_profits[i - 1]);
+                max_price_so_far - prices[i] + first_buy_sell_profits[i - 1]);
     }
     return max_total_profit;
 }

@@ -58,7 +58,8 @@ int FindMaxSimultaneousEvents(const vector<Event>& A) {
 
 void SimpleTest() {
     vector<Event> A = {{1, 5},  {2, 7},   {4, 5},   {6, 10}, {8, 9},
-        {9, 17}, {11, 13}, {12, 15}, {14, 15}};
+        {9, 17}, {11, 13}, {12, 15}, {14, 15}
+    };
     assert(FindMaxSimultaneousEvents(A) == 3);
 }
 

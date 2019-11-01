@@ -19,7 +19,7 @@ using std::unique_ptr;
 void recover_BST(unique_ptr<BinaryTreeNode<int>> *root) {
     bool is_first = true;
     BinaryTreeNode<int> *n = root->get(), *parent = nullptr, *first = nullptr,
-        *second = nullptr;
+                         *second = nullptr;
     while (n) {
         if (n->left.get()) {
             // Finds the predecessor of n.
@@ -68,13 +68,16 @@ int main(int argc, char *argv[]) {
     //    2   4
     //  1    5 6
     unique_ptr<BinaryTreeNode<int>> root =
+    make_unique<BinaryTreeNode<int>>(BinaryTreeNode<int> {
+        3,
         make_unique<BinaryTreeNode<int>>(BinaryTreeNode<int>{
-                3,
-                make_unique<BinaryTreeNode<int>>(BinaryTreeNode<int>{
-                        2, make_unique<BinaryTreeNode<int>>(BinaryTreeNode<int>{1})}),
-                make_unique<BinaryTreeNode<int>>(BinaryTreeNode<int>{
-                        4, make_unique<BinaryTreeNode<int>>(BinaryTreeNode<int>{5}),
-                        make_unique<BinaryTreeNode<int>>(BinaryTreeNode<int>{6})})});
+            2, make_unique<BinaryTreeNode<int>>(BinaryTreeNode<int>{1})
+        }),
+        make_unique<BinaryTreeNode<int>>(BinaryTreeNode<int>{
+            4, make_unique<BinaryTreeNode<int>>(BinaryTreeNode<int>{5}),
+            make_unique<BinaryTreeNode<int>>(BinaryTreeNode<int>{6})
+        })
+    });
     recover_BST(&root);
     auto result = generate_inorder(root);
     copy(result.cbegin(), result.cend(), ostream_iterator<int>(cout, " "));

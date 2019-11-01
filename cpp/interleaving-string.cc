@@ -20,7 +20,7 @@ using std::vector;
 
 // @include
 bool IsInterleavingString(const string& s1, const string& s2,
-        const string& s3) {
+                          const string& s3) {
     // Early return if |s1| + |s2| != |s3|.
     if (s1.size() + s2.size() != s3.size()) {
         return false;
@@ -48,7 +48,7 @@ bool IsInterleavingString(const string& s1, const string& s2,
     for (size_t i = 0; i < s1.size(); ++i) {
         for (size_t j = 0; j < s2.size(); ++j) {
             T[i + 1][j + 1] = (T[i][j + 1] && s1[i] == s3[i + j + 1]) ||
-                (T[i + 1][j] && s2[j] == s3[i + j + 1]);
+                              (T[i + 1][j] && s2[j] == s3[i + j + 1]);
         }
     }
 

@@ -23,7 +23,7 @@ struct VolumeRange;
 struct HashVolumeRange;
 
 bool CheckFeasibleHelper(const vector<Jug>&, int, int,
-        unordered_set<VolumeRange, HashVolumeRange>*);
+                         unordered_set<VolumeRange, HashVolumeRange>*);
 
 // @include
 struct Jug {
@@ -50,7 +50,7 @@ bool CheckFeasible(const vector<Jug>& jugs, int L, int H) {
 }
 
 bool CheckFeasibleHelper(const vector<Jug>& jugs, int L, int H,
-        unordered_set<VolumeRange, HashVolumeRange>* c) {
+                         unordered_set<VolumeRange, HashVolumeRange>* c) {
     if (L > H || c->find({L, H}) != c->cend() || (L < 0 && H < 0)) {
         return false;
     }

@@ -22,18 +22,18 @@ vector<int> RandomSubset(int n, int k) {
     default_random_engine seed((random_device())());  // Random num generator.
     for (int i = 0; i < k; ++i) {
         // Generate a random index in [i, n - 1].
-        int rand_idx = uniform_int_distribution<int>{i, n - 1}(seed);
+        int rand_idx = uniform_int_distribution<int> {i, n - 1}(seed);
         auto ptr1 = changed_elements.find(rand_idx),
              ptr2 = changed_elements.find(i);
         if (ptr1 == changed_elements.end() && ptr2 == changed_elements.end()) {
             changed_elements[rand_idx] = i;
             changed_elements[i] = rand_idx;
         } else if (ptr1 == changed_elements.end() &&
-                ptr2 != changed_elements.end()) {
+                   ptr2 != changed_elements.end()) {
             changed_elements[rand_idx] = ptr2->second;
             ptr2->second = rand_idx;
         } else if (ptr1 != changed_elements.end() &&
-                ptr2 == changed_elements.end()) {
+                   ptr2 == changed_elements.end()) {
             changed_elements[i] = ptr1->second;
             ptr1->second = i;
         } else {

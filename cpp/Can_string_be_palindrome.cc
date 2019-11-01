@@ -38,7 +38,7 @@ int main(int argc, char *argv[]) {
         }
         cout << s << endl;
         assert(CanStringBeAPalindromeHash::CanFormPalindrome(s) ==
-                CanStringBeAPalindromeSorting::CanFormPalindrome(&s));
+               CanStringBeAPalindromeSorting::CanFormPalindrome(&s));
     }
     return 0;
 }

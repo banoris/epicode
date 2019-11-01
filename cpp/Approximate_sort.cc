@@ -70,7 +70,7 @@ void SimpleTest() {
     SortApproximatelySortedData(&sequence, 3);
     vector<int> golden_result = {1, 2, 3, 4, 5, 6, 7, 8, 9};
     assert(equal(result.begin(), result.end(), golden_result.begin(),
-                golden_result.end()));
+                 golden_result.end()));
 }
 
 int main(int argc, char* argv[]) {

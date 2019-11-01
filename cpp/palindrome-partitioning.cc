@@ -19,19 +19,19 @@ using std::vector;
 
 bool IsPalindrome(const string&);
 void DirectedPalindromePartitioning(const string&, int, vector<string>*,
-        vector<vector<string>>*);
+                                    vector<vector<string>>*);
 
 // @include
 vector<vector<string>> PalindromePartitioning(const string& input) {
     vector<vector<string>> result;
     DirectedPalindromePartitioning(
-            input, 0, make_unique<vector<string>>().get(), &result);
+        input, 0, make_unique<vector<string>>().get(), &result);
     return result;
 }
 
 void DirectedPalindromePartitioning(const string& input, int offset,
-        vector<string>* partial_partition,
-        vector<vector<string>>* result) {
+                                    vector<string>* partial_partition,
+                                    vector<vector<string>>* result) {
     if (offset == input.size()) {
         result->emplace_back(*partial_partition);
         return;

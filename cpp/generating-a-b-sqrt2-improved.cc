@@ -20,7 +20,9 @@ using std::vector;
 struct ABSqrt2 {
     ABSqrt2(int a, int b) : a(a), b(b), val(a + b * sqrt(2)) {}
 
-    bool operator<(const ABSqrt2& that) const { return val < that.val; }
+    bool operator<(const ABSqrt2& that) const {
+        return val < that.val;
+    }
 
     int a, b;
     double val;
@@ -97,8 +99,10 @@ int main(int argc, char* argv[]) {
         }
         auto gold_res = Golden(k);
         assert(equal(
-                    ans.begin(), ans.end(), gold_res.begin(), gold_res.end(),
-                    [](const ABSqrt2& a, const ABSqrt2& b) { return a.val == b.val; }));
+                   ans.begin(), ans.end(), gold_res.begin(), gold_res.end(),
+        [](const ABSqrt2& a, const ABSqrt2& b) {
+            return a.val == b.val;
+        }));
     }
     return 0;
 }

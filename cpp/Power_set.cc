@@ -35,10 +35,11 @@ vector<vector<int>> GeneratePowerSet(const vector<int>& input_set) {
 
 void SimpleTest() {
     vector<vector<int>> golden_result = {{},  {0},    {1},    {0, 1},
-        {2}, {0, 2}, {1, 2}, {0, 1, 2}};
+        {2}, {0, 2}, {1, 2}, {0, 1, 2}
+    };
     auto result = GeneratePowerSet({0, 1, 2});
     assert(equal(result.begin(), result.end(), golden_result.begin(),
-                golden_result.end()));
+                 golden_result.end()));
 }
 
 int main(int argc, char* argv[]) {

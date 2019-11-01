@@ -9,7 +9,7 @@ void AppendNode(shared_ptr<ListNode<int>> *, shared_ptr<ListNode<int>> *);
 
 // @include
 shared_ptr<ListNode<int>> MergeTwoSortedLists(shared_ptr<ListNode<int>> L1,
-        shared_ptr<ListNode<int>> L2) {
+shared_ptr<ListNode<int>> L2) {
     // Creates a placeholder for the result.
     shared_ptr<ListNode<int>> dummy_head(new ListNode<int>);
     auto tail = dummy_head;
@@ -24,7 +24,7 @@ shared_ptr<ListNode<int>> MergeTwoSortedLists(shared_ptr<ListNode<int>> L1,
 }
 
 void AppendNode(shared_ptr<ListNode<int>> *node,
-        shared_ptr<ListNode<int>> *tail) {
+                shared_ptr<ListNode<int>> *tail) {
     (*tail)->next = *node;
     *tail = *node;  // Updates tail.
     *node = (*node)->next;

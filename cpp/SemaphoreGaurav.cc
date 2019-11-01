@@ -13,20 +13,20 @@ using std::thread;
 
 //@include
 class Semaphore {
-    public:
-        Semaphore(int max_available) : value_(max_available), cond_(), m_() {}
-        ~Semaphore() {}
-        void acquire();
-        void release();
-        int value() {
-            lock_guard<mutex> lk(m_);
-            return value_;
-        }
+public:
+    Semaphore(int max_available) : value_(max_available), cond_(), m_() {}
+    ~Semaphore() {}
+    void acquire();
+    void release();
+    int value() {
+        lock_guard<mutex> lk(m_);
+        return value_;
+    }
 
-    private:
-        int value_;
-        condition_variable cond_;
-        mutex m_;
+private:
+    int value_;
+    condition_variable cond_;
+    mutex m_;
 };
 
 /**

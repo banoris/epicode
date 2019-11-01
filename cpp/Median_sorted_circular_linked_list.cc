@@ -19,7 +19,7 @@ using std::uniform_int_distribution;
 
 // @include
 double FindMedianSortedCircularLinkedList(
-        const shared_ptr<ListNode<int>>& arbitrary_node) {
+    const shared_ptr<ListNode<int>>& arbitrary_node) {
     // Checks if all nodes are identical and identifies the first smallest node.
     auto iter = arbitrary_node, first_smallest_node = arbitrary_node;
     int n = 0;
@@ -35,17 +35,20 @@ double FindMedianSortedCircularLinkedList(
         first_smallest_node = first_smallest_node->next;
     }
     return n % 2 ? first_smallest_node->data
-        : 0.5 * (first_smallest_node->data +
-                first_smallest_node->next->data);
+           : 0.5 * (first_smallest_node->data +
+                    first_smallest_node->next->data);
 }
 // @exclude
 
 void SmallTest() {
     shared_ptr<ListNode<int>> L = make_shared<ListNode<int>>(
-            ListNode<int>{0, make_shared<ListNode<int>>(ListNode<int>{
-                    2, make_shared<ListNode<int>>(ListNode<int>{
-                            2, make_shared<ListNode<int>>(
-                                    ListNode<int>{2, nullptr})})})});
+    ListNode<int> {0, make_shared<ListNode<int>>(ListNode<int>{
+            2, make_shared<ListNode<int>>(ListNode<int>{
+                2, make_shared<ListNode<int>>(
+                ListNode<int>{2, nullptr})
+            })
+        })
+    });
     L->next->next->next->next = L;
     cout << FindMedianSortedCircularLinkedList(L->next->next) << endl;
     assert(2 == FindMedianSortedCircularLinkedList(L->next->next));
@@ -64,7 +67,7 @@ int main(int argc, char* argv[]) {
         }
         shared_ptr<ListNode<int>> head;
         for (int i = n; i >= 0; --i) {
-            auto curr = make_shared<ListNode<int>>(ListNode<int>{i, nullptr});
+            auto curr = make_shared<ListNode<int>>(ListNode<int> {i, nullptr});
             curr->next = head;
             head = curr;
         }
@@ -83,7 +86,7 @@ int main(int argc, char* argv[]) {
     // Test identical list.
     shared_ptr<ListNode<int>> head;
     for (int i = 0; i < 10; ++i) {
-        auto curr = make_shared<ListNode<int>>(ListNode<int>{5, nullptr});
+        auto curr = make_shared<ListNode<int>>(ListNode<int> {5, nullptr});
         curr->next = head;
         head = curr;
     }

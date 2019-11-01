@@ -49,7 +49,7 @@ int main(int argc, char** argv) {
     if (argc == 3) {
         x = stod(argv[1]), y = stoi(argv[2]);
         cout << x << "^" << y << ": " << Power(x, y) << ", " << std::pow(x, y)
-            << endl;
+             << endl;
         assert(!Compare(Power(x, y), std::pow(x, y)));
     } else {
         uniform_real_distribution<> dis_x(0.0, 10.0);
@@ -58,7 +58,7 @@ int main(int argc, char** argv) {
             x = dis_x(gen);
             y = dis_y(gen);
             cout << x << "^" << y << ": " << Power(x, y) << " " << std::pow(x, y)
-                << endl;
+                 << endl;
             assert(!Compare(Power(x, y), std::pow(x, y)));
         }
     }

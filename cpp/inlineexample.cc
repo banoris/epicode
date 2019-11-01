@@ -4,4 +4,6 @@ inline bool isvowel(char c) {
 }
 //@exclude
 
-int main(int argc, char** argv) { isvowel('a'); }
+int main(int argc, char** argv) {
+    isvowel('a');
+}

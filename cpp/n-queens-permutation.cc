@@ -31,7 +31,7 @@ vector<vector<string>> NQueens(int n) {
 }
 
 void SolveNQueens(int row, vector<int>* col_placement,
-        vector<vector<string>>* result) {
+                  vector<vector<string>>* result) {
     if (row == col_placement->size()) {
         // All queens are legal placed.
         result->emplace_back(ToTextRepresentation(*col_placement));

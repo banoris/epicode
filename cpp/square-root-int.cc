@@ -60,7 +60,7 @@ int main(int argc, char** argv) {
             int result[2];
             cout << "x is " << x << endl;
             cout << (result[0] = SquareRoot(x)) << ' '
-                << (result[1] = static_cast<int>(sqrt(x))) << endl;
+                 << (result[1] = static_cast<int>(sqrt(x))) << endl;
             assert(result[0] == result[1]);
         }
     }

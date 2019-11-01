@@ -29,8 +29,10 @@ vector<int> NextPermutation(vector<int> perm) {
     // we search in reverse order, the first entry that is greater than perm[k]
     // is the smallest such entry.
     swap(*find_if(perm.rbegin(), perm.rend(),
-                [&](int a) { return a > perm[k]; }),
-            perm[k]);
+    [&](int a) {
+        return a > perm[k];
+    }),
+    perm[k]);
 
     // Since perm[k + 1 : perm.size() - 1] is in decreasing order, we can build
     // the smallest dictionary ordering of this subarray by reversing it.
@@ -58,7 +60,7 @@ int main(int argc, char *argv[]) {
         // Use built-in function verification.
         bool has_next_one = next_permutation(perm.begin(), perm.end());
         assert((ans.size() == 0 && !has_next_one) ||
-                equal(ans.cbegin(), ans.cend(), perm.cbegin(), perm.cend()));
+               equal(ans.cbegin(), ans.cend(), perm.cbegin(), perm.cend()));
     }
     return 0;
 }

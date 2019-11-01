@@ -34,7 +34,8 @@ void PrintMatrix(const vector<deque<bool>>& A) {
 void FlipColor(int x, int y, vector<deque<bool>>* A_ptr) {
     vector<deque<bool>>& A = *A_ptr;
     const array<array<int, 2>, 4> kDirs = {
-        {{{0, 1}}, {{0, -1}}, {{1, 0}}, {{-1, 0}}}};
+        {{{0, 1}}, {{0, -1}}, {{1, 0}}, {{-1, 0}}}
+    };
     const bool color = A[x][y];
 
     struct Coordinate {

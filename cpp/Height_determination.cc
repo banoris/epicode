@@ -21,7 +21,7 @@ int GetHeightHelper(int cases, int drops, vector<vector<int>>* F) {
     } else {
         if ((*F)[cases][drops] == -1) {
             (*F)[cases][drops] = GetHeightHelper(cases, drops - 1, F) +
-                GetHeightHelper(cases - 1, drops - 1, F) + 1;
+                                 GetHeightHelper(cases - 1, drops - 1, F) + 1;
         }
         return (*F)[cases][drops];
     }

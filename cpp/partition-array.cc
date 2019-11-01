@@ -68,7 +68,8 @@ string RandString(int len) {
 
 static void SimpleTest() {
     vector<Person> people = {Person({20, "foo"}), Person({10, "bar"}),
-        Person({20, "widget"}), Person({20, "something"})};
+                             Person({20, "widget"}), Person({20, "something"})
+                            };
 
     GroupByAge(&people);
     if (people[0].age == 10) {

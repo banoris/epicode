@@ -18,8 +18,8 @@ using std::uniform_int_distribution;
 using std::vector;
 
 void permutations_unique_helper(const vector<int> &A, deque<bool> *used,
-        vector<int> *ans,
-        vector<vector<int>> *result);
+                                vector<int> *ans,
+                                vector<vector<int>> *result);
 
 // @include
 vector<vector<int>> permutations_unique(vector<int> A) {
@@ -33,8 +33,8 @@ vector<vector<int>> permutations_unique(vector<int> A) {
 }
 
 void permutations_unique_helper(const vector<int> &A, deque<bool> *used,
-        vector<int> *ans,
-        vector<vector<int>> *result) {
+                                vector<int> *ans,
+                                vector<vector<int>> *result) {
     if (ans->size() == A.size()) {
         result->emplace_back(*ans);
         return;
@@ -60,10 +60,11 @@ void small_test() {
     assert(result.size() == 6);
     vector<vector<int>> golden_result = {{0, 0, 1, 1}, {0, 1, 0, 1},
         {0, 1, 1, 0}, {1, 0, 0, 1},
-        {1, 0, 1, 0}, {1, 1, 0, 0}};
+        {1, 0, 1, 0}, {1, 1, 0, 0}
+    };
     for (size_t i = 0; i < 6; ++i) {
         assert(equal(result[i].begin(), result[i].end(), golden_result[i].begin(),
-                    golden_result[i].end()));
+                     golden_result[i].end()));
     }
 }
 

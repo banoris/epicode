@@ -48,7 +48,7 @@ static void SimpleTest() {
     vector<int> A = {0, 1, 2, 3};
     assert(-1 != SearchEntryEqualToItsIndex(A));
     assert(0 <= SearchEntryEqualToItsIndex(A) &&
-            SearchEntryEqualToItsIndex(A) <= 3);
+           SearchEntryEqualToItsIndex(A) <= 3);
     A[0] = -1;
     A[2] = 4;
     A[3] = 5;

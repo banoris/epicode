@@ -42,21 +42,23 @@ class TestStream {
     struct RuntimeErrorHandlerFunc {
         TestStream& sentry_;
         RuntimeErrorHandlerFunc(TestStream& sentry) : sentry_(sentry) { }
-        void operator()(int signum) { sentry_.RegisterRuntimeError(signum); }
+        void operator()(int signum) {
+            sentry_.RegisterRuntimeError(signum);
+        }
     };
-    public:
+public:
     typedef unique_ptr<TestStream> Ptr;
 
     TestStream(const TestOptions& options, JsonWriter<TestSentry>::Ptr json_out,
-            TestType type, const char* description);
+               TestType type, const char* description);
     TestStream(const TestStream&) = delete;
 
     template <class T>
-        void RegisterInput(const T& value) const;
+    void RegisterInput(const T& value) const;
     template <class T>
-        void RegisterExpectedOutput(const T& value) const;
+    void RegisterExpectedOutput(const T& value) const;
     template <class T>
-        void RegisterUserOutput(const T& value, bool match) const;
+    void RegisterUserOutput(const T& value, bool match) const;
     void RegisterPerformanceTest(const PerformanceMeasure& m) const;
     void RegisterUnhandledException() const;
     void RegisterRuntimeError(int signum = -1) const;
@@ -68,7 +70,7 @@ class TestStream {
     void EmitException() const;
     void EmitSegv() const;
     void EmitZeroDivision() const;
-    private:
+private:
     const TestOptions& options_;
     JsonWriter<TestSentry>::Ptr json_out_;
     RuntimeErrorHandlerFunc handler_func_;
@@ -79,23 +81,23 @@ class TestStream {
 class TestSentry {
     typedef std::ostream& (manip_t)(std::ostream&);
 
-    public:
+public:
     typedef unique_ptr<TestSentry> Ptr;
     TestSentry(const TestOptions& options, int id, const char* name);;
     virtual ~TestSentry() = default;
 
     template <class T>
-        TestSentry& operator<<(const T& value);
+    TestSentry& operator<<(const T& value);
     TestSentry& operator<<(manip_t manip);
     void flush();
 
     TestStream::Ptr GetTestStream(TestType type, const char* description) const;
 
-    private:
+private:
     template <class T>
-        void Print(const T& value) const;
+    void Print(const T& value) const;
     template <class T>
-        void Print(const vector<T>& v) const;
+    void Print(const vector<T>& v) const;
     void Print(bool b) const;
 
     const TestOptions& options_;
@@ -104,59 +106,59 @@ class TestSentry {
 };
 
 class TestOptions {
-    public:
-        TestOptions(ostream* logstream_) : logstream_(logstream_) { }
-        virtual ~TestOptions() {
-            FlushStream();
-        }
+public:
+    TestOptions(ostream* logstream_) : logstream_(logstream_) { }
+    virtual ~TestOptions() {
+        FlushStream();
+    }
 
-        void FlushStream() const {
-            if (logstream_) {
-                *logstream_ << TEST_TAG;
-                *logstream_ << tempstream.str();
-                logstream_->flush();
-            }
+    void FlushStream() const {
+        if (logstream_) {
+            *logstream_ << TEST_TAG;
+            *logstream_ << tempstream.str();
+            logstream_->flush();
         }
+    }
 
-        char ContainerOpenChar() const {
-            return '[';
-        }
-        char ContainerCloseChar() const {
-            return ']';
-        }
-        const char* NullptrChar() const {
-            return "-";
-        }
+    char ContainerOpenChar() const {
+        return '[';
+    }
+    char ContainerCloseChar() const {
+        return ']';
+    }
+    const char* NullptrChar() const {
+        return "-";
+    }
 
-        //For a precise tuning on a target machine
-        virtual int PerformanceTestLoadMultiplier() const {
-            return 1000;
-        }
-        virtual int PerformanceTestLimitMultiplier() const {
-            return 4;
-        }
-        virtual int64_t GetLimit(int64_t reference) const;
+    //For a precise tuning on a target machine
+    virtual int PerformanceTestLoadMultiplier() const {
+        return 1000;
+    }
+    virtual int PerformanceTestLimitMultiplier() const {
+        return 4;
+    }
+    virtual int64_t GetLimit(int64_t reference) const;
 
-        virtual void RuntimeErrorAction() const;
+    virtual void RuntimeErrorAction() const;
 
-        ostream* GetStream() const {
-            return &tempstream;
-        }
-        virtual TestSentry::Ptr GetTestSentry(int id, const char* description) const;
+    ostream* GetStream() const {
+        return &tempstream;
+    }
+    virtual TestSentry::Ptr GetTestSentry(int id, const char* description) const;
 
-    protected:
-        ostream* logstream_;
-        mutable ostringstream tempstream;
+protected:
+    ostream* logstream_;
+    mutable ostringstream tempstream;
 };
 
 class TestOptionsDbg : public TestOptions {
     std::ofstream file_;
 
-    public:
+public:
     TestOptionsDbg(ostream* logstream, const char* filename = "D:/out.txt") :
         TestOptions(logstream), file_(filename) {
-            logstream_ = &file_;
-        }
+        logstream_ = &file_;
+    }
     virtual ~TestOptionsDbg() {
         FlushStream();
     }
@@ -165,19 +167,19 @@ class TestOptionsDbg : public TestOptions {
 
 /*==================TestStream Implementation====================*/
 TestStream::TestStream(const TestOptions& options, JsonWriter<TestSentry>::Ptr json_out,
-        TestType type, const char* description) :
+                       TestType type, const char* description) :
     options_(options), json_out_(move(json_out)), handler_func_(*this),
     fpe_handler_(&handler_func_), segv_handler_(&handler_func_) {
-        json_out_->WritePair("description", description);
-        switch (type) {
-            case TestType::NORMAL:
-                json_out_->WritePair("type", "normal");
-                break;
-            case TestType::PERFORMANCE:
-                json_out_->WritePair("type", "performance");
-                break;
-        }
+    json_out_->WritePair("description", description);
+    switch (type) {
+    case TestType::NORMAL:
+        json_out_->WritePair("type", "normal");
+        break;
+    case TestType::PERFORMANCE:
+        json_out_->WritePair("type", "performance");
+        break;
     }
+}
 
 template <class T>
 void TestStream::RegisterInput(const T& value) const {
@@ -195,7 +197,7 @@ void TestStream::RegisterUserOutput(const T& value, bool match) const {
 void TestStream::RegisterPerformanceTest(const PerformanceMeasure& m) const {
     int64_t limit = options_.GetLimit(m.GetReferenceTimer().GetMilliseconds());
     json_out_->WritePair("status",
-            m.GetUserTimer().GetMilliseconds() <= limit ? "ok" : "failed");
+                         m.GetUserTimer().GetMilliseconds() <= limit ? "ok" : "failed");
     auto json_m = json_out_->GetObjectWriter("measurement");
     json_m->WritePair("limit", limit);
     json_m->WritePair("reference", m.GetReferenceTimer().GetMilliseconds());
@@ -207,15 +209,15 @@ void TestStream::RegisterUnhandledException() const {
 }
 void TestStream::RegisterRuntimeError(int signum) const {
     switch (signum) {
-        case SIGSEGV:
-            json_out_->WritePair("status", "segmentation_fault");
-            break;
-        case SIGFPE:
-            json_out_->WritePair("status", "erroneous_arithmetic_operation");
-            break;
-        default:
-            json_out_->WritePair("status", "runtime_error");
-            break;
+    case SIGSEGV:
+        json_out_->WritePair("status", "segmentation_fault");
+        break;
+    case SIGFPE:
+        json_out_->WritePair("status", "erroneous_arithmetic_operation");
+        break;
+    default:
+        json_out_->WritePair("status", "runtime_error");
+        break;
     }
 
     json_out_->WritePair("user_output", "");
@@ -249,11 +251,11 @@ void TestStream::EmitZeroDivision() const {
 /*==================TestSentry Implementation====================*/
 TestSentry::TestSentry(const TestOptions& options, int id, const char* name)
     : options_(options), json_root_(*this) {
-        json_root_.
-            WritePair("problem_id", id).
-            WritePair("problem_name", name);
-        json_tests_ = json_root_.GetArrayWriter("tests");
-    }
+    json_root_.
+    WritePair("problem_id", id).
+    WritePair("problem_name", name);
+    json_tests_ = json_root_.GetArrayWriter("tests");
+}
 template <class T>
 TestSentry& TestSentry::operator<<(const T& value) {
     Print(value);

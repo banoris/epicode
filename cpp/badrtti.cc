@@ -7,20 +7,30 @@ using std::endl;
 
 //@include
 class A {
-    public:
-        virtual void foo() { cout << "A's foo" << endl; }
+public:
+    virtual void foo() {
+        cout << "A's foo" << endl;
+    }
 };
 
 class B : public A {
-    public:
-        void foo() override { cout << "B's foo" << endl; }
-        virtual void bar() { cout << "B's bar" << endl; }
+public:
+    void foo() override {
+        cout << "B's foo" << endl;
+    }
+    virtual void bar() {
+        cout << "B's bar" << endl;
+    }
 };
 
 class C : public B {
-    public:
-        void bar() override { cout << "C's bar" << endl; }
-        void widget() { cout << "C's widget" << endl; }
+public:
+    void bar() override {
+        cout << "C's bar" << endl;
+    }
+    void widget() {
+        cout << "C's widget" << endl;
+    }
 };
 
 void bad(A* x) {

@@ -7,16 +7,22 @@ using std::endl;
 
 //@include
 class Base {
-    public:
-        virtual string msg() { return "I am base"; }
+public:
+    virtual string msg() {
+        return "I am base";
+    }
 };
 
 class Child : public Base {
-    public:
-        virtual string msg() { return "I am child"; }
+public:
+    virtual string msg() {
+        return "I am child";
+    }
 };
 
-void cast(Base x) { cout << x.msg() << endl; }
+void cast(Base x) {
+    cout << x.msg() << endl;
+}
 
 int main() {
     Base f;

@@ -21,7 +21,7 @@ struct Subarray {
 };
 
 Subarray FindSmallestSubarrayCoveringSet(
-        const vector<string> &paragraph, const unordered_set<string> &keywords) {
+    const vector<string> &paragraph, const unordered_set<string> &keywords) {
     unordered_map<string, int> keywords_to_cover;
     for (const string &keyword : keywords) {
         ++keywords_to_cover[keyword];

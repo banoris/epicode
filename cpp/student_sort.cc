@@ -11,7 +11,9 @@ using std::vector;
 
 // @include
 struct Student {
-    bool operator<(const Student& that) const { return name < that.name; }
+    bool operator<(const Student& that) const {
+        return name < that.name;
+    }
 
     string name;
     double grade_point_average;
@@ -19,9 +21,9 @@ struct Student {
 
 void SortByGPA(vector<Student>* students) {
     sort(students->begin(), students->end(),
-            [](const Student& a, const Student& b) {
-            return a.grade_point_average >= b.grade_point_average;
-            });
+    [](const Student& a, const Student& b) {
+        return a.grade_point_average >= b.grade_point_average;
+    });
 }
 
 void SortByName(vector<Student>* students) {
@@ -36,8 +38,8 @@ int main(int argc, char* argv[]) {
     assert(is_sorted(students.begin(), students.end()));
     SortByGPA(&students);
     assert(is_sorted(students.begin(), students.end(),
-                [](const Student& a, const Student& b) {
-                return a.grade_point_average >= b.grade_point_average;
-                }));
+    [](const Student& a, const Student& b) {
+        return a.grade_point_average >= b.grade_point_average;
+    }));
     return 0;
 }

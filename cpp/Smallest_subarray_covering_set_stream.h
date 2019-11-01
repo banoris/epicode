@@ -17,7 +17,7 @@ using std::unordered_map;
 
 // @include
 Subarray FindSmallestSubarrayCoveringSubset(
-        istringstream* sin, const vector<string>& query_strings) {
+    istringstream* sin, const vector<string>& query_strings) {
     // Tracks the last occurrence (index) of each string in query_strings.
     list<int> loc;
     unordered_map<string, list<int>::iterator> dict;

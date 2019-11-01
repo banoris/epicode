@@ -23,13 +23,13 @@ void CheckAns(const vector<int>& productivity, const vector<int>& C) {
     for (size_t i = 0; i < productivity.size(); ++i) {
         if (i > 0) {
             assert((productivity[i] > productivity[i - 1] && C[i] > C[i - 1]) ||
-                    (productivity[i] < productivity[i - 1] && C[i] < C[i - 1]) ||
-                    productivity[i] == productivity[i - 1]);
+                   (productivity[i] < productivity[i - 1] && C[i] < C[i - 1]) ||
+                   productivity[i] == productivity[i - 1]);
         }
         if (i + 1 < productivity.size()) {
             assert((productivity[i] > productivity[i + 1] && C[i] > C[i + 1]) ||
-                    (productivity[i] < productivity[i + 1] && C[i] < C[i + 1]) ||
-                    productivity[i] == productivity[i + 1]);
+                   (productivity[i] < productivity[i + 1] && C[i] < C[i + 1]) ||
+                   productivity[i] == productivity[i + 1]);
         }
     }
 }

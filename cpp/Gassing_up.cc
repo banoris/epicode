@@ -20,7 +20,7 @@ const int kMPG = 20;
 // gallons[i] is the amount of gas in city i, and distances[i] is the distance
 // city i to the next city.
 size_t FindAmpleCity(const vector<int>& gallons,
-        const vector<int>& distances) {
+                     const vector<int>& distances) {
     int remaining_gallons = 0;
     struct CityAndRemainingGas {
         int city = 0, remaining_gallons = 0;
@@ -38,7 +38,7 @@ size_t FindAmpleCity(const vector<int>& gallons,
 // @exclude
 
 void CheckAns(const vector<int>& gallons, const vector<int>& distances,
-        size_t c) {
+              size_t c) {
     size_t s = c;
     int gas = 0;
     do {
@@ -52,9 +52,10 @@ void SmallTest() {
     // Example in the book.
     vector<int> gallons = {20, 15, 15, 15, 35, 25, 30, 15, 65, 45, 10, 45, 25};
     vector<int> distances = {15 * kMPG, 20 * kMPG, 50 * kMPG, 15 * kMPG,
-        15 * kMPG, 30 * kMPG, 20 * kMPG, 55 * kMPG,
-        20 * kMPG, 50 * kMPG, 10 * kMPG, 15 * kMPG,
-        15 * kMPG};
+                             15 * kMPG, 30 * kMPG, 20 * kMPG, 55 * kMPG,
+                             20 * kMPG, 50 * kMPG, 10 * kMPG, 15 * kMPG,
+                             15 * kMPG
+                            };
     size_t ans = FindAmpleCity(gallons, distances);
     assert(ans == 8);
     CheckAns(gallons, distances, ans);

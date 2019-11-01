@@ -24,7 +24,7 @@ int FindBiggestNMinusOneProduct(const vector<int>& A) {
     // Builds suffix products.
     vector<int> suffix_products(A.size());
     partial_sum(A.crbegin(), A.crend(), suffix_products.rbegin(),
-            multiplies<int>());
+                multiplies<int>());
 
     // Finds the biggest product of (n - 1) numbers.
     int prefix_product = 1, max_product = numeric_limits<int>::min();

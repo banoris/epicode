@@ -42,7 +42,8 @@ int MinimizeDifference(const vector<int>& A) {
 void SmallTest() {
     // The example in the book.
     vector<int> A = {65,  35,  245, 195, 65,  150, 275, 155,
-        120, 320, 75,  40,  200, 100, 220, 99};
+                     120, 320, 75,  40,  200, 100, 220, 99
+                    };
     assert(MinimizeDifference(A) == 1);
 }
 

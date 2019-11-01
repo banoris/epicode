@@ -90,7 +90,7 @@ int main(int argc, char* argv[]) {
         int idx = BinarySearchUnknownLength(A, k);
         cout << idx << endl;
         assert((idx == -1 && !binary_search(A.cbegin(), A.cend(), k)) ||
-                A[idx] == k);
+               A[idx] == k);
     }
     return 0;
 }

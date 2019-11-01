@@ -17,7 +17,7 @@ using std::unordered_set;
 
 // @include
 BinaryTreeNode<int>* LCA(const unique_ptr<BinaryTreeNode<int>>& node_0,
-        const unique_ptr<BinaryTreeNode<int>>& node_1) {
+                         const unique_ptr<BinaryTreeNode<int>>& node_1) {
     auto *iter_0 = node_0.get(), *iter_1 = node_1.get();
     unordered_set<const BinaryTreeNode<int>*> nodes_on_path_to_root;
     while (iter_0 || iter_1) {
@@ -44,22 +44,22 @@ int main(int argc, char* argv[]) {
     //    2   5
     //  1    4 6
     unique_ptr<BinaryTreeNode<int>> root = make_unique<BinaryTreeNode<int>>(
-            BinaryTreeNode<int>{3, nullptr, nullptr});
+            BinaryTreeNode<int> {3, nullptr, nullptr});
     root->parent = nullptr;
     root->left = make_unique<BinaryTreeNode<int>>(
-            BinaryTreeNode<int>{2, nullptr, nullptr});
+                     BinaryTreeNode<int> {2, nullptr, nullptr});
     root->left->parent = root.get();
     root->left->left = make_unique<BinaryTreeNode<int>>(
-            BinaryTreeNode<int>{1, nullptr, nullptr});
+                           BinaryTreeNode<int> {1, nullptr, nullptr});
     root->left->left->parent = root->left.get();
     root->right = make_unique<BinaryTreeNode<int>>(
-            BinaryTreeNode<int>{5, nullptr, nullptr});
+                      BinaryTreeNode<int> {5, nullptr, nullptr});
     root->right->parent = root.get();
     root->right->left = make_unique<BinaryTreeNode<int>>(
-            BinaryTreeNode<int>{4, nullptr, nullptr});
+                            BinaryTreeNode<int> {4, nullptr, nullptr});
     root->right->left->parent = root->right.get();
     root->right->right = make_unique<BinaryTreeNode<int>>(
-            BinaryTreeNode<int>{6, nullptr, nullptr});
+                             BinaryTreeNode<int> {6, nullptr, nullptr});
     root->right->right->parent = root->right.get();
 
     // should output 3

@@ -28,7 +28,7 @@ template <typename TimeType>
 struct EndPoint {
     const bool operator<(const EndPoint<TimeType>& that) const {
         const TimeType a = is_left ? ptr->left : ptr->right,
-              b = that.is_left ? that.ptr->left : that.ptr->right;
+                       b = that.is_left ? that.ptr->left : that.ptr->right;
         return a < b;
     }
 
@@ -38,7 +38,7 @@ struct EndPoint {
 
 template <typename TimeType>
 vector<TimeType> find_minimum_visits_helper(
-        const vector<EndPoint<TimeType>>& endpoints) {
+    const vector<EndPoint<TimeType>>& endpoints) {
     vector<TimeType> S;  // a minimum set of visit times
     unordered_set<const Interval<TimeType>*> covered;
     vector<const Interval<TimeType>*> covering;
@@ -60,8 +60,8 @@ template <typename TimeType>
 vector<TimeType> find_minimum_visits(const vector<Interval<TimeType>>& I) {
     vector<EndPoint<TimeType>> endpoints;
     for (const Interval<TimeType>& i : I) {
-        endpoints.emplace_back(EndPoint<TimeType>{&i, true});
-        endpoints.emplace_back(EndPoint<TimeType>{&i, false});
+        endpoints.emplace_back(EndPoint<TimeType> {&i, true});
+        endpoints.emplace_back(EndPoint<TimeType> {&i, false});
     }
     sort(endpoints.begin(), endpoints.end());
 
@@ -72,7 +72,7 @@ vector<TimeType> find_minimum_visits(const vector<Interval<TimeType>>& I) {
 // O(n^2) checking solution
 template <typename TimeType>
 void check_ans(const vector<Interval<TimeType>>& I,
-        const vector<TimeType>& ans) {
+               const vector<TimeType>& ans) {
     deque<bool> is_visited(I.size(), false);
     for (const TimeType& a : ans) {
         for (int i = 0; i < I.size(); ++i) {
@@ -89,12 +89,12 @@ void check_ans(const vector<Interval<TimeType>>& I,
 
 void simple_test(void) {
     vector<Interval<int>> I;
-    I.emplace_back(Interval<int>{1, 4});
-    I.emplace_back(Interval<int>{2, 8});
-    I.emplace_back(Interval<int>{3, 6});
-    I.emplace_back(Interval<int>{3, 5});
-    I.emplace_back(Interval<int>{7, 10});
-    I.emplace_back(Interval<int>{9, 11});
+    I.emplace_back(Interval<int> {1, 4});
+    I.emplace_back(Interval<int> {2, 8});
+    I.emplace_back(Interval<int> {3, 6});
+    I.emplace_back(Interval<int> {3, 5});
+    I.emplace_back(Interval<int> {7, 10});
+    I.emplace_back(Interval<int> {9, 11});
     vector<int> ans = find_minimum_visits(I);
     assert(ans.size() == 2 && ans[0] == 4 && ans[1] == 10);
 }
@@ -117,7 +117,7 @@ int main(int argc, char* argv[]) {
             int left = dis1(gen);
             uniform_int_distribution<int> dis2(left + 1, left + 100);
             int right = dis2(gen);
-            A.emplace_back(Interval<int>{left, right});
+            A.emplace_back(Interval<int> {left, right});
         }
         vector<int> ans(find_minimum_visits(A));
         check_ans(A, ans);

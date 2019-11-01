@@ -40,7 +40,7 @@ int GetTopThreeScoresSum(priority_queue<int, vector<int>, greater<>>);
 string FindStudentWithHighestBestOfThreeScores(ifstream* ifs) {
     // Use a multiset to handle duplicated test scores.
     unordered_map<string, priority_queue<int, vector<int>, greater<>>>
-        student_scores;
+    student_scores;
     string name;
     int score;
     while (*ifs >> name >> score) {

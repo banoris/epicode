@@ -20,7 +20,7 @@ using std::uniform_int_distribution;
 
 // @include
 shared_ptr<ListNode<int>> ZippingLinkedList(
-        const shared_ptr<ListNode<int>>& L) {
+const shared_ptr<ListNode<int>>& L) {
     if (!L || !L->next) {
         return L;
     }
@@ -56,7 +56,7 @@ int main(int argc, char* argv[]) {
     if (argc > 2) {
         for (int i = 1; i < argc; ++i) {
             auto curr =
-                make_shared<ListNode<int>>(ListNode<int>{stoi(argv[i]), nullptr});
+                make_shared<ListNode<int>>(ListNode<int> {stoi(argv[i]), nullptr});
             curr->next = head;
             head = curr;
         }
@@ -68,7 +68,7 @@ int main(int argc, char* argv[]) {
             n = dis(gen);
         }
         for (int i = n; i >= 0; --i) {
-            auto curr = make_shared<ListNode<int>>(ListNode<int>{i, nullptr});
+            auto curr = make_shared<ListNode<int>>(ListNode<int> {i, nullptr});
             curr->next = head;
             head = curr;
         }

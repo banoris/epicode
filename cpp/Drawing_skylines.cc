@@ -30,10 +30,10 @@ Skyline ComputeSkyline(const vector<Rectangle>& buildings) {
 }
 
 Skyline ComputeSkylineInInterval(const vector<Rectangle>& buildings,
-        int left_endpoint, int right_endpoint) {
+                                 int left_endpoint, int right_endpoint) {
     if (right_endpoint - left_endpoint <= 1) {  // 0 or 1 skyline, just copy it.
         return {buildings.cbegin() + left_endpoint,
-            buildings.cbegin() + right_endpoint};
+                buildings.cbegin() + right_endpoint};
     }
     int mid = left_endpoint + ((right_endpoint - left_endpoint) / 2);
     auto left_skyline = ComputeSkylineInInterval(buildings, left_endpoint, mid);
@@ -53,21 +53,21 @@ Skyline MergeSkylines(Skyline* left_skyline, Skyline* right_skyline) {
             merged.emplace_back((*right_skyline)[j++]);
         } else if ((*left_skyline)[i].left <= (*right_skyline)[j].left) {
             MergeIntersectSkylines(&merged, &(*left_skyline)[i], &i,
-                    &(*right_skyline)[j], &j);
+                                   &(*right_skyline)[j], &j);
         } else {  // left_skyline[i].left > right_skyline[j].left.
             MergeIntersectSkylines(&merged, &(*right_skyline)[j], &j,
-                    &(*left_skyline)[i], &i);
+                                   &(*left_skyline)[i], &i);
         }
     }
 
     merged.insert(merged.end(), left_skyline->begin() + i, left_skyline->end());
     merged.insert(merged.end(), right_skyline->begin() + j,
-            right_skyline->end());
+                  right_skyline->end());
     return merged;
 }
 
 void MergeIntersectSkylines(Skyline* merged, Rectangle* a, int* a_idx,
-        Rectangle* b, int* b_idx) {
+                            Rectangle* b, int* b_idx) {
     if (a->right <= b->right) {
         if (a->height > b->height) {
             if (b->right != a->right) {
@@ -105,7 +105,7 @@ void CheckAnswer(const Skyline& ans) {
         if (i > 0) {
             assert(ans[i - 1].right <= ans[i].left);
             assert(ans[i - 1].right != ans[i].left ||
-                    ans[i - 1].height != ans[i].height);
+                   ans[i - 1].height != ans[i].height);
         }
     }
 }

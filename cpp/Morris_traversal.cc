@@ -55,18 +55,18 @@ int main(int argc, char* argv[]) {
     //    2   5
     //  1    4 6
     unique_ptr<BinaryTreeNode<int>> tree =
-        make_unique<BinaryTreeNode<int>>(BinaryTreeNode<int>{3});
-    tree->left = make_unique<BinaryTreeNode<int>>(BinaryTreeNode<int>{2});
-    tree->left->left = make_unique<BinaryTreeNode<int>>(BinaryTreeNode<int>{1});
-    tree->right = make_unique<BinaryTreeNode<int>>(BinaryTreeNode<int>{5});
+                                     make_unique<BinaryTreeNode<int>>(BinaryTreeNode<int> {3});
+    tree->left = make_unique<BinaryTreeNode<int>>(BinaryTreeNode<int> {2});
+    tree->left->left = make_unique<BinaryTreeNode<int>>(BinaryTreeNode<int> {1});
+    tree->right = make_unique<BinaryTreeNode<int>>(BinaryTreeNode<int> {5});
     tree->right->left =
-        make_unique<BinaryTreeNode<int>>(BinaryTreeNode<int>{4});
+        make_unique<BinaryTreeNode<int>>(BinaryTreeNode<int> {4});
     tree->right->right =
-        make_unique<BinaryTreeNode<int>>(BinaryTreeNode<int>{6});
+        make_unique<BinaryTreeNode<int>>(BinaryTreeNode<int> {6});
     // should output 1 2 3 4 5 6
     InorderTraversal(tree);
     vector<int> golden_res = {1, 2, 3, 4, 5, 6};
     assert(equal(result.begin(), result.end(), golden_res.begin(),
-                golden_res.end()));
+                 golden_res.end()));
     return 0;
 }

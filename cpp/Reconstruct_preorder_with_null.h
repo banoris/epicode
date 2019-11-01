@@ -13,18 +13,18 @@ using std::unique_ptr;
 using std::vector;
 
 unique_ptr<BinaryTreeNode<int>> ReconstructPreorderHelper(const vector<int*>&,
-        int*);
+                             int*);
 
 // @include
 unique_ptr<BinaryTreeNode<int>> ReconstructPreorder(
-        const vector<int*>& preorder) {
+const vector<int*>& preorder) {
     int subtree_idx_pointer = 0;
     return ReconstructPreorderHelper(preorder, &subtree_idx_pointer);
 }
 
 // Reconstructs the subtree that is rooted at subtreeIdx.
 unique_ptr<BinaryTreeNode<int>> ReconstructPreorderHelper(
-        const vector<int*>& preorder, int* subtree_idx_pointer) {
+const vector<int*>& preorder, int* subtree_idx_pointer) {
     int& subtree_idx = *subtree_idx_pointer;
     int* subtree_key = preorder[subtree_idx];
     ++subtree_idx;
@@ -37,8 +37,9 @@ unique_ptr<BinaryTreeNode<int>> ReconstructPreorderHelper(
         ReconstructPreorderHelper(preorder, subtree_idx_pointer);
     auto right_subtree =
         ReconstructPreorderHelper(preorder, subtree_idx_pointer);
-    return make_unique<BinaryTreeNode<int>>(BinaryTreeNode<int>{
-            *subtree_key, move(left_subtree), move(right_subtree)});
+    return make_unique<BinaryTreeNode<int>>(BinaryTreeNode<int> {
+        *subtree_key, move(left_subtree), move(right_subtree)
+    });
 }
 // @exclude
 

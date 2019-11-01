@@ -62,7 +62,8 @@ int CheckAnswer(const vector<string>& s) {
 
 int main(int argc, char* argv[]) {
     vector<string> A = {"foo",    "bar",    "widget", "foo",
-        "widget", "widget", "adnan"};
+                        "widget", "widget", "adnan"
+                       };
     assert(CheckAnswer(A) == FindNearestRepetition(A));
     A = {"foo", "bar", "widget", "foo", "xyz", "widget", "bar", "adnan"};
     assert(CheckAnswer(A) == FindNearestRepetition(A));

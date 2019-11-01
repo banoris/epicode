@@ -19,7 +19,7 @@ using std::unordered_map;
 using std::vector;
 
 bool MatchAllWordsInDict(const string&, const unordered_map<string, int>&,
-        int, int, int);
+                         int, int, int);
 
 // @include
 vector<int> FindAllSubstrings(const string& s, const vector<string>& words) {
@@ -39,8 +39,8 @@ vector<int> FindAllSubstrings(const string& s, const vector<string>& words) {
 }
 
 bool MatchAllWordsInDict(const string& s,
-        const unordered_map<string, int>& word_to_freq,
-        int start, int num_words, int unit_size) {
+                         const unordered_map<string, int>& word_to_freq,
+                         int start, int num_words, int unit_size) {
     unordered_map<string, int> curr_string_to_freq;
     for (int i = 0; i < num_words; ++i) {
         string curr_word = s.substr(start + i * unit_size, unit_size);

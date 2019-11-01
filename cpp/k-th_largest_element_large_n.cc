@@ -28,14 +28,14 @@ int FindKthLargestUnknownLength(istringstream* sin, int k) {
             // Reorders elements about median with larger elements appearing before
             // the median.
             nth_element(candidates.begin(), candidates.begin() + k - 1,
-                    candidates.end(), greater<int>());
+                        candidates.end(), greater<int>());
             // Resize to keep just the k largest elements seen so far.
             candidates.resize(k);
         }
     }
     // Finds the k-th largest element in candidates.
     nth_element(candidates.begin(), candidates.begin() + k - 1,
-            candidates.end(), greater<int>());
+                candidates.end(), greater<int>());
     return candidates[k - 1];
 }
 // @exclude

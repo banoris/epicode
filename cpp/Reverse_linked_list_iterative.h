@@ -11,7 +11,7 @@ using std::shared_ptr;
 
 // @include
 shared_ptr<ListNode<int>> ReverseLinkedList(
-        const shared_ptr<ListNode<int>>& head) {
+const shared_ptr<ListNode<int>>& head) {
     shared_ptr<ListNode<int>> prev = nullptr, curr = head;
     while (curr) {
         auto next = curr->next;

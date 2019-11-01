@@ -18,7 +18,7 @@ using std::uniform_int_distribution;
 using std::vector;
 
 void SubsetsUniqueHelper(const vector<int>&, size_t, vector<int>*,
-        vector<vector<int>>*);
+                         vector<vector<int>>*);
 
 // @include
 vector<vector<int>> SubsetsUnique(vector<int> A) {
@@ -31,7 +31,7 @@ vector<vector<int>> SubsetsUnique(vector<int> A) {
 }
 
 void SubsetsUniqueHelper(const vector<int>& A, size_t start, vector<int>* ans,
-        vector<vector<int>>* res) {
+                         vector<vector<int>>* res) {
     res->emplace_back(*ans);
     for (size_t i = start; i < A.size(); ++i) {
         if (i != start && A[i - 1] == A[i]) {

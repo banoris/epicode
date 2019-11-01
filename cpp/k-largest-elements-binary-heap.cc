@@ -24,10 +24,10 @@ vector<int> KLargestInBinaryHeap(const vector<int>& A, int k) {
         int index, value;
     };
     priority_queue<HeapEntry, vector<HeapEntry>,
-        function<bool(HeapEntry, HeapEntry)>>
-            candidate_max_heap([](const HeapEntry& a, const HeapEntry& b) {
-                    return a.value < b.value;
-                    });
+                   function<bool(HeapEntry, HeapEntry)>>
+    candidate_max_heap([](const HeapEntry& a, const HeapEntry& b) {
+        return a.value < b.value;
+    });
     // The largest element in A is at index 0.
     candidate_max_heap.emplace(HeapEntry{0, A[0]});
     vector<int> result;
@@ -39,12 +39,12 @@ vector<int> KLargestInBinaryHeap(const vector<int>& A, int k) {
         int left_child_idx = 2 * candidate_idx + 1;
         if (left_child_idx < A.size()) {
             candidate_max_heap.emplace(
-                    HeapEntry{left_child_idx, A[left_child_idx]});
+                HeapEntry{left_child_idx, A[left_child_idx]});
         }
         int right_child_idx = 2 * candidate_idx + 2;
         if (right_child_idx < A.size()) {
             candidate_max_heap.emplace(
-                    HeapEntry{right_child_idx, A[right_child_idx]});
+                HeapEntry{right_child_idx, A[right_child_idx]});
         }
     }
     return result;
@@ -56,22 +56,22 @@ int main(int argc, char* argv[]) {
     auto result = KLargestInBinaryHeap(max_heap, 3);
     vector<int> expected_result = {10, 9, 8};
     assert(equal(result.begin(), result.end(), expected_result.begin(),
-                expected_result.end()));
+                 expected_result.end()));
     result = KLargestInBinaryHeap(max_heap, 5);
     expected_result = {10, 9, 8, 8, 7};
     assert(equal(result.begin(), result.end(), expected_result.begin(),
-                expected_result.end()));
+                 expected_result.end()));
 
     max_heap = {97, 84, 93, 83, 81, 90, 79, 83, 55, 42, 21, 73};
     result = KLargestInBinaryHeap(max_heap, 3);
     expected_result = {97, 93, 90};
     assert(equal(result.begin(), result.end(), expected_result.begin(),
-                expected_result.end()));
+                 expected_result.end()));
 
     max_heap = {100, 1, 5, 0, 0};
     result = KLargestInBinaryHeap(max_heap, 1);
     expected_result = {100};
     assert(equal(result.begin(), result.end(), expected_result.begin(),
-                expected_result.end()));
+                 expected_result.end()));
     return 0;
 }

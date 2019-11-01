@@ -66,8 +66,8 @@ int CheckAnswer(const string& s) {
         } else {
             left_parentheses_indices.pop();
             int start = left_parentheses_indices.empty()
-                ? end
-                : left_parentheses_indices.top();
+                        ? end
+                        : left_parentheses_indices.top();
             max_length = max(max_length, i - start);
         }
     }

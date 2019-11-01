@@ -73,7 +73,7 @@ void CheckGraph(GraphVertex* node, const vector<GraphVertex>& G) {
         q.pop();
         assert(vertex->label < G.size());
         vector<int> label1 = CopyLabels(vertex->edges),
-            label2 = CopyLabels(G[vertex->label].edges);
+                    label2 = CopyLabels(G[vertex->label].edges);
         sort(label1.begin(), label1.end()), sort(label2.begin(), label2.end());
         assert(equal(label1.begin(), label1.end(), label2.begin(), label2.end()));
         for (GraphVertex* e : vertex->edges) {

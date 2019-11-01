@@ -30,7 +30,7 @@ string RandString(int len) {
 
 // @include
 bool IsLetterConstructibleFromMagazine(const string& letter_text,
-        const string& magazine_text) {
+                                       const string& magazine_text) {
     unordered_map<char, int> char_frequency_for_letter;
     // Compute the frequencies for all chars in letter_text.
     for (char c : letter_text) {
@@ -65,7 +65,7 @@ void SimpleTest() {
     assert(IsLetterConstructibleFromMagazine("123", "123"));
     assert(!IsLetterConstructibleFromMagazine("12323", "123"));
     assert(
-            IsLetterConstructibleFromMagazine("GATTACA", "A AD FS GA T ACA TTT"));
+        IsLetterConstructibleFromMagazine("GATTACA", "A AD FS GA T ACA TTT"));
     assert(!IsLetterConstructibleFromMagazine("a", ""));
     assert(IsLetterConstructibleFromMagazine("aa", "aa"));
     assert(IsLetterConstructibleFromMagazine("aa", "aaa"));

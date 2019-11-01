@@ -26,8 +26,8 @@ struct ProfessorStudentPairing {
 };
 
 vector<ProfessorStudentPairing> find_stable_assignment(
-        const vector<vector<int>>& professor_preference,
-        const vector<vector<int>>& student_preference) {
+    const vector<vector<int>>& professor_preference,
+    const vector<vector<int>>& student_preference) {
     queue<int> free_student;  // stores currently free students.
     for (int i = 0; i < student_preference.size(); ++i) {
         free_student.emplace(i);
@@ -47,11 +47,11 @@ vector<ProfessorStudentPairing> find_stable_assignment(
         } else {  // this professor has student now.
             auto original_pref =
                 distance(professor_preference[j].cbegin(),
-                        find(professor_preference[j].cbegin(),
-                            professor_preference[j].cend(), professor_choice[j]));
+                         find(professor_preference[j].cbegin(),
+                              professor_preference[j].cend(), professor_choice[j]));
             auto new_pref = distance(professor_preference[j].cbegin(),
-                    find(professor_preference[j].cbegin(),
-                        professor_preference[j].cend(), i));
+                                     find(professor_preference[j].cbegin(),
+                                          professor_preference[j].cend(), i));
             if (new_pref < original_pref) {  // this professor prefers the new one.
                 free_student.emplace(professor_choice[j]);
                 professor_choice[j] = i;
@@ -64,18 +64,18 @@ vector<ProfessorStudentPairing> find_stable_assignment(
     vector<ProfessorStudentPairing> match_result;
     for (int j = 0; j < professor_choice.size(); ++j) {
         match_result.emplace_back(
-                ProfessorStudentPairing{professor_choice[j], j});
+            ProfessorStudentPairing{professor_choice[j], j});
     }
     return match_result;
 }
 // @exclude
 
 void check_ans(const vector<vector<int>>& professor_preference,
-        const vector<vector<int>>& student_preference,
-        const vector<ProfessorStudentPairing>& match_result) {
+               const vector<vector<int>>& student_preference,
+               const vector<ProfessorStudentPairing>& match_result) {
     assert(match_result.size() == professor_preference.size());
     deque<bool> professor(professor_preference.size(), false),
-        student(student_preference.size(), false);
+          student(student_preference.size(), false);
     for (const ProfessorStudentPairing& p : match_result) {
         student[p.professor] = true;
         professor[p.student] = true;
@@ -92,21 +92,21 @@ void check_ans(const vector<vector<int>>& professor_preference,
             int s0 = match_result[i].professor, a0 = match_result[i].student;
             int s1 = match_result[j].professor, a1 = match_result[j].student;
             int a0_in_s0_order = distance(student_preference[s0].cbegin(),
-                    find(student_preference[s0].cbegin(),
-                        student_preference[s0].cend(), a0));
+                                          find(student_preference[s0].cbegin(),
+                                               student_preference[s0].cend(), a0));
             int a1_in_s0_order = distance(student_preference[s0].cbegin(),
-                    find(student_preference[s0].cbegin(),
-                        student_preference[s0].cend(), a1));
+                                          find(student_preference[s0].cbegin(),
+                                               student_preference[s0].cend(), a1));
             int s0_in_a1_order =
                 distance(professor_preference[a1].cbegin(),
-                        find(professor_preference[a1].cbegin(),
-                            professor_preference[a1].cend(), s0));
+                         find(professor_preference[a1].cbegin(),
+                              professor_preference[a1].cend(), s0));
             int s1_in_a1_order =
                 distance(professor_preference[a1].cbegin(),
-                        find(professor_preference[a1].cbegin(),
-                            professor_preference[a1].cend(), s1));
+                         find(professor_preference[a1].cbegin(),
+                              professor_preference[a1].cend(), s1));
             assert(a0_in_s0_order < a1_in_s0_order ||
-                    s1_in_a1_order < s0_in_a1_order);
+                   s1_in_a1_order < s0_in_a1_order);
         }
     }
 }
@@ -128,9 +128,9 @@ int main(int argc, char* argv[]) {
                 student_preference[i].emplace_back(j);
             }
             random_shuffle(professor_preference[i].begin(),
-                    professor_preference[i].end());
+                           professor_preference[i].end());
             random_shuffle(student_preference[i].begin(),
-                    student_preference[i].end());
+                           student_preference[i].end());
         }
 
         /*

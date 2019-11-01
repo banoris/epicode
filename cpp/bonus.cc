@@ -27,13 +27,13 @@ void CheckAns(const vector<int>& productivity, const vector<int>& C) {
     for (size_t i = 0; i < productivity.size(); ++i) {
         if (i > 0) {
             assert((productivity[i] > productivity[i - 1] && C[i] > C[i - 1]) ||
-                    (productivity[i] < productivity[i - 1] && C[i] < C[i - 1]) ||
-                    productivity[i] == productivity[i - 1]);
+                   (productivity[i] < productivity[i - 1] && C[i] < C[i - 1]) ||
+                   productivity[i] == productivity[i - 1]);
         }
         if (i + 1 < productivity.size()) {
             assert((productivity[i] > productivity[i + 1] && C[i] > C[i + 1]) ||
-                    (productivity[i] < productivity[i + 1] && C[i] < C[i + 1]) ||
-                    productivity[i] == productivity[i + 1]);
+                   (productivity[i] < productivity[i + 1] && C[i] < C[i + 1]) ||
+                   productivity[i] == productivity[i + 1]);
         }
     }
 }
@@ -44,10 +44,10 @@ vector<int> CalculateBonus(const vector<int>& productivity) {
         int productivity, index;
     };
     priority_queue<EmployeeData, vector<EmployeeData>,
-        function<bool(EmployeeData, EmployeeData)>>
-            min_heap([](const EmployeeData& lhs, const EmployeeData& rhs) {
-                    return lhs.index > rhs.index;
-                    });
+                   function<bool(EmployeeData, EmployeeData)>>
+    min_heap([](const EmployeeData& lhs, const EmployeeData& rhs) {
+        return lhs.index > rhs.index;
+    });
     for (int i = 0; i < productivity.size(); ++i) {
         min_heap.emplace(EmployeeData{i, productivity[i]});
     }

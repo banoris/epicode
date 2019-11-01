@@ -19,11 +19,11 @@ using std::stoi;
 
 // @include
 shared_ptr<ListNode<int>> ReverseK(shared_ptr<ListNode<int>> L, int k) {
-    auto dummy_head = make_shared<ListNode<int>>(ListNode<int>{0, L});
+    auto dummy_head = make_shared<ListNode<int>>(ListNode<int> {0, L});
     shared_ptr<ListNode<int>> sublist_predecessor = dummy_head,
-        sublist_head = dummy_head->next,
-        sublist_successor = dummy_head,
-        sublist_tail = dummy_head->next;
+                              sublist_head = dummy_head->next,
+                              sublist_successor = dummy_head,
+                              sublist_tail = dummy_head->next;
     while (sublist_head) {
         // Identify the tail of sublist of k nodes to be reversed.
         int num_remaining = k;
@@ -55,12 +55,16 @@ shared_ptr<ListNode<int>> ReverseK(shared_ptr<ListNode<int>> L, int k) {
 
 int main(int argc, char** argv) {
     shared_ptr<ListNode<int>> L;
-    L = make_shared<ListNode<int>>(ListNode<int>{
-            1, make_shared<ListNode<int>>(ListNode<int>{
-                    2, make_shared<ListNode<int>>(ListNode<int>{
-                            3, make_shared<ListNode<int>>(ListNode<int>{
-                                    4, make_shared<ListNode<int>>(
-                                            ListNode<int>{5, nullptr})})})})});
+    L = make_shared<ListNode<int>>(ListNode<int> {
+        1, make_shared<ListNode<int>>(ListNode<int>{
+            2, make_shared<ListNode<int>>(ListNode<int>{
+                3, make_shared<ListNode<int>>(ListNode<int>{
+                    4, make_shared<ListNode<int>>(
+                    ListNode<int>{5, nullptr})
+                })
+            })
+        })
+    });
     int k;
     if (argc == 2) {
         k = stoi(argv[1]);
@@ -69,10 +73,10 @@ int main(int argc, char** argv) {
     }
     auto result = ReverseK(L, k);
     assert(result->data == 2 && result->next->data == 1 &&
-            result->next->next->data == 4 &&
-            result->next->next->next->data == 3 &&
-            result->next->next->next->next->data == 5 &&
-            result->next->next->next->next->next == nullptr);
+           result->next->next->data == 4 &&
+           result->next->next->next->data == 3 &&
+           result->next->next->next->next->data == 5 &&
+           result->next->next->next->next->next == nullptr);
     while (result) {
         cout << result->data << endl;
         result = result->next;

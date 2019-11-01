@@ -29,7 +29,7 @@ string RandString(int len) {
 
 // @include
 vector<string> DecomposeIntoDictionaryWords(
-        const string& domain, const unordered_set<string>& dictionary) {
+    const string& domain, const unordered_set<string>& dictionary) {
     // When the algorithm finishes, last_length[i] != -1 indicates
     // domain.substr(0, i + 1) has a valid decomposition, and the length of the
     // last string in the decomposition is last_length[i].
@@ -63,7 +63,7 @@ vector<string> DecomposeIntoDictionaryWords(
         int idx = domain.size() - 1;
         while (idx >= 0) {
             decompositions.emplace_back(
-                    domain.substr(idx + 1 - last_length[idx], last_length[idx]));
+                domain.substr(idx + 1 - last_length[idx], last_length[idx]));
             idx -= last_length[idx];
         }
         reverse(decompositions.begin(), decompositions.end());

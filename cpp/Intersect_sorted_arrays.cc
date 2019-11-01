@@ -18,7 +18,7 @@ using std::uniform_int_distribution;
 using std::vector;
 
 void CheckAns(const vector<int> &a, const vector<int> &b,
-        const vector<int> &c) {
+              const vector<int> &c) {
     assert(equal(a.begin(), a.end(), b.begin(), b.end()));
     assert(equal(b.begin(), b.end(), c.begin(), c.end()));
 }

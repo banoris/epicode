@@ -25,7 +25,7 @@ double FindSalaryCap(double target_payroll, vector<double> current_salaries) {
             current_salaries[i] * (current_salaries.size() - i);
         if (unadjusted_salary_sum + adjusted_salary_sum >= target_payroll) {
             return (target_payroll - unadjusted_salary_sum) /
-                (current_salaries.size() - i);
+                   (current_salaries.size() - i);
         }
         unadjusted_salary_sum += current_salaries[i];
     }

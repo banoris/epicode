@@ -19,21 +19,21 @@ using std::uniform_int_distribution;
 using std::vector;
 
 void DirectedPowerSet(const vector<int>&, int, vector<int>*,
-        vector<vector<int>>*);
+                      vector<vector<int>>*);
 
 // @include
 vector<vector<int>> GeneratePowerSet(const vector<int>& input_set) {
     vector<vector<int>> power_set;
     DirectedPowerSet(input_set, 0, make_unique<vector<int>>().get(),
-            &power_set);
+                     &power_set);
     return power_set;
 }
 
 // Generate all subsets whose intersection with input_set[0], ...,
 // input_set[to_be_selected - 1] is exactly selected_so_far.
 void DirectedPowerSet(const vector<int>& input_set, int to_be_selected,
-        vector<int>* selected_so_far,
-        vector<vector<int>>* power_set) {
+                      vector<int>* selected_so_far,
+                      vector<vector<int>>* power_set) {
     if (to_be_selected == input_set.size()) {
         power_set->emplace_back(*selected_so_far);
         return;
@@ -49,10 +49,11 @@ void DirectedPowerSet(const vector<int>& input_set, int to_be_selected,
 
 void SimpleTest() {
     vector<vector<int>> golden_result = {{0, 1, 2}, {0, 1}, {0, 2}, {0},
-        {1, 2},    {1},    {2},    {}};
+        {1, 2},    {1},    {2},    {}
+    };
     auto result = GeneratePowerSet({0, 1, 2});
     assert(equal(result.begin(), result.end(), golden_result.begin(),
-                golden_result.end()));
+                 golden_result.end()));
 }
 
 int main(int argc, char* argv[]) {

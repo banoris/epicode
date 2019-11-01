@@ -38,8 +38,11 @@ vector<int> Multiply(vector<int> num1, vector<int> num2) {
 
     // Remove the leading zeroes.
     result = {
-        find_if_not(begin(result), end(result), [](int a) { return a == 0; }),
-        end(result)};
+        find_if_not(begin(result), end(result), [](int a) {
+            return a == 0;
+        }),
+        end(result)
+    };
     if (result.empty()) {
         return {0};
     }
@@ -78,7 +81,7 @@ void SimpleTest() {
     assert(EqualVector(Multiply({9}, {9}), {8, 1}));
     assert(EqualVector(Multiply({9}, {9, 9, 9, 9}), {8, 9, 9, 9, 1}));
     assert(EqualVector(Multiply({1, 3, 1, 4, 1, 2}, {-1, 3, 1, 3, 3, 3, 2}),
-                {-1, 7, 2, 5, 8, 7, 5, 8, 4, 7, 8, 4}));
+    {-1, 7, 2, 5, 8, 7, 5, 8, 4, 7, 8, 4}));
     assert(EqualVector(Multiply({7, 3}, {-3}), {-2, 1, 9}));
 }
 
@@ -96,9 +99,9 @@ int main(int argc, char* argv[]) {
         vector<int> num1 = RandVector(dis(gen)), num2 = RandVector(dis(gen));
         auto res = Multiply(num1, num2);
         cout << VectorToString(num1) << " * " << VectorToString(num2) << " = "
-            << VectorToString(res) << endl;
+             << VectorToString(res) << endl;
         string command = "bash -c 'bc <<<" + VectorToString(num1) + "*" +
-            VectorToString(num2) + "'";
+                         VectorToString(num2) + "'";
         string result = execute_shell(command);
         cout << "answer = " << result;
         assert(result.substr(0, result.size() - 1) == VectorToString(res));

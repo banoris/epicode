@@ -74,10 +74,10 @@ int CalculateLargestRectangle(const vector<int>& heights) {
 }
 
 bool IsNewPillarOrReachEnd(const vector<int>& heights, int curr_idx,
-        int last_pillar_idx) {
+                           int last_pillar_idx) {
     return curr_idx < heights.size()
-        ? heights[curr_idx] < heights[last_pillar_idx]
-        : true;
+           ? heights[curr_idx] < heights[last_pillar_idx]
+           : true;
 }
 // @exclude
 

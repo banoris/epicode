@@ -18,7 +18,7 @@ using std::unique_ptr;
 
 struct Inversion;
 void ReconstructBSTHelper(BinaryTreeNode<int>*, Inversion*, Inversion*,
-        BinaryTreeNode<int>**);
+                          BinaryTreeNode<int>**);
 
 // @include
 struct Inversion {
@@ -38,14 +38,14 @@ void ReconstructBST(unique_ptr<BinaryTreeNode<int>>* almost_BST) {
 }
 
 void ReconstructBSTHelper(BinaryTreeNode<int>* almost_BST,
-        Inversion* inversion_0, Inversion* inversion_1,
-        BinaryTreeNode<int>** prev) {
+                          Inversion* inversion_0, Inversion* inversion_1,
+                          BinaryTreeNode<int>** prev) {
     if (almost_BST == nullptr) {
         return;
     }
 
     ReconstructBSTHelper(almost_BST->left.get(), inversion_0, inversion_1,
-            prev);
+                         prev);
     if (*prev && (*prev)->data > almost_BST->data) {
         // Inversion detected.
         if (inversion_0->prev == nullptr && inversion_0->next == nullptr) {
@@ -56,7 +56,7 @@ void ReconstructBSTHelper(BinaryTreeNode<int>* almost_BST,
     }
     *prev = almost_BST;  // Records the previous node as the current node.
     ReconstructBSTHelper(almost_BST->right.get(), inversion_0, inversion_1,
-            prev);
+                         prev);
 }
 // @exclude
 
@@ -65,16 +65,16 @@ int main(int argc, char* argv[]) {
     //    2   4
     //  1    5 6
     unique_ptr<BinaryTreeNode<int>> almost_BST =
-        make_unique<BinaryTreeNode<int>>(BinaryTreeNode<int>{3});
-    almost_BST->left = make_unique<BinaryTreeNode<int>>(BinaryTreeNode<int>{2});
+                                     make_unique<BinaryTreeNode<int>>(BinaryTreeNode<int> {3});
+    almost_BST->left = make_unique<BinaryTreeNode<int>>(BinaryTreeNode<int> {2});
     almost_BST->left->left =
-        make_unique<BinaryTreeNode<int>>(BinaryTreeNode<int>{1});
+        make_unique<BinaryTreeNode<int>>(BinaryTreeNode<int> {1});
     almost_BST->right =
-        make_unique<BinaryTreeNode<int>>(BinaryTreeNode<int>{4});
+        make_unique<BinaryTreeNode<int>>(BinaryTreeNode<int> {4});
     almost_BST->right->left =
-        make_unique<BinaryTreeNode<int>>(BinaryTreeNode<int>{5});
+        make_unique<BinaryTreeNode<int>>(BinaryTreeNode<int> {5});
     almost_BST->right->right =
-        make_unique<BinaryTreeNode<int>>(BinaryTreeNode<int>{6});
+        make_unique<BinaryTreeNode<int>>(BinaryTreeNode<int> {6});
     ReconstructBST(&almost_BST);
     auto result = generate_inorder(almost_BST);
     copy(result.cbegin(), result.cend(), ostream_iterator<int>(cout, " "));

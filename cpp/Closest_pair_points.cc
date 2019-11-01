@@ -23,7 +23,7 @@ struct Point;
 struct PairOfPoints;
 struct PairOfPointsWithDistance;
 PairOfPointsWithDistance FindClosestPairPointsInSubarray(
-        const vector<Point>& points, int s, int e);
+    const vector<Point>& points, int s, int e);
 PairOfPointsWithDistance SolveByEnumerateAllPairs(const vector<Point>& points,
         int s, int e);
 PairOfPointsWithDistance FindClosestPairInRemain(vector<Point>* points,
@@ -53,17 +53,19 @@ struct PairOfPointsWithDistance {
 
 PairOfPoints FindClosestPairPoints(vector<Point> points) {
     sort(begin(points), end(points),
-            [](const Point& a, const Point& b) { return a.x < b.x; });
+    [](const Point& a, const Point& b) {
+        return a.x < b.x;
+    });
     auto closest_two_points_with_distance =
         FindClosestPairPointsInSubarray(points, 0, points.size());
     return {closest_two_points_with_distance.p1,
-        closest_two_points_with_distance.p2};
+            closest_two_points_with_distance.p2};
 }
 
 // Returns the closest two points and their distance as a tuple in
 // points[begin : end - 1].
 PairOfPointsWithDistance FindClosestPairPointsInSubarray(
-        const vector<Point>& points, int begin, int end) {
+    const vector<Point>& points, int begin, int end) {
     if (end - begin <= kBruteForceThreshold) {  // Switch to brute-force.
         return SolveByEnumerateAllPairs(points, begin, end);
     }
@@ -84,8 +86,8 @@ PairOfPointsWithDistance FindClosestPairPointsInSubarray(
     auto mid_ret =
         FindClosestPairInRemain(&remain, best_result_in_subsets.distance);
     return mid_ret.distance < best_result_in_subsets.distance
-        ? mid_ret
-        : best_result_in_subsets;
+           ? mid_ret
+           : best_result_in_subsets;
 }
 
 // Returns the closest two points and the distance between them.
@@ -108,7 +110,9 @@ PairOfPointsWithDistance SolveByEnumerateAllPairs(const vector<Point>& points,
 PairOfPointsWithDistance FindClosestPairInRemain(vector<Point>* remain,
         double d) {
     sort(remain->begin(), remain->end(),
-            [](const Point& a, const Point& b) { return a.y < b.y; });
+    [](const Point& a, const Point& b) {
+        return a.y < b.y;
+    });
 
     // At most six points in remain.
     PairOfPointsWithDistance ret;
@@ -149,9 +153,9 @@ int main(int argc, char* argv[]) {
         auto p = FindClosestPairPoints(points);
         auto q = SolveByEnumerateAllPairs(points, 0, points.size());
         cout << "p = " << p.p1 << " " << p.p2
-            << ", dis = " << Distance(p.p1, p.p2) << endl;
+             << ", dis = " << Distance(p.p1, p.p2) << endl;
         cout << "q = " << q.p1 << " " << q.p2
-            << ", dis = " << Distance(q.p1, q.p2) << endl;
+             << ", dis = " << Distance(q.p1, q.p2) << endl;
         assert(Distance(p.p1, p.p2) == q.distance);
     }
     return 0;

@@ -14,8 +14,8 @@ using std::numeric_limits;
 using std::unordered_map;
 
 double compute_best_payoff_helper(
-        unordered_map<int, unordered_map<int, unordered_map<int, double>>>& cache,
-        double upper_bound, int cash, int num_red, int num_cards);
+    unordered_map<int, unordered_map<int, unordered_map<int, double>>>& cache,
+    double upper_bound, int cash, int num_red, int num_cards);
 
 // @include
 double compute_best_payoff(int cash) {
@@ -25,8 +25,8 @@ double compute_best_payoff(int cash) {
 }
 
 double compute_best_payoff_helper(
-        unordered_map<int, unordered_map<int, unordered_map<int, double>>>& cache,
-        double upper_bound, int cash, int num_red, int num_cards) {
+    unordered_map<int, unordered_map<int, unordered_map<int, double>>>& cache,
+    double upper_bound, int cash, int num_red, int num_cards) {
     if (cash >= upper_bound) {
         return cash;
     }
@@ -40,15 +40,15 @@ double compute_best_payoff_helper(
         for (int bet = 0; bet <= cash; ++bet) {
             double red_lower_bound =
                 min(compute_best_payoff_helper(cache, upper_bound, cash + bet,
-                            num_red - 1, num_cards - 1),
-                        compute_best_payoff_helper(cache, upper_bound, cash - bet,
-                            num_red, num_cards - 1));
+                                               num_red - 1, num_cards - 1),
+                    compute_best_payoff_helper(cache, upper_bound, cash - bet,
+                                               num_red, num_cards - 1));
 
             double black_lower_bound =
                 min(compute_best_payoff_helper(cache, upper_bound, cash - bet,
-                            num_red - 1, num_cards - 1),
-                        compute_best_payoff_helper(cache, upper_bound, cash + bet,
-                            num_red, num_cards - 1));
+                                               num_red - 1, num_cards - 1),
+                    compute_best_payoff_helper(cache, upper_bound, cash + bet,
+                                               num_red, num_cards - 1));
             best = max({best, red_lower_bound, black_lower_bound});
         }
         cache[cash][num_red][num_cards] = best;

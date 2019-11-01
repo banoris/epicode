@@ -19,7 +19,7 @@ struct Student {
 };
 
 const static function<bool(const Student&, const Student&)> CompGPA = [](
-        const Student& a, const Student& b) {
+const Student& a, const Student& b) {
     if (a.grade_point_average != b.grade_point_average) {
         return a.grade_point_average > b.grade_point_average;
     }
@@ -27,8 +27,8 @@ const static function<bool(const Student&, const Student&)> CompGPA = [](
 };
 
 bool SearchStudent(
-        const vector<Student>& students, const Student& target,
-        const function<bool(const Student&, const Student&)>& comp_GPA) {
+    const vector<Student>& students, const Student& target,
+    const function<bool(const Student&, const Student&)>& comp_GPA) {
     return binary_search(students.begin(), students.end(), target, comp_GPA);
 }
 // @exclude

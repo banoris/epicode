@@ -36,7 +36,9 @@ void IndirectSort(const string& file_name) {
     }
 
     // Indirectly sorts file.
-    sort(begin(P), end(P), [](const int* a, const int* b) { return *a < *b; });
+    sort(begin(P), end(P), [](const int* a, const int* b) {
+        return *a < *b;
+    });
 
     // Outputs file.
     ofstream ofs(file_name.c_str());
@@ -59,9 +61,9 @@ int main(int argc, char* argv[]) {
         }
         vector<int> A;
         generate_n(back_inserter(A), n, [&] {
-                uniform_int_distribution<int> dis(0, 999999);
-                return dis(gen);
-                });
+            uniform_int_distribution<int> dis(0, 999999);
+            return dis(gen);
+        });
         ofstream ofs("input.txt");
         for (int a : A) {
             ofs << a << endl;

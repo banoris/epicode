@@ -14,7 +14,7 @@ using std::uniform_real_distribution;
 using std::vector;
 
 double HouseMajorityHelper(const vector<double>&, int, int,
-        vector<vector<double>>*);
+                           vector<vector<double>>*);
 
 // @include
 double HouseMajority(const vector<double>& prob, int n) {
@@ -32,7 +32,7 @@ double HouseMajority(const vector<double>& prob, int n) {
 // prob is the probability that each Republican wins.
 // r is the number of Republicans wins, and n is the number of elections.
 double HouseMajorityHelper(const vector<double>& prob, int r, int n,
-        vector<vector<double>>* P_ptr) {
+                           vector<vector<double>>* P_ptr) {
     if (r > n) {
         return 0.0;  // Base case: not enough Republicans.
     } else if (r == 0 && n == 0) {
@@ -55,7 +55,7 @@ void PrintVector(vector<double> prob) {
     sort(prob.begin(), prob.end());
     for (int i = 0; i < prob.size(); ++i) {
         cout << i << ":" << static_cast<int>(100 * prob[i])
-            << (((i + 1) % 10 == 0) ? "\n" : " ");
+             << (((i + 1) % 10 == 0) ? "\n" : " ");
     }
     cout << endl;
 }

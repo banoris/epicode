@@ -46,7 +46,7 @@ vector<int> ShortestAdditionChain(int n) {
     }
     // @exclude
     throw invalid_argument(
-            "unknown error");  // This line should never be called.
+        "unknown error");  // This line should never be called.
     // @include
 }
 // @exclude

@@ -17,34 +17,36 @@ using std::numeric_limits;
 
 // @include
 class QueueWithMax {
-    public:
-        void Enqueue(int x) { enqueue_.Push(x); }
+public:
+    void Enqueue(int x) {
+        enqueue_.Push(x);
+    }
 
-        int Dequeue() {
-            if (dequeue_.Empty()) {
-                while (!enqueue_.Empty()) {
-                    dequeue_.Push(enqueue_.Pop());
-                }
+    int Dequeue() {
+        if (dequeue_.Empty()) {
+            while (!enqueue_.Empty()) {
+                dequeue_.Push(enqueue_.Pop());
             }
-            if (!dequeue_.Empty()) {
-                return dequeue_.Pop();
-            }
-            throw length_error("empty queue");
         }
-
-        int Max() const {
-            if (!enqueue_.Empty()) {
-                return dequeue_.Empty() ? enqueue_.Max()
-                    : max(enqueue_.Max(), dequeue_.Max());
-            }
-            if (!dequeue_.Empty()) {
-                return dequeue_.Max();
-            }
-            throw length_error("empty queue");
+        if (!dequeue_.Empty()) {
+            return dequeue_.Pop();
         }
+        throw length_error("empty queue");
+    }
 
-    private:
-        Stack enqueue_, dequeue_;
+    int Max() const {
+        if (!enqueue_.Empty()) {
+            return dequeue_.Empty() ? enqueue_.Max()
+                   : max(enqueue_.Max(), dequeue_.Max());
+        }
+        if (!dequeue_.Empty()) {
+            return dequeue_.Max();
+        }
+        throw length_error("empty queue");
+    }
+
+private:
+    Stack enqueue_, dequeue_;
 };
 // @exclude
 

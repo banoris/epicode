@@ -25,7 +25,7 @@ bool SolveSudoku(vector<vector<int>>* partial_assignment) {
 }
 
 bool SolvePartialSudoku(int i, int j,
-        vector<vector<int>>* partial_assignment) {
+                        vector<vector<int>>* partial_assignment) {
     if (i == partial_assignment->size()) {
         i = 0;  // Starts a new row.
         if (++j == (*partial_assignment)[i].size()) {
@@ -57,7 +57,7 @@ bool SolvePartialSudoku(int i, int j,
 }
 
 bool ValidToAddVal(const vector<vector<int>>& partial_assignment, int i,
-        int j, int val) {
+                   int j, int val) {
     // Check row constraints.
     for (int k = 0; k < partial_assignment.size(); ++k) {
         if (val == partial_assignment[k][j]) {
@@ -67,7 +67,9 @@ bool ValidToAddVal(const vector<vector<int>>& partial_assignment, int i,
 
     // Check column constraints.
     if (any_of(begin(partial_assignment[i]), end(partial_assignment[i]),
-                [val](int a) { return val == a; })) {
+    [val](int a) {
+    return val == a;
+})) {
         return false;
     }
 
@@ -103,7 +105,8 @@ int main(int argc, char* argv[]) {
         {4, 8, 9, 6, 5, 1, 2, 3, 7}, {8, 5, 2, 1, 4, 7, 6, 9, 3},
         {6, 7, 3, 9, 8, 5, 1, 2, 4}, {9, 4, 1, 3, 6, 2, 7, 5, 8},
         {1, 9, 4, 8, 3, 6, 5, 7, 2}, {5, 6, 7, 2, 1, 4, 3, 8, 9},
-        {2, 3, 8, 5, 7, 9, 4, 6, 1}};
+        {2, 3, 8, 5, 7, 9, 4, 6, 1}
+    };
     for (size_t i = 0; i < 9; ++i) {
         for (size_t j = 0; j < 9; ++j) {
             assert(A[i][j] == golden_A[i][j]);

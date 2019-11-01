@@ -42,7 +42,7 @@ struct Subarray {
 };
 
 Subarray FindSmallestSequentiallyCoveringSubset(
-        const vector<string>& paragraph, const vector<string>& keywords) {
+    const vector<string>& paragraph, const vector<string>& keywords) {
     // Maps each keyword to its index in the keywords array.
     unordered_map<string, int> keyword_to_idx;
     // Initializes keyword_to_idx.
@@ -57,7 +57,7 @@ Subarray FindSmallestSequentiallyCoveringSubset(
     // length of the shortest subarray ending at the most recent occurrence of
     // that keyword that sequentially cover all keywords up to that keyword.
     vector<int> shortest_subarray_length(keywords.size(),
-            numeric_limits<int>::max());
+                                         numeric_limits<int>::max());
 
     int shortest_distance = numeric_limits<int>::max();
     Subarray result = Subarray{-1, -1};
@@ -67,7 +67,7 @@ Subarray FindSmallestSequentiallyCoveringSubset(
             if (keyword_idx == 0) {  // First keyword.
                 shortest_subarray_length[keyword_idx] = 1;
             } else if (shortest_subarray_length[keyword_idx - 1] !=
-                    numeric_limits<int>::max()) {
+                       numeric_limits<int>::max()) {
                 int distance_to_previous_keyword =
                     i - latest_occurrence[keyword_idx - 1];
                 shortest_subarray_length[keyword_idx] =
@@ -90,7 +90,8 @@ Subarray FindSmallestSequentiallyCoveringSubset(
 
 void SmallTest() {
     vector<string> A3 = {"0", "1", "2", "3",  "4",  "5",  "6", "7", "8", "9",
-        "2", "4", "6", "10", "10", "10", "3", "2", "1", "0"};
+                         "2", "4", "6", "10", "10", "10", "3", "2", "1", "0"
+                        };
     vector<string> subseq4 = {"0", "2", "9", "4", "6"};
     Subarray rr = FindSmallestSequentiallyCoveringSubset(A3, subseq4);
     assert(rr.start == 0 && rr.end == 12);
@@ -116,7 +117,7 @@ int main(int argc, char* argv[]) {
         copy(A.begin(), A.end(), ostream_iterator<string>(cout, ","));
         cout << endl;
         uniform_int_distribution<int> m_dis(
-                1, min(static_cast<int>(dict.size()), 10));
+            1, min(static_cast<int>(dict.size()), 10));
         int m = m_dis(gen);
         vector<string> Q;
         auto it = dict.begin();

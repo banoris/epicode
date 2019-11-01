@@ -14,27 +14,27 @@ using std::numeric_limits;
 
 // @include
 class Queue {
-    public:
-        void enqueue(unsigned x) {
-            if (size_ >= max_size_) {
-                throw length_error("queue overflow");
-            }
-            val_ = val_ * 10 + x;
-            ++size_;
+public:
+    void enqueue(unsigned x) {
+        if (size_ >= max_size_) {
+            throw length_error("queue overflow");
         }
+        val_ = val_ * 10 + x;
+        ++size_;
+    }
 
-        unsigned dequeue() {
-            if (!size_) {
-                throw length_error("empty queue");
-            }
-            unsigned ret = val_ / pow(10.0, --size_);
-            val_ -= pow(10.0, size_) * ret;
-            return ret;
+    unsigned dequeue() {
+        if (!size_) {
+            throw length_error("empty queue");
         }
+        unsigned ret = val_ / pow(10.0, --size_);
+        val_ -= pow(10.0, size_) * ret;
+        return ret;
+    }
 
-    private:
-        unsigned val_ = 0;
-        size_t size_ = 0, max_size_ = floor(log10(numeric_limits<unsigned>::max()));
+private:
+    unsigned val_ = 0;
+    size_t size_ = 0, max_size_ = floor(log10(numeric_limits<unsigned>::max()));
 };
 // @exclude
 

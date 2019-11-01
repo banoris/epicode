@@ -23,7 +23,7 @@ struct Interval {
 };
 
 vector<Interval> AddInterval(const vector<Interval>& disjoint_intervals,
-        Interval new_interval) {
+                             Interval new_interval) {
     size_t i = 0;
     vector<Interval> result;
 
@@ -39,14 +39,15 @@ vector<Interval> AddInterval(const vector<Interval>& disjoint_intervals,
             new_interval.right >= disjoint_intervals[i].left) {
         // If [a, b] and [c, d] overlap, their union is [min(a, c),max(b, d)].
         new_interval = {min(new_interval.left, disjoint_intervals[i].left),
-            max(new_interval.right, disjoint_intervals[i].right)};
+                        max(new_interval.right, disjoint_intervals[i].right)
+                       };
         ++i;
     }
     result.emplace_back(new_interval);
 
     // Processes intervals in disjoint_intervals which come after new_interval.
     result.insert(result.end(), disjoint_intervals.begin() + i,
-            disjoint_intervals.end());
+                  disjoint_intervals.end());
     return result;
 }
 // @exclude
@@ -63,12 +64,12 @@ void SmallTest() {
     Interval new_one = {0, 3};
     auto result = AddInterval(A, new_one);
     assert(result.size() == 1 && result.front().left == 0 &&
-            result.front().right == 5);
+           result.front().right == 5);
     new_one = {0, 0};
     result = AddInterval(A, new_one);
     assert(result.size() == 2 && result.front().left == 0 &&
-            result.front().right == 0 && result.back().left == 1 &&
-            result.back().right == 5);
+           result.front().right == 0 && result.back().left == 1 &&
+           result.back().right == 5);
 }
 
 int main(int argc, char* argv[]) {

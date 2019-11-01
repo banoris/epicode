@@ -38,7 +38,7 @@ vector<int> OnlineRandomSample(istringstream* sin, int k) {
         // number is in [0, k - 1], we replace that element from the sample with
         // x.
         const int idx_to_replace =
-            uniform_int_distribution<int>{0, num_seen_so_far - 1}(seed);
+            uniform_int_distribution<int> {0, num_seen_so_far - 1}(seed);
         if (idx_to_replace < k) {
             running_sample[idx_to_replace] = x;
         }

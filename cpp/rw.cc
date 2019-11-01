@@ -23,11 +23,11 @@ using std::unique_lock;
 using std::condition_variable;
 
 namespace RW {
-    int data = 0;
-    mutex LRm;
-    condition_variable LR;
-    int read_count = 0;
-    mutex LW;
+int data = 0;
+mutex LRm;
+condition_variable LR;
+int read_count = 0;
+mutex LW;
 }
 
 void DoSomethingElse() {

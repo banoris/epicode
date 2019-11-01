@@ -11,21 +11,21 @@ using std::endl;
 using std::make_shared;
 
 shared_ptr<ListNode<int>> BuildBSTFromSortedDoublyListHelper(
-        shared_ptr<ListNode<int>>*, int, int);
+                           shared_ptr<ListNode<int>>*, int, int);
 
 // @include
 // Returns the root of the corresponding BST. The prev and next fields of the
 // list nodes are used as the BST nodes left and right fields, respectively.
 // The length of the list is given.
 shared_ptr<ListNode<int>> BuildBSTFromSortedDoublyList(
-        shared_ptr<ListNode<int>> L, int length) {
+shared_ptr<ListNode<int>> L, int length) {
     return BuildBSTFromSortedDoublyListHelper(&L, 0, length);
 }
 
 // Builds a BST from the (start + 1)-th to the end-th node, inclusive, in L,
 // and returns the root.
 shared_ptr<ListNode<int>> BuildBSTFromSortedDoublyListHelper(
-        shared_ptr<ListNode<int>>* L_ref, int start, int end) {
+shared_ptr<ListNode<int>>* L_ref, int start, int end) {
     if (start >= end) {
         return nullptr;
     }
@@ -44,7 +44,7 @@ shared_ptr<ListNode<int>> BuildBSTFromSortedDoublyListHelper(
 
 template <typename T>
 void InorderTraversal(const shared_ptr<ListNode<T>>& node, const T& pre,
-        int depth) {
+                      int depth) {
     if (node) {
         InorderTraversal(node->prev, pre, depth + 1);
         assert(pre <= node->data);
@@ -55,13 +55,13 @@ void InorderTraversal(const shared_ptr<ListNode<T>>& node, const T& pre,
 
 int main(int argc, char* argv[]) {
     shared_ptr<ListNode<int>> temp0 =
-        make_shared<ListNode<int>>(ListNode<int>{0});
+                               make_shared<ListNode<int>>(ListNode<int> {0});
     shared_ptr<ListNode<int>> temp1 =
-        make_shared<ListNode<int>>(ListNode<int>{1});
+                               make_shared<ListNode<int>>(ListNode<int> {1});
     shared_ptr<ListNode<int>> temp2 =
-        make_shared<ListNode<int>>(ListNode<int>{2});
+                               make_shared<ListNode<int>>(ListNode<int> {2});
     shared_ptr<ListNode<int>> temp3 =
-        make_shared<ListNode<int>>(ListNode<int>{3});
+                               make_shared<ListNode<int>>(ListNode<int> {3});
     temp0->next = temp1;
     temp1->next = temp2;
     temp2->next = temp3;

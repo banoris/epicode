@@ -32,7 +32,7 @@ IndexPair FindPairSumK(const vector<int>& A, int k) {
     IndexPair result = FindPositiveNegativePair(A, k);
     if (result.index_1 == -1 && result.index_2 == -1) {
         return k >= 0 ? FindPairUsingCompare(A, k, less<int>())
-            : FindPairUsingCompare(A, k, greater_equal<int>());
+               : FindPairUsingCompare(A, k, greater_equal<int>());
     }
     return result;
 }
@@ -66,7 +66,7 @@ IndexPair FindPairUsingCompare(const vector<int>& A, int k, Compare comp) {
 IndexPair FindPositiveNegativePair(const vector<int>& A, int k) {
     // result.index_1 for positive, and result.index_2 for negative.
     IndexPair result = IndexPair{static_cast<int>(A.size() - 1),
-        static_cast<int>(A.size() - 1)};
+                                 static_cast<int>(A.size() - 1)};
     // Find the last positive or zero.
     while (result.index_1 >= 0 && A[result.index_1] < 0) {
         --result.index_1;
@@ -114,7 +114,9 @@ int main(int argc, char* argv[]) {
         vector<int> A;
         uniform_int_distribution<int> dis(-10000, 10000);
         generate_n(back_inserter(A), n, [&] { return dis(gen); });
-        sort(A.begin(), A.end(), [](int x, int y) { return abs(x) < abs(y); });
+        sort(A.begin(), A.end(), [](int x, int y) {
+            return abs(x) < abs(y);
+        });
         int k = dis(gen);
         IndexPair ans = FindPairSumK(A, k);
         if (ans.index_1 != -1 && ans.index_2 != -1) {

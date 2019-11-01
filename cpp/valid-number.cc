@@ -9,7 +9,7 @@ using std::endl;
 using std::string;
 
 bool is_integer(const string& s, int begin, int end, bool allow_sign,
-        bool allow_no_digit);
+                bool allow_no_digit);
 string trim_space(const string& s);
 
 // @include
@@ -33,7 +33,7 @@ bool is_valid_number(const string& s) {
             }
             dot_idx = i;
         } else if (!(isdigit(trim_s[i]) || trim_s[i] == '+' ||
-                    trim_s[i] == '-')) {
+                     trim_s[i] == '-')) {
             return false;
         }
     }
@@ -49,9 +49,9 @@ bool is_valid_number(const string& s) {
         if (e_idx != -1) {
             result &= ((is_integer(trim_s, 0, dot_idx, true, false) &&
                         is_integer(trim_s, dot_idx + 1, e_idx, false, true)) ||
-                    (is_integer(trim_s, 0, dot_idx, true, true) &&
-                     is_integer(trim_s, dot_idx + 1, e_idx, false, false))) &&
-                is_integer(trim_s, e_idx + 1, trim_s.size(), true, false);
+                       (is_integer(trim_s, 0, dot_idx, true, true) &&
+                        is_integer(trim_s, dot_idx + 1, e_idx, false, false))) &&
+                      is_integer(trim_s, e_idx + 1, trim_s.size(), true, false);
             // cout << "2 " << std::boolalpha << result << endl;
         } else {
             result &=
@@ -64,7 +64,7 @@ bool is_valid_number(const string& s) {
     } else {
         if (e_idx != -1) {
             result &= is_integer(trim_s, 0, e_idx, true, false) &&
-                is_integer(trim_s, e_idx + 1, trim_s.size(), true, false);
+                      is_integer(trim_s, e_idx + 1, trim_s.size(), true, false);
             // cout << "4 " << std::boolalpha << result << endl;
         } else {
             result &= is_integer(trim_s, 0, trim_s.size(), true, false);
@@ -75,7 +75,7 @@ bool is_valid_number(const string& s) {
 }
 
 bool is_integer(const string& s, int begin, int end, bool allow_sign,
-        bool allow_no_digit) {
+                bool allow_no_digit) {
     if (begin < end) {
         if (!allow_sign && (s[begin] == '+' || s[begin] == '-')) {
             return false;
@@ -126,7 +126,7 @@ int main(int argc, char* argv[]) {
     small_test();
     if (argc == 2) {
         cout << argv[1] << "is" << (is_valid_number(argv[1]) ? " " : " not")
-            << "a valid number." << endl;
+             << "a valid number." << endl;
     }
     return 0;
 }

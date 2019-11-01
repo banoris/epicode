@@ -23,12 +23,12 @@ using std::vector;
 
 // @include
 vector<deque<bool>> find_feasible_job_assignment(const vector<int>& T,
-        const vector<int>& S) {
+const vector<int>& S) {
     int T_total = accumulate(T.cbegin(), T.cend(), 0),  // aggregated work units
-    S_total = accumulate(S.cbegin(), S.cend(), 0,
-            [&T](const int &x, const int &y) {
-            return x + min(y, static_cast<int>(T.size()));
-            });  // tighter bound of server capacity.
+        S_total = accumulate(S.cbegin(), S.cend(), 0,
+    [&T](const int &x, const int &y) {
+        return x + min(y, static_cast<int>(T.size()));
+    });  // tighter bound of server capacity.
     if (T_total > S_total || *max_element(T.cbegin(), T.cend()) > S.size()) {
         return {};  // too many jobs or one task needs too many servers.
     }
@@ -49,16 +49,18 @@ vector<deque<bool>> find_feasible_job_assignment(const vector<int>& T,
     }
 
     sort(S_idx_data.begin(), S_idx_data.end(),
-            [](const Server& a, const Server& b) {
-            return a.capacity > b.capacity;
-            });
+    [](const Server& a, const Server& b) {
+        return a.capacity > b.capacity;
+    });
     vector<deque<bool>> X(T.size(), deque<bool>(S.size(), false));
     for (int j = 0; j < S_idx_data.size(); ++j) {
         if (S_idx_data[j].capacity < T_idx_data.size()) {
             nth_element(
-                    T_idx_data.begin(), T_idx_data.begin() + S_idx_data[j].capacity,
-                    T_idx_data.end(),
-                    [](const Task& a, const Task& b) { return a.load > b.load; });
+                T_idx_data.begin(), T_idx_data.begin() + S_idx_data[j].capacity,
+                T_idx_data.end(),
+            [](const Task& a, const Task& b) {
+                return a.load > b.load;
+            });
         }
 
         // Greedily assign jobs.
@@ -80,7 +82,7 @@ vector<deque<bool>> find_feasible_job_assignment(const vector<int>& T,
 // @exclude
 
 void check_answer(const vector<int>& T, const vector<int>& S,
-        const vector<deque<bool>>& result) {
+                  const vector<deque<bool>>& result) {
     // Check row constraints.
     for (int i = 0; i < T.size(); ++i) {
         int sum = 0;
@@ -130,7 +132,7 @@ int main(int argc, char* argv[]) {
             cout << "found feasible assignment!" << endl;
             for (int i = 0; i < result.size(); ++i) {
                 copy(result[i].cbegin(), result[i].cend(),
-                        ostream_iterator<int>(cout, " "));
+                     ostream_iterator<int>(cout, " "));
                 cout << endl;
             }
             check_answer(T, S, result);

@@ -33,7 +33,7 @@ vector<int> GeneratePrimes(int n) {
             //
             // Note that we need to use long for j because p^2 might overflow.
             for (long j = ((static_cast<long>(i) * static_cast<long>(i)) * 2) +
-                    6 * i + 3;
+                          6 * i + 3;
                     j < size; j += p) {
                 is_prime[j] = false;
             }

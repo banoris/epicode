@@ -5,9 +5,11 @@
 
 namespace GCD2 {
 
-    // @include
-    long long GCD(long long x, long long y) { return y == 0 ? x : GCD(y, x % y); }
-    // @exclude
+// @include
+long long GCD(long long x, long long y) {
+    return y == 0 ? x : GCD(y, x % y);
+}
+// @exclude
 
 }  // namespace GCD2
 

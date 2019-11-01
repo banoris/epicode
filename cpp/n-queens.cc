@@ -30,7 +30,7 @@ vector<vector<int>> NQueens(int n) {
 }
 
 void SolveNQueens(int n, int row, vector<int>* col_placement,
-        vector<vector<int>>* result) {
+                  vector<vector<int>>* result) {
     if (row == n) {
         // All queens are legally placed.
         result->emplace_back(*col_placement);

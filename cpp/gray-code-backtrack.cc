@@ -31,7 +31,7 @@ vector<int> GrayCode(int num_bits) {
 }
 
 bool DirectedGrayCode(int num_bits, unordered_set<int>* history,
-        vector<int>* result) {
+                      vector<int>* result) {
     if (result->size() == (1 << num_bits)) {
         // Check if the first and last codes differ by one bit.
         return DiffersByOneBit(result->front(), result->back());

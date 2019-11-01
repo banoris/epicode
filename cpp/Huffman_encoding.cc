@@ -26,13 +26,14 @@ using std::vector;
 const double kEnglishFreq[] = {
     8.167, 1.492, 2.782, 4.253, 12.702, 2.228, 2.015, 6.094, 6.966,
     0.153, 0.772, 4.025, 2.406, 6.749,  7.507, 1.929, 0.095, 5.987,
-    6.327, 9.056, 2.758, 0.978, 2.360,  0.150, 1.974, 0.074};
+    6.327, 9.056, 2.758, 0.978, 2.360,  0.150, 1.974, 0.074
+};
 
 struct BinaryTreeNode;
 
 void AssignHuffmanCode(const shared_ptr<BinaryTreeNode>&,
-        const unique_ptr<string>&,
-        unordered_map<char, string>*);
+                       const unique_ptr<string>&,
+                       unordered_map<char, string>*);
 
 // @include
 struct CharWithFrequency {
@@ -47,15 +48,15 @@ struct BinaryTreeNode {
 };
 
 unordered_map<char, string> HuffmanEncoding(
-        vector<CharWithFrequency>* symbols) {
+    vector<CharWithFrequency>* symbols) {
     // Initially assigns each symbol into candidates.
     priority_queue<
-        shared_ptr<BinaryTreeNode>, vector<shared_ptr<BinaryTreeNode>>,
-        function<bool(shared_ptr<BinaryTreeNode>, shared_ptr<BinaryTreeNode>)>>
-            candidates([](const shared_ptr<BinaryTreeNode>& lhs,
-                        const shared_ptr<BinaryTreeNode>& rhs) {
-                    return lhs->aggregate_freq > rhs->aggregate_freq;
-                    });
+    shared_ptr<BinaryTreeNode>, vector<shared_ptr<BinaryTreeNode>>,
+               function<bool(shared_ptr<BinaryTreeNode>, shared_ptr<BinaryTreeNode>)>>
+               candidates([](const shared_ptr<BinaryTreeNode>& lhs,
+    const shared_ptr<BinaryTreeNode>& rhs) {
+        return lhs->aggregate_freq > rhs->aggregate_freq;
+    });
     for (auto& s : *symbols) {
         candidates.emplace(new BinaryTreeNode{s.freq, &s, nullptr, nullptr});
     }
@@ -67,19 +68,19 @@ unordered_map<char, string> HuffmanEncoding(
         shared_ptr<BinaryTreeNode> right = candidates.top();
         candidates.pop();
         candidates.emplace(new BinaryTreeNode{
-                left->aggregate_freq + right->aggregate_freq, nullptr, left, right});
+            left->aggregate_freq + right->aggregate_freq, nullptr, left, right});
     }
 
     unordered_map<char, string> huffman_encoding;
     // Traverses the binary tree, assigning codes to nodes.
     AssignHuffmanCode(candidates.top(), make_unique<string>(),
-            &huffman_encoding);
+                      &huffman_encoding);
     return huffman_encoding;
 }
 
 void AssignHuffmanCode(const shared_ptr<BinaryTreeNode>& tree,
-        const unique_ptr<string>& code,
-        unordered_map<char, string>* huffman_encoding) {
+                       const unique_ptr<string>& code,
+                       unordered_map<char, string>* huffman_encoding) {
     if (tree) {
         if (tree->s) {
             // This node is a leaf.

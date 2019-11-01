@@ -70,9 +70,9 @@ int FindLongestContainedRange(const vector<int>& A) {
     }
 
     auto m =
-        max_element(L.cbegin(), L.cend(), [](const auto& a, const auto& b) {
-                return a.second - a.first < b.second - b.first;
-                });
+    max_element(L.cbegin(), L.cend(), [](const auto& a, const auto& b) {
+        return a.second - a.first < b.second - b.first;
+    });
     return m->second - m->first + 1;
 }
 

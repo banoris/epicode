@@ -76,7 +76,7 @@ int main(int argc, char* argv[]) {
     } else {
         for (int times = 0; times < 10000; ++times) {
             uniform_int_distribution<int> dis(numeric_limits<int>::min(),
-                    numeric_limits<int>::max());
+                                              numeric_limits<int>::max());
             int x = dis(gen);
             string str = IntToString(x);
             cout << x << " " << str << endl;

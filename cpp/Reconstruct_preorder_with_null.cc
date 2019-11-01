@@ -21,7 +21,7 @@ using std::vector;
 
 template <typename T>
 void GenPreorderWithNull(const unique_ptr<BinaryTreeNode<T>>& n,
-        vector<T*>* p) {
+                         vector<T*>* p) {
     if (!n) {
         p->emplace_back(nullptr);
         return;

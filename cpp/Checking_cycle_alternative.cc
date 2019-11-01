@@ -32,16 +32,16 @@ shared_ptr<ListNode<int>> HasCycle(const shared_ptr<ListNode<int>>& head) {
 
 int main(int argc, char* argv[]) {
     shared_ptr<ListNode<int>> L3 =
-        make_shared<ListNode<int>>(ListNode<int>{3, nullptr});
+                               make_shared<ListNode<int>>(ListNode<int> {3, nullptr});
     shared_ptr<ListNode<int>> L2 =
-        make_shared<ListNode<int>>(ListNode<int>{2, L3});
+                               make_shared<ListNode<int>>(ListNode<int> {2, L3});
     shared_ptr<ListNode<int>> L1 =
-        make_shared<ListNode<int>>(ListNode<int>{1, L2});
+                               make_shared<ListNode<int>>(ListNode<int> {1, L2});
 
     // should output "L1 does not have cycle."
     assert(HasCycle(L1) == nullptr);
     cout << "L1 " << (HasCycle(L1) ? "has" : "does not have") << " cycle."
-        << endl;
+         << endl;
 
     // make it a cycle
     L3->next = L2;

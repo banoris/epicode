@@ -23,18 +23,18 @@ string ConvertBase(const string& NumAsString, int b1, int b2) {
             ++i) {
         NumAsInt *= b1;
         NumAsInt += isdigit(NumAsString[i]) ? NumAsString[i] - '0'
-            : NumAsString[i] - 'A' + 10;
+                    : NumAsString[i] - 'A' + 10;
     }
     return (is_negative ? "-" : "") +
-        (NumAsInt == 0 ? "0" : ConstructFromBase(NumAsInt, b2));
+           (NumAsInt == 0 ? "0" : ConstructFromBase(NumAsInt, b2));
 }
 
 string ConstructFromBase(int NumAsInt, int base) {
     return NumAsInt == 0
-        ? ""
-        : ConstructFromBase(NumAsInt / base, base) +
-        (char)(NumAsInt % base >= 10 ? 'A' + NumAsInt % base - 10
-                : '0' + NumAsInt % base);
+           ? ""
+           : ConstructFromBase(NumAsInt / base, base) +
+           (char)(NumAsInt % base >= 10 ? 'A' + NumAsInt % base - 10
+                  : '0' + NumAsInt % base);
 }
 // @exclude
 
@@ -62,8 +62,8 @@ int main(int argc, char* argv[]) {
         string input(argv[1]);
         cout << ConvertBase(input, atoi(argv[2]), atoi(argv[3])) << endl;
         assert(input ==
-                ConvertBase(ConvertBase(input, atoi(argv[2]), atoi(argv[3])),
-                    atoi(argv[3]), atoi(argv[2])));
+               ConvertBase(ConvertBase(input, atoi(argv[2]), atoi(argv[3])),
+                           atoi(argv[3]), atoi(argv[2])));
     } else {
         default_random_engine gen((random_device())());
         for (int times = 0; times < 100000; ++times) {
@@ -72,7 +72,7 @@ int main(int argc, char* argv[]) {
             uniform_int_distribution<int> base_dis(2, 16);
             int base = base_dis(gen);
             cout << "input is " << input << ", base1 = 10, base2 = " << base
-                << ", result = " << ConvertBase(input, 10, base) << endl;
+                 << ", result = " << ConvertBase(input, 10, base) << endl;
             assert(input == ConvertBase(ConvertBase(input, 10, base), base, 10));
         }
     }

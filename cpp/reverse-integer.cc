@@ -48,7 +48,7 @@ int main(int argc, char** argv) {
         assert(CheckAns(n) == Reverse(n));
     } else {
         uniform_int_distribution<int> dis(numeric_limits<int>::min(),
-                numeric_limits<int>::max());
+                                          numeric_limits<int>::max());
         for (int times = 0; times < 1000; ++times) {
             n = dis(gen);
             cout << "n = " << n << ", reversed n = " << Reverse(n) << endl;

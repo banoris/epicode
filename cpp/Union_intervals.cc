@@ -12,24 +12,24 @@ using std::vector;
 
 // @include
 struct Interval {
-    private:
-        struct Endpoint {
-            bool isClosed;
-            int val;
-        };
+private:
+    struct Endpoint {
+        bool isClosed;
+        int val;
+    };
 
-    public:
-        bool operator<(const Interval& i) const {
-            if (left.val != i.left.val) {
-                return left.val < i.left.val;
-            }
-            // Left endpoints are equal, so now see if one is closed and the other
-            // open
-            // - closed intervals should appear first.
-            return left.isClosed && !i.left.isClosed;
+public:
+    bool operator<(const Interval& i) const {
+        if (left.val != i.left.val) {
+            return left.val < i.left.val;
         }
+        // Left endpoints are equal, so now see if one is closed and the other
+        // open
+        // - closed intervals should appear first.
+        return left.isClosed && !i.left.isClosed;
+    }
 
-        Endpoint left, right;
+    Endpoint left, right;
 };
 
 vector<Interval> UnionOfIntervals(vector<Interval> intervals) {
@@ -65,8 +65,8 @@ void CheckIntervals(const vector<Interval>& A) {
     // Only check the intervals do not overlap with each other.
     for (size_t i = 1; i < A.size(); ++i) {
         assert(A[i - 1].right.val < A[i].left.val ||
-                (A[i - 1].right.val == A[i].left.val && !A[i - 1].right.isClosed &&
-                 !A[i].left.isClosed));
+               (A[i - 1].right.val == A[i].left.val && !A[i - 1].right.isClosed &&
+                !A[i].left.isClosed));
     }
 }
 
@@ -87,7 +87,7 @@ int main(int argc, char* argv[]) {
             uniform_int_distribution<int> dis1(0, 9999);
             temp.left.isClosed = zero_or_one(gen), temp.left.val = dis1(gen);
             uniform_int_distribution<int> dis2(temp.left.val + 1,
-                    temp.left.val + 100);
+                                               temp.left.val + 100);
             temp.right.isClosed = zero_or_one(gen), temp.right.val = dis2(gen);
             A.emplace_back(temp);
         }

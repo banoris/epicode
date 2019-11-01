@@ -17,11 +17,11 @@ using std::vector;
 
 struct MatchResult;
 unordered_map<string, unordered_set<string>> BuildGraph(
-        const vector<MatchResult>&);
+            const vector<MatchResult>&);
 bool IsReachableDFS(const unordered_map<string, unordered_set<string>>&,
-        const string&, const string&, unordered_set<string>*);
+                    const string&, const string&, unordered_set<string>*);
 bool IsReachableBFS(const unordered_map<string, unordered_set<string>>&,
-        const string&, const string&, unordered_set<string>*);
+                    const string&, const string&, unordered_set<string>*);
 
 // @include
 struct MatchResult {
@@ -29,13 +29,13 @@ struct MatchResult {
 };
 
 bool CanTeamABeatTeamB(const vector<MatchResult>& matches,
-        const string& team_a, const string& team_b) {
+                       const string& team_a, const string& team_b) {
     return IsReachableDFS(BuildGraph(matches), team_a, team_b,
-            make_unique<unordered_set<string>>().get());
+                          make_unique<unordered_set<string>>().get());
 }
 
 unordered_map<string, unordered_set<string>> BuildGraph(
-        const vector<MatchResult>& matches) {
+const vector<MatchResult>& matches) {
     unordered_map<string, unordered_set<string>> graph;
     for (const MatchResult& match : matches) {
         graph[match.winning_team].emplace(match.losing_team);
@@ -44,26 +44,26 @@ unordered_map<string, unordered_set<string>> BuildGraph(
 }
 
 bool IsReachableDFS(const unordered_map<string, unordered_set<string>>& graph,
-        const string& curr, const string& dest,
-        unordered_set<string>* visited_ptr) {
+                    const string& curr, const string& dest,
+                    unordered_set<string>* visited_ptr) {
     unordered_set<string>& visited = *visited_ptr;
     if (curr == dest) {
         return true;
     } else if (visited.find(curr) != visited.end() ||
-            graph.find(curr) == graph.end()) {
+               graph.find(curr) == graph.end()) {
         return false;
     }
     visited.emplace(curr);
     const auto& team_list = graph.at(curr);
     return any_of(begin(team_list), end(team_list), [&](const string& team) {
-            return IsReachableDFS(graph, team, dest, visited_ptr);
-            });
+        return IsReachableDFS(graph, team, dest, visited_ptr);
+    });
 }
 // @exclude
 
 bool IsReachableBFS(const unordered_map<string, unordered_set<string>>& graph,
-        const string& curr, const string& dest,
-        unordered_set<string>* visited_ptr) {
+                    const string& curr, const string& dest,
+                    unordered_set<string>* visited_ptr) {
     unordered_set<string>& visited = *visited_ptr;
     queue<string> frontier;
     visited.emplace(curr);
@@ -86,16 +86,17 @@ bool IsReachableBFS(const unordered_map<string, unordered_set<string>>& graph,
 }
 
 void Check(const vector<MatchResult>& matches, const string& team_a,
-        const string& team_b) {
+           const string& team_b) {
     assert(CanTeamABeatTeamB(matches, team_a, team_b) ==
-            IsReachableBFS(BuildGraph(matches), team_a, team_b,
-                make_unique<unordered_set<string>>().get()));
+           IsReachableBFS(BuildGraph(matches), team_a, team_b,
+                          make_unique<unordered_set<string>>().get()));
 }
 
 int main(int argc, char* argv[]) {
     vector<MatchResult> matches = {{"Texas", "Cal"},      {"Cal", "Stanford"},
         {"Stanford", "Texas"}, {"Stanford", "MIT"},
-        {"Stanford", "CIT"},   {"UCLA", "USC"}};
+        {"Stanford", "CIT"},   {"UCLA", "USC"}
+    };
     Check(matches, "Texas", "MIT");
     Check(matches, "Cal", "UCLA");
     return 0;

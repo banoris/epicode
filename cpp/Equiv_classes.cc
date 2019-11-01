@@ -28,7 +28,7 @@ int backtrace(const vector<int> &F, int idx);
  * i is equivalent to.
  */
 vector<int> compute_equival_classes(int n, const vector<int> &A,
-        const vector<int> &B) {
+                                    const vector<int> &B) {
     // Each element maps to itself.
     vector<int> F(n);
     iota(F.begin(), F.end(), 0);

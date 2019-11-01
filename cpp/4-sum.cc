@@ -55,7 +55,8 @@ vector<vector<int>> four_sum(vector<int> A, int target) {
                 for (const vector<size_t>& vec : it->second) {
                     if (i > vec.back()) {
                         vector<int> candidate = {A[vec.front()], A[vec.back()], A[i],
-                            A[j]};
+                                                 A[j]
+                                                };
                         if (answers.emplace(join_vector(candidate)).second) {
                             res.emplace_back(move(candidate));
                         }

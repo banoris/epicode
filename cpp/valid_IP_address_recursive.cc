@@ -17,7 +17,7 @@ using std::uniform_int_distribution;
 using std::vector;
 
 void GetOneValidIPAddress(const string&, int, vector<string>*,
-        vector<string>*);
+                          vector<string>*);
 string FormIPAddress(const vector<string>&);
 bool IsValidPart(const string&);
 
@@ -30,8 +30,8 @@ vector<string> GetValidIPAddress(const string& s) {
 }
 
 void GetOneValidIPAddress(const string& s, int remaining_parts,
-        vector<string>* partial_IP_address,
-        vector<string>* result) {
+                          vector<string>* partial_IP_address,
+                          vector<string>* result) {
     if (s.empty() && remaining_parts == 0) {
         result->emplace_back(FormIPAddress(*partial_IP_address));
         return;
@@ -42,7 +42,7 @@ void GetOneValidIPAddress(const string& s, int remaining_parts,
         if (IsValidPart(part)) {
             partial_IP_address->emplace_back(part);
             GetOneValidIPAddress(s.substr(i), remaining_parts - 1,
-                    partial_IP_address, result);
+                                 partial_IP_address, result);
             partial_IP_address->pop_back();
         }
     }

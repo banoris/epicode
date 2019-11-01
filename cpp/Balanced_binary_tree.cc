@@ -19,7 +19,7 @@ using std::unique_ptr;
 
 struct BalancedStatusWithHeight;
 BalancedStatusWithHeight CheckBalanced(
-        const unique_ptr<BinaryTreeNode<int>>&);
+    const unique_ptr<BinaryTreeNode<int>>&);
 
 // @include
 struct BalancedStatusWithHeight {
@@ -34,7 +34,7 @@ bool IsBalanced(const unique_ptr<BinaryTreeNode<int>>& tree) {
 // First value of the return value indicates if tree is balanced, and if
 // balanced the second value of the return value is the height of tree.
 BalancedStatusWithHeight CheckBalanced(
-        const unique_ptr<BinaryTreeNode<int>>& tree) {
+    const unique_ptr<BinaryTreeNode<int>>& tree) {
     if (tree == nullptr) {
         return {true, -1};  // Base case.
     }
@@ -60,7 +60,7 @@ int main(int argc, char* argv[]) {
     //    2   5
     //  1    4 6
     unique_ptr<BinaryTreeNode<int>> tree =
-        make_unique<BinaryTreeNode<int>>(BinaryTreeNode<int>());
+                                     make_unique<BinaryTreeNode<int>>(BinaryTreeNode<int>());
     tree->left = make_unique<BinaryTreeNode<int>>(BinaryTreeNode<int>());
     tree->left->left = make_unique<BinaryTreeNode<int>>(BinaryTreeNode<int>());
     tree->right = make_unique<BinaryTreeNode<int>>(BinaryTreeNode<int>());

@@ -54,7 +54,7 @@ void SimpleTest() {
     assert(3 == CountCombinations(9, score_ways));
     for (int i = 0; i < 1000; i++) {
         assert(CountCombinationsAlt(i, score_ways) ==
-                CountCombinations(i, score_ways));
+               CountCombinations(i, score_ways));
     }
 }
 
@@ -87,6 +87,6 @@ int main(int argc, char* argv[]) {
         }
     }
     assert(CountCombinations(k, score_ways) ==
-            CountCombinationsAlt(k, score_ways));
+           CountCombinationsAlt(k, score_ways));
     return 0;
 }

@@ -24,14 +24,14 @@ using std::unordered_set;
 using std::vector;
 
 void generate_results(const string& s, const unordered_set<string>& dict,
-        size_t idx, const deque<bool>& table,
-        const vector<size_t>& lengths, vector<string>* result,
-        vector<string>* results);
+                      size_t idx, const deque<bool>& table,
+                      const vector<size_t>& lengths, vector<string>* result,
+                      vector<string>* results);
 string join_with_space(const vector<string>& str);
 
 // @include
 vector<string> word_breaking(const string& s,
-        const unordered_set<string>& dict) {
+                             const unordered_set<string>& dict) {
     if (s.empty()) {
         return {};
     }
@@ -68,9 +68,9 @@ vector<string> word_breaking(const string& s,
 }
 
 void generate_results(const string& s, const unordered_set<string>& dict,
-        size_t idx, const deque<bool>& table,
-        const vector<size_t>& lengths, vector<string>* result,
-        vector<string>* results) {
+                      size_t idx, const deque<bool>& table,
+                      const vector<size_t>& lengths, vector<string>* result,
+                      vector<string>* results) {
     if (idx == s.size()) {
         results->emplace_back(join_with_space(*result));
         return;

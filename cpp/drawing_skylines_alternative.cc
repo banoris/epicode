@@ -45,7 +45,7 @@ Skyline ComputeSkyline(const vector<Rectangle>& buildings) {
     for (int i = 1; i < heights.size(); ++i) {
         if (heights[i] != heights[i - 1]) {
             result.emplace_back(
-                    Rectangle{left + min_left, i - 1 + min_left, heights[i - 1]});
+                Rectangle{left + min_left, i - 1 + min_left, heights[i - 1]});
             left = i;
         }
     }
@@ -61,7 +61,7 @@ void CheckAnswer(const Skyline& ans) {
         if (i > 0) {
             assert(ans[i - 1].right <= ans[i].left);
             assert(ans[i - 1].right != ans[i].left ||
-                    ans[i - 1].height != ans[i].height);
+                   ans[i - 1].height != ans[i].height);
         }
     }
 }

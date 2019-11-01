@@ -25,7 +25,7 @@ vector<PairedTasks> OptimumTaskAssignment(vector<int> task_durations) {
     vector<PairedTasks> optimum_assignments;
     for (int i = 0, j = task_durations.size() - 1; i < j; ++i, --j) {
         optimum_assignments.emplace_back(
-                PairedTasks{task_durations[i], task_durations[j]});
+            PairedTasks{task_durations[i], task_durations[j]});
     }
     return optimum_assignments;
 }

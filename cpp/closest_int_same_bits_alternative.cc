@@ -28,9 +28,13 @@ unsigned long ClosestIntSameBitCount(unsigned long x) {
     return x ^ mask;
 }
 
-unsigned long LowestSetBit(unsigned long x) { return x & ~(x - 1); }
+unsigned long LowestSetBit(unsigned long x) {
+    return x & ~(x - 1);
+}
 
-unsigned long LowestUnsetBit(unsigned long x) { return LowestSetBit(x + 1); }
+unsigned long LowestUnsetBit(unsigned long x) {
+    return LowestSetBit(x + 1);
+}
 // @exclude
 
 int CountBitsSetTo1(int x) {

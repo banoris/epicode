@@ -27,7 +27,7 @@ vector<int> MatrixInSpiralOrder(const vector<vector<int>>& square_matrix) {
 }
 
 void MatrixLayerInClockwise(const vector<vector<int>>& square_matrix,
-        int offset, vector<int>* spiral_ordering) {
+                            int offset, vector<int>* spiral_ordering) {
     if (offset == square_matrix.size() - offset - 1) {
         // square_matrix has odd dimension, and we are at the center of
         // square_matrix.
@@ -40,11 +40,11 @@ void MatrixLayerInClockwise(const vector<vector<int>>& square_matrix,
     }
     for (int i = offset; i < square_matrix.size() - offset - 1; ++i) {
         spiral_ordering->emplace_back(
-                square_matrix[i][square_matrix.size() - offset - 1]);
+            square_matrix[i][square_matrix.size() - offset - 1]);
     }
     for (int j = square_matrix.size() - offset - 1; j > offset; --j) {
         spiral_ordering->emplace_back(
-                square_matrix[square_matrix.size() - offset - 1][j]);
+            square_matrix[square_matrix.size() - offset - 1][j]);
     }
     for (int i = square_matrix.size() - offset - 1; i > offset; --i) {
         spiral_ordering->emplace_back(square_matrix[i][offset]);
@@ -57,7 +57,7 @@ void SimpleTest() {
     auto result = MatrixInSpiralOrder(A);
     vector<int> golden_result = {1, 2, 3, 6, 9, 8, 7, 4, 5};
     assert(equal(result.begin(), result.end(), golden_result.begin(),
-                golden_result.end()));
+                 golden_result.end()));
 }
 
 int main(int argc, char* argv[]) {

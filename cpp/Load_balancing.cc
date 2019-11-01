@@ -13,7 +13,7 @@ using std::uniform_int_distribution;
 using std::vector;
 
 bool GreedyAssignment(const vector<int>& user_file_size, int server_num,
-        int limit, vector<int>* assign_res);
+                      int limit, vector<int>* assign_res);
 
 // @include
 vector<int> DecideLoadBalancing(vector<int> user_file_size, int server_num) {
@@ -37,7 +37,7 @@ vector<int> DecideLoadBalancing(vector<int> user_file_size, int server_num) {
 }
 
 bool GreedyAssignment(const vector<int>& user_file_size, int server_num,
-        int limit, vector<int>* assign_res) {
+                      int limit, vector<int>* assign_res) {
     int server_idx = 0;
     for (int file : user_file_size) {
         while (server_idx < server_num &&

@@ -51,37 +51,37 @@ int main(int argc, char* argv[]) {
     //    2   5
     //  1    4 6
     unique_ptr<BinaryTreeNode<int>> root = make_unique<BinaryTreeNode<int>>(
-            BinaryTreeNode<int>{3, nullptr, nullptr});
+            BinaryTreeNode<int> {3, nullptr, nullptr});
     root->parent = nullptr;
     auto result = InorderTraversal(root);
     vector<int> golden_res = {3};
     assert(equal(golden_res.begin(), golden_res.end(), result.begin(),
-                result.end()));
+                 result.end()));
 
     root->left = make_unique<BinaryTreeNode<int>>(
-            BinaryTreeNode<int>{2, nullptr, nullptr});
+                     BinaryTreeNode<int> {2, nullptr, nullptr});
     root->left->parent = root.get();
     root->left->left = make_unique<BinaryTreeNode<int>>(
-            BinaryTreeNode<int>{1, nullptr, nullptr});
+                           BinaryTreeNode<int> {1, nullptr, nullptr});
     root->left->left->parent = root->left.get();
     result = InorderTraversal(root);
     golden_res = {1, 2, 3};
     assert(equal(golden_res.begin(), golden_res.end(), result.begin(),
-                result.end()));
+                 result.end()));
 
     root->right = make_unique<BinaryTreeNode<int>>(
-            BinaryTreeNode<int>{5, nullptr, nullptr});
+                      BinaryTreeNode<int> {5, nullptr, nullptr});
     root->right->parent = root.get();
     root->right->left = make_unique<BinaryTreeNode<int>>(
-            BinaryTreeNode<int>{4, nullptr, nullptr});
+                            BinaryTreeNode<int> {4, nullptr, nullptr});
     root->right->left->parent = root->right.get();
     root->right->right = make_unique<BinaryTreeNode<int>>(
-            BinaryTreeNode<int>{6, nullptr, nullptr});
+                             BinaryTreeNode<int> {6, nullptr, nullptr});
     root->right->right->parent = root->right.get();
 
     result = InorderTraversal(root);
     golden_res = {1, 2, 3, 4, 5, 6};
     assert(equal(golden_res.begin(), golden_res.end(), result.begin(),
-                result.end()));
+                 result.end()));
     return 0;
 }

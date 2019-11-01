@@ -21,7 +21,7 @@ void Eliminate_rows(int i, int j, vector<deque<bool>>* B);
 
 // @include
 deque<bool> Gaussian_elimination(const vector<deque<bool>>& A,
-        const deque<bool>& y) {
+                                 const deque<bool>& y) {
     vector<deque<bool>> B(A);
     for (int i = 0; i < B.size(); ++i) {
         B[i].push_back(y[i]);
@@ -83,7 +83,7 @@ void Eliminate_rows(int i, int j, vector<deque<bool>>* B) {
 // @exclude
 
 bool check_answer_with_solution(const vector<deque<bool>>& A,
-        const deque<bool>& b, const deque<bool>& x) {
+                                const deque<bool>& b, const deque<bool>& x) {
     for (int i = 0; i < A.size(); ++i) {
         bool res = A[i][0] && x[0];
         for (int j = 1; j < A[i].size(); ++j) {
@@ -98,7 +98,7 @@ bool check_answer_with_solution(const vector<deque<bool>>& A,
 }
 
 bool check_answer_no_solution(const vector<deque<bool>>& A,
-        const deque<bool>& b) {
+                              const deque<bool>& b) {
     // Generate all possible combinations of x to test
     // there is no solution actually.
     for (int val = 0; val < (1 << b.size()); ++val) {

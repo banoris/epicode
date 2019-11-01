@@ -21,7 +21,7 @@ unique_ptr<BinaryTreeNode<int>> Clone(const unique_ptr<BinaryTreeNode<int>>&);
 
 // @include
 vector<unique_ptr<BinaryTreeNode<int>>> GenerateAllBinaryTrees(
-        int num_nodes) {
+    int num_nodes) {
     vector<unique_ptr<BinaryTreeNode<int>>> result;
     if (num_nodes == 0) {  // Empty tree, add as an nullptr.
         result.emplace_back(nullptr);
@@ -36,7 +36,7 @@ vector<unique_ptr<BinaryTreeNode<int>>> GenerateAllBinaryTrees(
         for (auto& left : left_subtrees) {
             for (auto& right : right_subtrees) {
                 result.emplace_back(make_unique<BinaryTreeNode<int>>(
-                            BinaryTreeNode<int>{0, Clone(left), Clone(right)}));
+                                        BinaryTreeNode<int> {0, Clone(left), Clone(right)}));
             }
         }
     }
@@ -44,9 +44,10 @@ vector<unique_ptr<BinaryTreeNode<int>>> GenerateAllBinaryTrees(
 }
 
 unique_ptr<BinaryTreeNode<int>> Clone(
-        const unique_ptr<BinaryTreeNode<int>>& tree) {
-    return tree ? make_unique<BinaryTreeNode<int>>(BinaryTreeNode<int>{
-            0, Clone(tree->left), Clone(tree->right)})
+const unique_ptr<BinaryTreeNode<int>>& tree) {
+    return tree ? make_unique<BinaryTreeNode<int>>(BinaryTreeNode<int> {
+        0, Clone(tree->left), Clone(tree->right)
+    })
         : nullptr;
 }
 // @exclude

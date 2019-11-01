@@ -22,7 +22,7 @@ int NumberOfWays(int n, int m) {
 }
 
 int ComputeNumberOfWaysToXY(int x, int y,
-        vector<vector<int>>* number_of_ways_ptr) {
+                            vector<vector<int>>* number_of_ways_ptr) {
     if (x == 0 && y == 0) {
         return 1;
     }
@@ -88,7 +88,7 @@ int main(int argc, char* argv[]) {
             m = dis(gen);
         }
         cout << "n = " << n << ", m = " << m
-            << ", number of ways = " << NumberOfWays(n, m) << endl;
+             << ", number of ways = " << NumberOfWays(n, m) << endl;
         assert(CheckAns(n + m - 2, m - 1) == NumberOfWays(n, m));
         assert(ComputeNumberOfWaysSpaceEfficient(n, m) == NumberOfWays(n, m));
         if (argc == 3) {

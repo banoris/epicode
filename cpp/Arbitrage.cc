@@ -93,7 +93,7 @@ int main(int argc, char* argv[]) {
         g[i][i] = 1;
     }
     g[0][1] = 2, g[1][0] = 0.5, g[0][2] = g[2][0] = 1, g[1][2] = 4,
-        g[2][1] = 0.25;
+                                          g[2][1] = 0.25;
     res = IsArbitrageExist(g);
     assert(res == true);
     cout << boolalpha << IsArbitrageExist(g) << endl;

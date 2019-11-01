@@ -18,27 +18,29 @@ using std::vector;
 
 // @include
 class Queue {
-    public:
-        void Enqueue(int x) { data_.emplace_back(x); }
+public:
+    void Enqueue(int x) {
+        data_.emplace_back(x);
+    }
 
-        int Dequeue() {
-            if (data_.empty()) {
-                throw length_error("empty queue");
-            }
-            const int val = data_.front();
-            data_.pop_front();
-            return val;
+    int Dequeue() {
+        if (data_.empty()) {
+            throw length_error("empty queue");
         }
+        const int val = data_.front();
+        data_.pop_front();
+        return val;
+    }
 
-        int Max() const {
-            if (data_.empty()) {
-                throw length_error("Cannot perform Max() on empty queue.");
-            }
-            return *max_element(data_.begin(), data_.end());
+    int Max() const {
+        if (data_.empty()) {
+            throw length_error("Cannot perform Max() on empty queue.");
         }
+        return *max_element(data_.begin(), data_.end());
+    }
 
-    private:
-        list<int> data_;
+private:
+    list<int> data_;
 };
 // @exclude
 

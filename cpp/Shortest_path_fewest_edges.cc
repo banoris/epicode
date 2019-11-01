@@ -44,11 +44,11 @@ struct GraphVertex {
 struct Comp {
     bool operator()(const GraphVertex* lhs, const GraphVertex* rhs) {
         return lhs->distance_with_fewest_edges.distance <
-            rhs->distance_with_fewest_edges.distance ||
-            (lhs->distance_with_fewest_edges.distance ==
-             rhs->distance_with_fewest_edges.distance &&
-             lhs->distance_with_fewest_edges.min_num_edges <
-             rhs->distance_with_fewest_edges.min_num_edges);
+               rhs->distance_with_fewest_edges.distance ||
+               (lhs->distance_with_fewest_edges.distance ==
+                rhs->distance_with_fewest_edges.distance &&
+                lhs->distance_with_fewest_edges.min_num_edges <
+                rhs->distance_with_fewest_edges.min_num_edges);
     }
 };
 
@@ -144,11 +144,11 @@ void Test() {
 
     DijkstraShortestPath(&G[s], &G[t]);
     cout << endl
-        << "Min distance: " << G[t].distance_with_fewest_edges.distance
-        << endl;
+         << "Min distance: " << G[t].distance_with_fewest_edges.distance
+         << endl;
     assert(G[t].distance_with_fewest_edges.distance == 21);
     cout << "Number of edges: " << G[t].distance_with_fewest_edges.min_num_edges
-        << endl;
+         << endl;
     assert(G[t].distance_with_fewest_edges.min_num_edges == 3);
 }
 
@@ -195,8 +195,8 @@ int main(int argc, char* argv[]) {
     cout << "source = " << s << ", terminal = " << t << endl;
     DijkstraShortestPath(&G[s], &G[t]);
     cout << endl
-        << G[t].distance_with_fewest_edges.distance << " "
-        << G[t].distance_with_fewest_edges.min_num_edges << endl;
+         << G[t].distance_with_fewest_edges.distance << " "
+         << G[t].distance_with_fewest_edges.min_num_edges << endl;
     Test();
     return 0;
 }

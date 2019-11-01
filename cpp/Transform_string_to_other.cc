@@ -31,7 +31,7 @@ string RandString(int len) {
 // @include
 // Uses BFS to find the least steps of transformation.
 int TransformString(unordered_set<string> D, const string& s,
-        const string& t) {
+                    const string& t) {
     struct StringWithDistance {
         string candidate_string;
         int distance;

@@ -25,7 +25,7 @@ bool is_match(const string &s, const string &m) {
     }
 
     return !s.empty() && (s.front() == m.front() || m.front() == '.') &&
-        is_match(s.substr(1), m.substr(1));
+           is_match(s.substr(1), m.substr(1));
 }
 // @exclude
 

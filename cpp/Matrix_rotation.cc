@@ -32,10 +32,10 @@ void CheckAnswer(const vector<vector<int>>& A) {
 }
 
 void RotateMatrixHelper(int x_s, int x_e, int y_s, int y_e,
-        vector<vector<int>>* A);
+                        vector<vector<int>>* A);
 void CopyMatrix(int A_x_s, int A_x_e, int A_y_s, int A_y_e,
-        const vector<vector<int>>& S, int S_x, int S_y,
-        vector<vector<int>>* A);
+                const vector<vector<int>>& S, int S_x, int S_y,
+                vector<vector<int>>* A);
 
 // @include
 void RotateMatrix(vector<vector<int>>* A) {
@@ -43,7 +43,7 @@ void RotateMatrix(vector<vector<int>>* A) {
 }
 
 void RotateMatrixHelper(int x_s, int x_e, int y_s, int y_e,
-        vector<vector<int>>* A) {
+                        vector<vector<int>>* A) {
     if (x_e > x_s + 1) {
         int mid_x = x_s + ((x_e - x_s) / 2), mid_y = y_s + ((y_e - y_s) / 2);
         // Move submatrices.
@@ -63,11 +63,11 @@ void RotateMatrixHelper(int x_s, int x_e, int y_s, int y_e,
 }
 
 void CopyMatrix(int A_x_s, int A_x_e, int A_y_s, int A_y_e,
-        const vector<vector<int>>& S, int S_x, int S_y,
-        vector<vector<int>>* A) {
+                const vector<vector<int>>& S, int S_x, int S_y,
+                vector<vector<int>>* A) {
     for (int i = 0; i < A_x_e - A_x_s; ++i) {
         copy(S[S_x + i].cbegin() + S_y, S[S_x + i].cbegin() + S_y + A_y_e - A_y_s,
-                (*A)[A_x_s + i].begin() + A_y_s);
+             (*A)[A_x_s + i].begin() + A_y_s);
     }
 }
 // @exclude

@@ -34,7 +34,9 @@ struct Star {
         return Distance() < that.Distance();
     }
 
-    double Distance() const { return sqrt(x * x + y * y + z * z); }
+    double Distance() const {
+        return sqrt(x * x + y * y + z * z);
+    }
 
     double x, y, z;
 };
@@ -144,12 +146,12 @@ int main(int argc, char* argv[]) {
         sort(stars.begin(), stars.end());
         cout << "k = " << k << endl;
         cout << stars[k - 1].x << " " << stars[k - 1].y << " " << stars[k - 1].z
-            << " " << stars[k - 1].Distance() << endl;
+             << " " << stars[k - 1].Distance() << endl;
         cout << closest_stars.back().x << " " << closest_stars.back().y << " "
-            << closest_stars.back().z << " " << closest_stars.back().Distance()
-            << endl;
+             << closest_stars.back().z << " " << closest_stars.back().Distance()
+             << endl;
         assert(fabs(stars[k - 1].Distance() - closest_stars.back().Distance()) <
-                1.0e-2);
+               1.0e-2);
     }
     return 0;
 }

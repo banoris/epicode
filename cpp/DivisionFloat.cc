@@ -19,8 +19,8 @@ int compare(double a, double b) {
     // Use normalization for precision problem
     double diff = (a - b) / b;
     return diff < -numeric_limits<double>::epsilon()
-        ? -1
-        : diff > numeric_limits<double>::epsilon();
+           ? -1
+           : diff > numeric_limits<double>::epsilon();
 }
 
 double division_no_operator(double x, double y) {
@@ -50,7 +50,7 @@ int main(int argc, char *argv[]) {
         double x = atof(argv[1]), y = atof(argv[2]);
         double res = division_no_operator(x, y);
         printf("x=%lf,\ty = %lf,\tres = %lf,\tabs( y*res - x ) = %lf\n", x, y,
-                res, fabs(y * res - x));
+               res, fabs(y * res - x));
         assert(compare(y * res, x) == 0);
     } else {
         // random test, only works if the product not greater than 2^32 - 1
@@ -63,9 +63,9 @@ int main(int argc, char *argv[]) {
             }
             double res = division_no_operator(x, y);
             printf(
-                    "x=%10.0lf,\ty = %10.0lf,\tres = %10.20lf,\tabs( y*res - x ) = "
-                    "%.20lf\n",
-                    x, y, res, fabs(y * res - x));
+                "x=%10.0lf,\ty = %10.0lf,\tres = %10.20lf,\tabs( y*res - x ) = "
+                "%.20lf\n",
+                x, y, res, fabs(y * res - x));
             assert(compare(y * res, x) == 0);
         }
     }

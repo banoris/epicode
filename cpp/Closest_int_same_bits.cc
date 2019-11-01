@@ -45,7 +45,7 @@ void SmallTest() {
     assert(ClosestIntSameBitCount(2) == 1);
     assert(ClosestIntSameBitCount(32) == 16);
     assert(ClosestIntSameBitCount(numeric_limits<unsigned long>::max() - 1) ==
-            numeric_limits<unsigned long>::max() - 2);
+           numeric_limits<unsigned long>::max() - 2);
 
     try {
         ClosestIntSameBitCount(numeric_limits<unsigned long>::max());
@@ -69,7 +69,7 @@ int main(int argc, char* argv[]) {
         x = atol(argv[1]);
     } else {
         uniform_int_distribution<int> dis(0,
-                numeric_limits<unsigned long>::max());
+                                          numeric_limits<unsigned long>::max());
         x = dis(gen);
     }
     try {

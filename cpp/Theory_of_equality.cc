@@ -32,8 +32,8 @@ struct GraphVertex {
 };
 
 bool are_constraints_satisfied(
-        const vector<Constraint>& E,  // Equality constraints.
-        const vector<Constraint>& I) {  // Inequality constraints.
+    const vector<Constraint>& E,  // Equality constraints.
+    const vector<Constraint>& I) {  // Inequality constraints.
     unordered_map<int, GraphVertex> G;
     // Build graph G according to E.
     for (const Constraint& e : E) {

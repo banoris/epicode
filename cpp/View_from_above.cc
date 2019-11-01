@@ -25,15 +25,17 @@ struct LineSegment {
 };
 
 class Endpoint {
-    public:
-        bool operator<(const Endpoint& that) const {
-            return Value() < that.Value();
-        }
+public:
+    bool operator<(const Endpoint& that) const {
+        return Value() < that.Value();
+    }
 
-        int Value() const { return isLeft_ ? line_->left : line_->right; }
+    int Value() const {
+        return isLeft_ ? line_->left : line_->right;
+    }
 
-        bool isLeft_;
-        const LineSegment* line_;
+    bool isLeft_;
+    const LineSegment* line_;
 };
 
 vector<LineSegment> CalculateViewFromAbove(const vector<LineSegment>& A) {
@@ -52,9 +54,9 @@ vector<LineSegment> CalculateViewFromAbove(const vector<LineSegment>& A) {
         if (!active_line_segments.empty() && prev_xaxis != endpoint.Value()) {
             if (prev == nullptr) {  // Found first segment.
                 prev = make_unique<LineSegment>(
-                        LineSegment{prev_xaxis, endpoint.Value(),
-                        active_line_segments.crbegin()->second->color,
-                        active_line_segments.crbegin()->second->height});
+                           LineSegment{prev_xaxis, endpoint.Value(),
+                                       active_line_segments.crbegin()->second->color,
+                                       active_line_segments.crbegin()->second->height});
             } else {
                 if (prev->height == active_line_segments.crbegin()->second->height &&
                         prev->color == active_line_segments.crbegin()->second->color &&
@@ -63,8 +65,9 @@ vector<LineSegment> CalculateViewFromAbove(const vector<LineSegment>& A) {
                 } else {
                     result.emplace_back(*prev);
                     *prev = {prev_xaxis, endpoint.Value(),
-                        active_line_segments.crbegin()->second->color,
-                        active_line_segments.crbegin()->second->height};
+                             active_line_segments.crbegin()->second->color,
+                             active_line_segments.crbegin()->second->height
+                            };
                 }
             }
         }
@@ -89,13 +92,14 @@ void SimpleTest() {
     vector<LineSegment> A = {LineSegment{1, 2, 0, 1}, LineSegment{3, 4, 0, 1}};
     auto result = CalculateViewFromAbove(A);
     vector<LineSegment> golden_result = {LineSegment{1, 2, 0, 1},
-        LineSegment{3, 4, 0, 1}};
+                                         LineSegment{3, 4, 0, 1}
+                                        };
     assert(equal(result.begin(), result.end(), golden_result.begin(),
-                golden_result.end(),
-                [](const LineSegment& a, const LineSegment& b) {
-                return a.left == b.left && a.right == b.right &&
-                a.color == b.color && a.height == b.height;
-                }));
+                 golden_result.end(),
+    [](const LineSegment& a, const LineSegment& b) {
+        return a.left == b.left && a.right == b.right &&
+               a.color == b.color && a.height == b.height;
+    }));
 }
 
 int main(int argc, char* argv[]) {
@@ -106,7 +110,8 @@ int main(int argc, char* argv[]) {
         (LineSegment{5, 7, 3, 0}),   (LineSegment{6, 10, 0, 2}),
         (LineSegment{8, 9, 0, 1}),   (LineSegment{9, 18, 4, 0}),
         (LineSegment{11, 13, 3, 2}), (LineSegment{12, 15, 4, 1}),
-        (LineSegment{14, 15, 2, 2}), (LineSegment{16, 17, 3, 2})};
+        (LineSegment{14, 15, 2, 2}), (LineSegment{16, 17, 3, 2})
+    };
     auto result = CalculateViewFromAbove(A);
     vector<LineSegment> golden_result = {
         LineSegment{0, 1, 0, 0},   LineSegment{1, 3, 1, 2},
@@ -115,12 +120,13 @@ int main(int argc, char* argv[]) {
         LineSegment{10, 11, 4, 0}, LineSegment{11, 13, 3, 2},
         LineSegment{13, 14, 4, 1}, LineSegment{14, 15, 2, 2},
         LineSegment{15, 16, 4, 0}, LineSegment{16, 17, 3, 2},
-        LineSegment{17, 18, 4, 0}};
+        LineSegment{17, 18, 4, 0}
+    };
     assert(equal(result.begin(), result.end(), golden_result.begin(),
-                golden_result.end(),
-                [](const LineSegment& a, const LineSegment& b) {
-                return a.left == b.left && a.right == b.right &&
-                a.color == b.color && a.height == b.height;
-                }));
+                 golden_result.end(),
+    [](const LineSegment& a, const LineSegment& b) {
+        return a.left == b.left && a.right == b.right &&
+               a.color == b.color && a.height == b.height;
+    }));
     return 0;
 }

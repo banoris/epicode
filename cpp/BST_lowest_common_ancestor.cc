@@ -12,8 +12,8 @@ using std::unique_ptr;
 // Input nodes are not nonempty and the key at s is less than or equal to that
 // at b.
 BSTNode<int>* FindLCA(const unique_ptr<BSTNode<int>>& tree,
-        const unique_ptr<BSTNode<int>>& s,
-        const unique_ptr<BSTNode<int>>& b) {
+                      const unique_ptr<BSTNode<int>>& s,
+                      const unique_ptr<BSTNode<int>>& b) {
     auto* p = tree.get();
     while (p->data < s->data || p->data > b->data) {
         // Keep searching since p is outside of [s, b].
@@ -33,12 +33,12 @@ int main(int argc, char* argv[]) {
     //      3
     //    2   5
     //  1    4 6
-    unique_ptr<BSTNode<int>> tree = make_unique<BSTNode<int>>(BSTNode<int>{3});
-    tree->left = make_unique<BSTNode<int>>(BSTNode<int>{2});
-    tree->left->left = make_unique<BSTNode<int>>(BSTNode<int>{1});
-    tree->right = make_unique<BSTNode<int>>(BSTNode<int>{5});
-    tree->right->left = make_unique<BSTNode<int>>(BSTNode<int>{4});
-    tree->right->right = make_unique<BSTNode<int>>(BSTNode<int>{6});
+    unique_ptr<BSTNode<int>> tree = make_unique<BSTNode<int>>(BSTNode<int> {3});
+    tree->left = make_unique<BSTNode<int>>(BSTNode<int> {2});
+    tree->left->left = make_unique<BSTNode<int>>(BSTNode<int> {1});
+    tree->right = make_unique<BSTNode<int>>(BSTNode<int> {5});
+    tree->right->left = make_unique<BSTNode<int>>(BSTNode<int> {4});
+    tree->right->right = make_unique<BSTNode<int>>(BSTNode<int> {6});
     assert(3 == FindLCA(tree, tree->left->left, tree->right->left)->data);
     assert(5 == FindLCA(tree, tree->right->left, tree->right->right)->data);
     assert(2 == FindLCA(tree, tree->left->left, tree->left)->data);

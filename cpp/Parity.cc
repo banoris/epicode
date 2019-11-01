@@ -22,7 +22,7 @@ int main(int argc, char* argv[]) {
     if (argc == 2) {
         long x = atol(argv[1]);
         cout << "x = " << x << ", parity = " << Parity1::Parity(x)
-            << ", parity = " << Parity3::Parity(x) << endl;
+             << ", parity = " << Parity3::Parity(x) << endl;
         assert(Parity1::Parity(x) == Parity3::Parity(x));
         assert(Parity2::Parity(x) == Parity3::Parity(x));
         assert(Parity3::Parity(x) == Parity4::Parity(x));

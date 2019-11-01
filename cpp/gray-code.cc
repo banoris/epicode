@@ -34,7 +34,7 @@ vector<int> GrayCode(int num_bits) {
     // gray_code_num_bits_minus_1.
     for (int i = gray_code_num_bits_minus_1.size() - 1; i >= 0; --i) {
         gray_code_num_bits_minus_1.emplace_back(leading_bit_one |
-                gray_code_num_bits_minus_1[i]);
+                                                gray_code_num_bits_minus_1[i]);
     }
     return gray_code_num_bits_minus_1;
 }

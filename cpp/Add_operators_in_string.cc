@@ -14,7 +14,7 @@ using std::string;
 using std::vector;
 
 bool DirectedExpressionSynthesis(const vector<int>&, int, int, int,
-        vector<int>*, vector<char>*);
+                                 vector<int>*, vector<char>*);
 int RemainingInt(const vector<int>&, int);
 int Evaluate(const vector<int>&, const vector<char>&);
 
@@ -23,13 +23,13 @@ bool ExpressionSynthesis(const vector<int>& digits, int target) {
     vector<char> operators;
     vector<int> operands;
     return DirectedExpressionSynthesis(digits, target, 0, 0, &operands,
-            &operators);
+                                       &operators);
 }
 
 bool DirectedExpressionSynthesis(const vector<int>& digits, int target,
-        int current_term, int offset,
-        vector<int>* operands,
-        vector<char>* operators) {
+                                 int current_term, int offset,
+                                 vector<int>* operands,
+                                 vector<char>* operators) {
     current_term = current_term * 10 + digits[offset];
     if (offset == digits.size() - 1) {
         operands->emplace_back(current_term);
@@ -50,13 +50,13 @@ bool DirectedExpressionSynthesis(const vector<int>& digits, int target,
 
     // No operator.
     if (DirectedExpressionSynthesis(digits, target, current_term, offset + 1,
-                operands, operators)) {
+                                    operands, operators)) {
         return true;
     }
     // Tries multiplication operator '*'.
     operands->emplace_back(current_term), operators->emplace_back('*');
     if (DirectedExpressionSynthesis(digits, target, 0, offset + 1, operands,
-                operators)) {
+                                    operators)) {
         return true;
     }
     operands->pop_back(), operators->pop_back();
@@ -67,7 +67,7 @@ bool DirectedExpressionSynthesis(const vector<int>& digits, int target,
             RemainingInt(digits, offset + 1)) {
         operators->emplace_back('+');
         if (DirectedExpressionSynthesis(digits, target, 0, offset + 1, operands,
-                    operators)) {
+                                        operators)) {
             return true;
         }
         operators->pop_back();

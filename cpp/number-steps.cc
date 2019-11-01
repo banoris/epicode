@@ -24,7 +24,7 @@ int NumberOfWaysToTop(int top, int maximum_step) {
 }
 
 int ComputeNumberOfWaysToH(int h, int maximum_step,
-        vector<int>* number_of_ways_to_h_ptr) {
+                           vector<int>* number_of_ways_to_h_ptr) {
     if (h <= 1) {
         return 1;
     }
@@ -33,7 +33,7 @@ int ComputeNumberOfWaysToH(int h, int maximum_step,
     if (number_of_ways_to_h[h] == 0) {
         for (int i = 1; i <= maximum_step && h - i >= 0; ++i) {
             number_of_ways_to_h[h] += ComputeNumberOfWaysToH(
-                    h - i, maximum_step, number_of_ways_to_h_ptr);
+                                          h - i, maximum_step, number_of_ways_to_h_ptr);
         }
     }
     return number_of_ways_to_h[h];

@@ -10,11 +10,11 @@ using std::cout;
 using std::numeric_limits;
 
 void UnitTest(TestSentry::Ptr& sentry, const char* description,
-        int64_t x, int64_t y, int64_t expected) {
+              int64_t x, int64_t y, int64_t expected) {
     TestStream::Ptr stream = sentry->GetTestStream(TestType::NORMAL, description);
     stream->GetInputWriter()->
-        WritePair("x", x).
-        WritePair("y", y);
+    WritePair("x", x).
+    WritePair("y", y);
     stream->RegisterExpectedOutput(expected);
     try {
         int64_t result = GCD1::GCD(x, y);
@@ -38,9 +38,9 @@ void DirectedTests(const TestOptions& options) {
     UnitTest(sentry, "Simple test #7", 1024L * 1023L, 1023L * 1025L, 1023L);
     UnitTest(sentry, "Simple test #8", 317L * 1024L * 1023L, 317L * 1023L * 1025L, 317L * 1023L);
     UnitTest(sentry, "Big values test #1", numeric_limits<int64_t>::max(),
-            numeric_limits<int64_t>::max() - 1L, 1L);
+             numeric_limits<int64_t>::max() - 1L, 1L);
     UnitTest(sentry, "Big values test #2", numeric_limits<int64_t>::max() - 1L,
-            (numeric_limits<int64_t>::max() - 1L) / (2L), (numeric_limits<int64_t>::max() - 1L) / (2L));
+             (numeric_limits<int64_t>::max() - 1L) / (2L), (numeric_limits<int64_t>::max() - 1L) / (2L));
     //FIXME (KROILOV) Stack overflow on next tests
     //UnitTest(sentry, "Zero values test #1", 0L, 10L, 10L);
     //UnitTest(sentry, "Zero values test #2", 10L, 0L, 10L);

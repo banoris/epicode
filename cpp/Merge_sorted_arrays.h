@@ -27,13 +27,13 @@ struct IteratorCurrentAndEnd {
 
 vector<int> MergeSortedArrays(const vector<vector<int>>& sorted_arrays) {
     priority_queue<IteratorCurrentAndEnd, vector<IteratorCurrentAndEnd>,
-        greater<>>
-            min_heap;
+                   greater<>>
+                   min_heap;
 
     for (const vector<int>& sorted_array : sorted_arrays) {
         if (!sorted_array.empty()) {
             min_heap.emplace(
-                    IteratorCurrentAndEnd{sorted_array.cbegin(), sorted_array.cend()});
+                IteratorCurrentAndEnd{sorted_array.cbegin(), sorted_array.cend()});
         }
     }
 
@@ -44,7 +44,7 @@ vector<int> MergeSortedArrays(const vector<vector<int>>& sorted_arrays) {
         if (smallest_array.current != smallest_array.end) {
             result.emplace_back(*smallest_array.current);
             min_heap.emplace(IteratorCurrentAndEnd{next(smallest_array.current),
-                    smallest_array.end});
+                                                   smallest_array.end});
         }
     }
     return result;

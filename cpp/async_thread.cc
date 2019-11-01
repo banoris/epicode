@@ -20,51 +20,57 @@ const milliseconds TIMEOUT(500);
 // @include
 class Requestor {
     // @exclude
-    public:
-        Requestor(const string& request, int delay)
-            : req_(request), delay_(delay) {}
+public:
+    Requestor(const string& request, int delay)
+        : req_(request), delay_(delay) {}
 
-        string Finished() { return "response:" + req_; }
+    string Finished() {
+        return "response:" + req_;
+    }
 
-        string Error() { return "response:" + req_ + ":TIMEDOUT"; }
+    string Error() {
+        return "response:" + req_ + ":TIMEDOUT";
+    }
 
-        // @include
-        string Execute() {
-            try {
-                // simulate the time taken to perform a computation
-                sleep_for(delay_);
-            } catch (const thread_interrupted&) {
-                return Error();
-            }
-            return Finished();
+    // @include
+    string Execute() {
+        try {
+            // simulate the time taken to perform a computation
+            sleep_for(delay_);
+        } catch (const thread_interrupted&) {
+            return Error();
         }
-        // @exclude
+        return Finished();
+    }
+    // @exclude
 
-        void ProcessResponse(const string& response) {
-            cout << "ProcessResponse:" << response << endl;
+    void ProcessResponse(const string& response) {
+        cout << "ProcessResponse:" << response << endl;
+    }
+
+    // @include
+    void ActualTask() {
+        const string& response = Execute();
+        ProcessResponse(response);
+    }
+
+    void Task() {
+        scoped_thread<> inner_thread(&Requestor::ActualTask, this);
+        if (!inner_thread.try_join_for(TIMEOUT)) {
+            inner_thread.interrupt();
         }
+    }
 
-        // @include
-        void ActualTask() {
-            const string& response = Execute();
-            ProcessResponse(response);
-        }
+    void Dispatch() {
+        thread_ = scoped_thread<>(&Requestor::Task, this);
+    }
 
-        void Task() {
-            scoped_thread<> inner_thread(&Requestor::ActualTask, this);
-            if (!inner_thread.try_join_for(TIMEOUT)) {
-                inner_thread.interrupt();
-            }
-        }
-
-        void Dispatch() { thread_ = scoped_thread<>(&Requestor::Task, this); }
-
-        // @exclude
-    private:
-        string req_;
-        milliseconds delay_;
-        scoped_thread<> thread_;
-        // @include
+    // @exclude
+private:
+    string req_;
+    milliseconds delay_;
+    scoped_thread<> thread_;
+    // @include
 };
 // @exclude
 

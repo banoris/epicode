@@ -41,7 +41,7 @@ bool TestCollatzConjecture(int n) {
                 long next_test_i = 3 * test_i + 1;  // Multiply by 3 and add 1.
                 if (next_test_i <= test_i) {
                     throw overflow_error("Collatz sequence overflow for " +
-                            to_string(i));
+                                         to_string(i));
                 }
                 test_i = next_test_i;
             } else {

@@ -10,7 +10,7 @@ void AdvanceListByK(int k, shared_ptr<ListNode<int>>* L);
 
 // @include
 shared_ptr<ListNode<int>> OverlappingNoCycleLists(
-        shared_ptr<ListNode<int>> L1, shared_ptr<ListNode<int>> L2) {
+shared_ptr<ListNode<int>> L1, shared_ptr<ListNode<int>> L2) {
     int L1_len = Length(L1), L2_len = Length(L2);
 
     // Advances the longer list to get equal length lists.

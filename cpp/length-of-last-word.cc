@@ -28,9 +28,9 @@ size_t length_of_last_word(const string& s) {
         }
     }
     return seen_non_space
-        ? distance(*last_space == ' ' ? last_space + 1 : last_space,
-                s.rend())
-        : 0;
+           ? distance(*last_space == ' ' ? last_space + 1 : last_space,
+                      s.rend())
+           : 0;
 }
 // @exclude
 

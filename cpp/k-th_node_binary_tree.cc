@@ -21,7 +21,7 @@ struct BinaryTreeNode {
 
 // @include
 const BinaryTreeNode<int>* FindKthNodeBinaryTree(
-        const unique_ptr<BinaryTreeNode<int>>& tree, int k) {
+    const unique_ptr<BinaryTreeNode<int>>& tree, int k) {
     const auto* iter = tree.get();
     while (iter != nullptr) {
         int left_size = iter->left ? iter->left->size : 0;

@@ -56,13 +56,13 @@ void OnlineMedian(istringstream* sequence) {
 
         // @exclude
         global_result.emplace_back(min_heap.size() == max_heap.size()
-                ? 0.5 * (min_heap.top() + max_heap.top())
-                : min_heap.top());
+                                   ? 0.5 * (min_heap.top() + max_heap.top())
+                                   : min_heap.top());
         // @include
         cout << (min_heap.size() == max_heap.size()
-                ? 0.5 * (min_heap.top() + max_heap.top())
-                : min_heap.top())
-            << endl;
+                 ? 0.5 * (min_heap.top() + max_heap.top())
+                 : min_heap.top())
+             << endl;
     }
 }
 // @exclude
@@ -72,28 +72,28 @@ void SmallTest() {
     OnlineMedian(&sequence);
     vector<double> golden = {5, 4.5, 4, 3.5, 3};
     assert(equal(golden.begin(), golden.end(), global_result.begin(),
-                global_result.end()));
+                 global_result.end()));
 
     global_result.clear();
     istringstream sequence1("1 2 3 4 5");
     OnlineMedian(&sequence1);
     golden = {1, 1.5, 2, 2.5, 3};
     assert(equal(golden.begin(), golden.end(), global_result.begin(),
-                global_result.end()));
+                 global_result.end()));
 
     global_result.clear();
     istringstream sequence2("1 0 3 5 2 0 1");
     OnlineMedian(&sequence2);
     golden = {1, 0.5, 1, 2, 2, 1.5, 1};
     assert(equal(golden.begin(), golden.end(), global_result.begin(),
-                global_result.end()));
+                 global_result.end()));
 
     global_result.clear();
     istringstream sequence3("-1");
     OnlineMedian(&sequence3);
     golden = {-1.0};
     assert(equal(golden.begin(), golden.end(), global_result.begin(),
-                global_result.end()));
+                 global_result.end()));
 }
 
 int main(int argc, char* argv[]) {

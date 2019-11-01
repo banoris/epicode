@@ -24,7 +24,7 @@ pair<int, int> search_range(const vector<int>& A, int target) {
         return {-1, -1};
     }
     return {distance(A.begin(), result.first),
-        distance(A.begin(), result.second - 1)};
+            distance(A.begin(), result.second - 1)};
 }
 // @exclude
 

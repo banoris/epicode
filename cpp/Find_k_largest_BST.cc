@@ -18,7 +18,7 @@ using std::unique_ptr;
 using std::vector;
 
 void FindKLargestInBSTHelper(const unique_ptr<BSTNode<int>>&, int,
-        vector<int>*);
+                             vector<int>*);
 
 // @include
 vector<int> FindKLargestInBST(const unique_ptr<BSTNode<int>>& tree, int k) {
@@ -28,7 +28,7 @@ vector<int> FindKLargestInBST(const unique_ptr<BSTNode<int>>& tree, int k) {
 }
 
 void FindKLargestInBSTHelper(const unique_ptr<BSTNode<int>>& tree, int k,
-        vector<int>* k_largest_elements) {
+                             vector<int>* k_largest_elements) {
     // Perform reverse inorder traversal.
     if (tree && k_largest_elements->size() < k) {
         FindKLargestInBSTHelper(tree->right, k, k_largest_elements);
@@ -44,12 +44,12 @@ int main(int argc, char* argv[]) {
     //    3
     //  2   5
     // 1   4 6
-    unique_ptr<BSTNode<int>> tree = make_unique<BSTNode<int>>(BSTNode<int>{3});
-    tree->left = make_unique<BSTNode<int>>(BSTNode<int>{2});
-    tree->left->left = make_unique<BSTNode<int>>(BSTNode<int>{1});
-    tree->right = make_unique<BSTNode<int>>(BSTNode<int>{5});
-    tree->right->left = make_unique<BSTNode<int>>(BSTNode<int>{4});
-    tree->right->right = make_unique<BSTNode<int>>(BSTNode<int>{6});
+    unique_ptr<BSTNode<int>> tree = make_unique<BSTNode<int>>(BSTNode<int> {3});
+    tree->left = make_unique<BSTNode<int>>(BSTNode<int> {2});
+    tree->left->left = make_unique<BSTNode<int>>(BSTNode<int> {1});
+    tree->right = make_unique<BSTNode<int>>(BSTNode<int> {5});
+    tree->right->left = make_unique<BSTNode<int>>(BSTNode<int> {4});
+    tree->right->right = make_unique<BSTNode<int>>(BSTNode<int> {6});
     default_random_engine gen((random_device())());
     int k;
     if (argc == 2) {
@@ -73,12 +73,12 @@ int main(int argc, char* argv[]) {
     //    3
     //  3   4
     // 1   4 6
-    tree = make_unique<BSTNode<int>>(BSTNode<int>{3});
-    tree->left = make_unique<BSTNode<int>>(BSTNode<int>{3});
-    tree->left->left = make_unique<BSTNode<int>>(BSTNode<int>{1});
-    tree->right = make_unique<BSTNode<int>>(BSTNode<int>{4});
-    tree->right->left = make_unique<BSTNode<int>>(BSTNode<int>{4});
-    tree->right->right = make_unique<BSTNode<int>>(BSTNode<int>{6});
+    tree = make_unique<BSTNode<int>>(BSTNode<int> {3});
+    tree->left = make_unique<BSTNode<int>>(BSTNode<int> {3});
+    tree->left->left = make_unique<BSTNode<int>>(BSTNode<int> {1});
+    tree->right = make_unique<BSTNode<int>>(BSTNode<int> {4});
+    tree->right->left = make_unique<BSTNode<int>>(BSTNode<int> {4});
+    tree->right->right = make_unique<BSTNode<int>>(BSTNode<int> {6});
     ans = FindKLargestInBST(tree, 3);
     assert(ans[0] == 6);
     assert(ans[1] == 4);

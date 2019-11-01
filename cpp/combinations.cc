@@ -27,8 +27,8 @@ vector<vector<int>> Combinations(int n, int k) {
 }
 
 void DirectedCombinations(int n, int k, int offset,
-        vector<int>* partial_combination,
-        vector<vector<int>>* result) {
+                          vector<int>* partial_combination,
+                          vector<vector<int>>* result) {
     if (partial_combination->size() == k) {
         result->emplace_back(*partial_combination);
         return;
@@ -48,9 +48,10 @@ void DirectedCombinations(int n, int k, int offset,
 void SmallTest() {
     auto result = Combinations(4, 2);
     vector<vector<int>> golden_result = {{1, 2}, {1, 3}, {1, 4},
-        {2, 3}, {2, 4}, {3, 4}};
+        {2, 3}, {2, 4}, {3, 4}
+    };
     assert(equal(result.begin(), result.end(), golden_result.begin(),
-                golden_result.end()));
+                 golden_result.end()));
 }
 
 int main(int argc, char** argv) {

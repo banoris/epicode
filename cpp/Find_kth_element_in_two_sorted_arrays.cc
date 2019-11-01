@@ -57,7 +57,7 @@ l_B += j + 1, k -= (j + 1);
 */
 // @include
 int FindKthInTwoSortedArrays(const vector<int>& A, const vector<int>& B,
-        int k) {
+                             int k) {
     // Lower bound of elements we will choose in A.
     int b = max(0, static_cast<int>(k - B.size()));
     // Upper bound of elements we will choose in A.

@@ -17,18 +17,18 @@ using std::uniform_int_distribution;
 using std::vector;
 
 int FindOptimumSubarrayUsingComp(const vector<int>&,
-        const int& (*comp)(const int&, const int&));
+                                 const int& (*comp)(const int&, const int&));
 
 // @include
 int MaxSubarraySumInCircular(const vector<int>& A) {
     // Finds the max in non-circular case and circular case.
     return max(FindOptimumSubarrayUsingComp(A, max),  // Non-circular case.
-            accumulate(A.cbegin(), A.cend(), 0) -
-            FindOptimumSubarrayUsingComp(A, min));  // Circular case.
+               accumulate(A.cbegin(), A.cend(), 0) -
+               FindOptimumSubarrayUsingComp(A, min));  // Circular case.
 }
 
 int FindOptimumSubarrayUsingComp(const vector<int>& A,
-        const int& (*comp)(const int&, const int&)) {
+                                 const int& (*comp)(const int&, const int&)) {
     int till = 0, overall = 0;
     for (int a : A) {
         till = comp(a, a + till);

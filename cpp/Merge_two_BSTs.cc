@@ -14,16 +14,16 @@ using std::numeric_limits;
 using std::shared_ptr;
 
 shared_ptr<BSTNode<int>> BSTToDoublyListHelper(
-        const shared_ptr<BSTNode<int>>&);
+                          const shared_ptr<BSTNode<int>>&);
 
 shared_ptr<BSTNode<int>> MergeTwoSortedLists(shared_ptr<BSTNode<int>>,
-        shared_ptr<BSTNode<int>>);
+                      shared_ptr<BSTNode<int>>);
 
 void AppendNode(shared_ptr<BSTNode<int>>*, shared_ptr<BSTNode<int>>*);
 
 // Build a BST from the (s + 1)-th to the e-th node in L.
 shared_ptr<BSTNode<int>> BuildBSTFromSortedDoublyListHelper(
-        shared_ptr<BSTNode<int>>* L, int s, int e) {
+shared_ptr<BSTNode<int>>* L, int s, int e) {
     shared_ptr<BSTNode<int>> curr = nullptr;
     if (s < e) {
         int m = s + ((e - s) / 2);
@@ -37,7 +37,7 @@ shared_ptr<BSTNode<int>> BuildBSTFromSortedDoublyListHelper(
 }
 
 shared_ptr<BSTNode<int>> BuildBSTFromSortedDoublyList(
-        shared_ptr<BSTNode<int>> L, int n) {
+shared_ptr<BSTNode<int>> L, int n) {
     return BuildBSTFromSortedDoublyListHelper(&L, 0, n);
 }
 
@@ -51,7 +51,7 @@ shared_ptr<BSTNode<int>> BSTToDoublyList(const shared_ptr<BSTNode<int>>& n) {
 // Transform a BST into a circular sorted doubly linked list in-place,
 // return the head of the list.
 shared_ptr<BSTNode<int>> BSTToDoublyListHelper(
-        const shared_ptr<BSTNode<int>>& n) {
+const shared_ptr<BSTNode<int>>& n) {
     // Empty subtree.
     if (!n) {
         return nullptr;
@@ -97,17 +97,17 @@ int CountLength(shared_ptr<BSTNode<int>> L) {
 
 // @include
 shared_ptr<BSTNode<int>> MergeTwoBSTs(shared_ptr<BSTNode<int>> A,
-        shared_ptr<BSTNode<int>> B) {
+shared_ptr<BSTNode<int>> B) {
     A = BSTToDoublyList(A), B = BSTToDoublyList(B);
     int A_length = CountLength(A), B_length = CountLength(B);
     return BuildBSTFromSortedDoublyList(MergeTwoSortedLists(A, B),
-            A_length + B_length);
+                                        A_length + B_length);
 }
 // @exclude
 
 // Merges two sorted doubly linked lists, returns the head of merged list.
 shared_ptr<BSTNode<int>> MergeTwoSortedLists(shared_ptr<BSTNode<int>> A,
-        shared_ptr<BSTNode<int>> B) {
+shared_ptr<BSTNode<int>> B) {
     shared_ptr<BSTNode<int>> sorted_head(new BSTNode<int>);
     shared_ptr<BSTNode<int>> tail = sorted_head;
 
@@ -126,7 +126,7 @@ shared_ptr<BSTNode<int>> MergeTwoSortedLists(shared_ptr<BSTNode<int>> A,
 }
 
 void AppendNode(shared_ptr<BSTNode<int>>* node,
-        shared_ptr<BSTNode<int>>* tail) {
+                shared_ptr<BSTNode<int>>* tail) {
     (*tail)->right = *node;
     *tail = *node;  // Resets tail to the last node.
     *node = (*node)->right;
@@ -146,19 +146,19 @@ int main(int argc, char* argv[]) {
     //      3
     //    2   5
     //  1    4 6
-    auto L = make_shared<BSTNode<int>>(BSTNode<int>{3});
-    L->left = make_shared<BSTNode<int>>(BSTNode<int>{2});
-    L->left->left = make_shared<BSTNode<int>>(BSTNode<int>{1});
-    L->right = make_shared<BSTNode<int>>(BSTNode<int>{5});
-    L->right->left = make_shared<BSTNode<int>>(BSTNode<int>{4});
-    L->right->right = make_shared<BSTNode<int>>(BSTNode<int>{6});
+    auto L = make_shared<BSTNode<int>>(BSTNode<int> {3});
+    L->left = make_shared<BSTNode<int>>(BSTNode<int> {2});
+    L->left->left = make_shared<BSTNode<int>>(BSTNode<int> {1});
+    L->right = make_shared<BSTNode<int>>(BSTNode<int> {5});
+    L->right->left = make_shared<BSTNode<int>>(BSTNode<int> {4});
+    L->right->right = make_shared<BSTNode<int>>(BSTNode<int> {6});
     //     7
     //   2   8
     // 0
-    auto R = make_shared<BSTNode<int>>(BSTNode<int>{7});
-    R->left = make_shared<BSTNode<int>>(BSTNode<int>{2});
-    R->left->left = make_shared<BSTNode<int>>(BSTNode<int>{0});
-    R->right = make_shared<BSTNode<int>>(BSTNode<int>{8});
+    auto R = make_shared<BSTNode<int>>(BSTNode<int> {7});
+    R->left = make_shared<BSTNode<int>>(BSTNode<int> {2});
+    R->left->left = make_shared<BSTNode<int>>(BSTNode<int> {0});
+    R->right = make_shared<BSTNode<int>>(BSTNode<int> {8});
     shared_ptr<BSTNode<int>> root = MergeTwoBSTs(L, R);
     // should output 0 1 2 2 3 4 5 6 7 8
     PrintBSTInorder(root, numeric_limits<int>::min());

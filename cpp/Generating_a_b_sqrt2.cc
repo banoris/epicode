@@ -23,7 +23,9 @@ using std::vector;
 struct ABSqrt2 {
     ABSqrt2(int a, int b) : a(a), b(b), val(a + b * sqrt(2)) {}
 
-    bool operator<(const ABSqrt2& that) const { return val < that.val; }
+    bool operator<(const ABSqrt2& that) const {
+        return val < that.val;
+    }
 
     int a, b;
     double val;

@@ -22,13 +22,13 @@ using std::vector;
 
 // @include
 int NonuniformRandomNumberGeneration(const vector<int>& values,
-        const vector<double>& probabilities) {
+                                     const vector<double>& probabilities) {
     vector<double> prefix_sums_of_probabilities;
     prefix_sums_of_probabilities.emplace_back(0.0);
     // Creating the endpoints for the intervals corresponding to the
     // probabilities.
     partial_sum(probabilities.cbegin(), probabilities.cend(),
-            back_inserter(prefix_sums_of_probabilities));
+                back_inserter(prefix_sums_of_probabilities));
 
     default_random_engine seed((random_device())());
     const double uniform_0_1 =
@@ -37,9 +37,9 @@ int NonuniformRandomNumberGeneration(const vector<int>& values,
     // return value of upper_bound() minus 1.
     const int interval_idx =
         distance(
-                prefix_sums_of_probabilities.cbegin(),
-                upper_bound(prefix_sums_of_probabilities.cbegin(),
-                    prefix_sums_of_probabilities.cend(), uniform_0_1)) -
+            prefix_sums_of_probabilities.cbegin(),
+            upper_bound(prefix_sums_of_probabilities.cbegin(),
+                        prefix_sums_of_probabilities.cend(), uniform_0_1)) -
         1;
     return values[interval_idx];
 }
@@ -85,7 +85,7 @@ int main(int argc, char* argv[]) {
     }
     for (size_t i = 0; i < n; ++i) {
         cout << static_cast<double>(counts[i]) / (n * kTimes) << " " << P[i]
-            << endl;
+             << endl;
         assert(fabs(static_cast<double>(counts[i]) / (n * kTimes) - P[i]) < 0.01);
     }
     return 0;

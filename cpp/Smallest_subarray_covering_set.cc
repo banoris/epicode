@@ -60,7 +60,7 @@ int CheckAns(const vector<string>& A, const vector<string>& Q) {
 }
 
 void SimpleTestCase(const vector<string>& A, const vector<string>& dict,
-        int start, int finish) {
+                    int start, int finish) {
     auto res = FindSmallestSubarrayCoveringSet(A, {dict.begin(), dict.end()});
     cout << "res = " << res.start << " " << res.end << endl;
     assert(res.start == start && res.end == finish);
@@ -77,7 +77,8 @@ void SimpleTestCase(const vector<string>& A, const vector<string>& dict,
 
 void SimpleTest() {
     vector<string> A = {"a", "b", "c", "b", "a", "d", "c",
-        "a", "e", "a", "a", "b", "e"};
+                        "a", "e", "a", "a", "b", "e"
+                       };
     vector<string> dict = {"b", "c", "e"};
     SimpleTestCase(A, dict, 3, 8);
     dict = {"a", "c"};

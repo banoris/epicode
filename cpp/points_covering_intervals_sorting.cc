@@ -34,8 +34,10 @@ vector<int> FindMinimumVisits(vector<Interval> intervals) {
 
     // Sort intervals based on the right endpoints.
     sort(
-            intervals.begin(), intervals.end(),
-            [](const Interval& a, const Interval& b) { return a.right < b.right; });
+        intervals.begin(), intervals.end(),
+    [](const Interval& a, const Interval& b) {
+        return a.right < b.right;
+    });
     vector<int> visits;
     int last_visit_time = intervals.front().right;
     visits.emplace_back(last_visit_time);
@@ -69,14 +71,16 @@ void CheckAns(const vector<Interval>& intervals, const vector<int>& ans) {
 
 void SimpleTest() {
     vector<Interval> intervals = {Interval{1, 4},  Interval{2, 8},
-        Interval{3, 6},  Interval{3, 5},
-        Interval{7, 10}, Interval{9, 11}};
+                                  Interval{3, 6},  Interval{3, 5},
+                                  Interval{7, 10}, Interval{9, 11}
+                                 };
     vector<int> ans = FindMinimumVisits(intervals);
     vector<int> golden = {4, 10};
     assert(equal(ans.begin(), ans.end(), golden.begin(), golden.end()));
 
     intervals = {Interval{1, 2}, Interval{2, 3}, Interval{3, 4},
-        Interval{4, 5}, Interval{5, 6}, Interval{6, 7}};
+                 Interval{4, 5}, Interval{5, 6}, Interval{6, 7}
+                };
     ans = FindMinimumVisits(intervals);
     golden = {2, 4, 6};
     assert(equal(ans.begin(), ans.end(), golden.begin(), golden.end()));

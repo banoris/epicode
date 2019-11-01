@@ -18,21 +18,21 @@ using std::uniform_int_distribution;
 using std::vector;
 
 int ComputeDistanceBetweenPrefixes(const string&, int, const string&, int,
-        vector<vector<int>>*);
+                                   vector<vector<int>>*);
 
 // @include
 int LevenshteinDistance(const string& A, const string& B) {
     vector<vector<int>> distance_between_prefixes(A.size(),
-            vector<int>(B.size(), -1));
+                     vector<int>(B.size(), -1));
     return ComputeDistanceBetweenPrefixes(A, A.size() - 1, B, B.size() - 1,
-            &distance_between_prefixes);
+                                          &distance_between_prefixes);
 }
 
 int ComputeDistanceBetweenPrefixes(
-        const string& A, int A_idx, const string& B, int B_idx,
-        vector<vector<int>>* distance_between_prefixes_ptr) {
+    const string& A, int A_idx, const string& B, int B_idx,
+    vector<vector<int>>* distance_between_prefixes_ptr) {
     vector<vector<int>>& distance_between_prefixes =
-        *distance_between_prefixes_ptr;
+                         *distance_between_prefixes_ptr;
     if (A_idx < 0) {
         // A is empty so add all of B's characters.
         return B_idx + 1;
@@ -44,14 +44,14 @@ int ComputeDistanceBetweenPrefixes(
         if (A[A_idx] == B[B_idx]) {
             distance_between_prefixes[A_idx][B_idx] =
                 ComputeDistanceBetweenPrefixes(A, A_idx - 1, B, B_idx - 1,
-                        distance_between_prefixes_ptr);
+                                               distance_between_prefixes_ptr);
         } else {
             int substitute_last = ComputeDistanceBetweenPrefixes(
-                    A, A_idx - 1, B, B_idx - 1, distance_between_prefixes_ptr);
+                                      A, A_idx - 1, B, B_idx - 1, distance_between_prefixes_ptr);
             int add_last = ComputeDistanceBetweenPrefixes(
-                    A, A_idx - 1, B, B_idx, distance_between_prefixes_ptr);
+                               A, A_idx - 1, B, B_idx, distance_between_prefixes_ptr);
             int delete_last = ComputeDistanceBetweenPrefixes(
-                    A, A_idx, B, B_idx - 1, distance_between_prefixes_ptr);
+                                  A, A_idx, B, B_idx - 1, distance_between_prefixes_ptr);
             distance_between_prefixes[A_idx][B_idx] =
                 1 + min({substitute_last, add_last, delete_last});
         }
@@ -76,7 +76,7 @@ int CheckAnswer(string A, string B) {
         for (int j = 1; j <= B.size(); ++j) {
             int pre_i_1_j = D[j];  // Stores the value of D[i -1][j].
             D[j] = A[i - 1] == B[j - 1] ? pre_i_1_j_1
-                : 1 + min({pre_i_1_j_1, D[j - 1], D[j]});
+                   : 1 + min({pre_i_1_j_1, D[j - 1], D[j]});
             // Previous D[i - 1][j] will become the next D[i - 1][j - 1].
             pre_i_1_j_1 = pre_i_1_j;
         }

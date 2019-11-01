@@ -34,14 +34,14 @@ Subarray find_longest_subarray_less_equal_k(const vector<int>& A, int k) {
 
     Subarray arr_idx = Subarray{
         0, static_cast<int>(distance(
-                    min_prefix_sum.cbegin(),
-                    upper_bound(min_prefix_sum.cbegin(), min_prefix_sum.cend(), k) -
-                    1))};
+                                min_prefix_sum.cbegin(),
+                                upper_bound(min_prefix_sum.cbegin(), min_prefix_sum.cend(), k) -
+                                1))};
     for (int i = 0; i < prefix_sum.size(); ++i) {
         auto idx =
             distance(min_prefix_sum.cbegin(),
-                    upper_bound(min_prefix_sum.cbegin(), min_prefix_sum.cend(),
-                        k + prefix_sum[i])) -
+                     upper_bound(min_prefix_sum.cbegin(), min_prefix_sum.cend(),
+                                 k + prefix_sum[i])) -
             1;
         if (idx - i - 1 > arr_idx.end - arr_idx.start) {
             arr_idx = {i + 1, static_cast<int>(idx)};

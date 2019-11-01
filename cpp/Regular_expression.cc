@@ -26,7 +26,7 @@ bool IsMatch(const string &regex, const string &s) {
 }
 
 bool IsMatchHere(const string &regex, int regex_offset, const string &s,
-        int s_offset) {
+                 int s_offset) {
     if (regex_offset == regex.size()) {
         // Case (1.): Empty regex matches all strings.
         return true;
@@ -55,8 +55,8 @@ bool IsMatchHere(const string &regex, int regex_offset, const string &s,
 
     // Case (4.): regex begins with single character match.
     return s_offset < s.size() &&
-        (regex[regex_offset] == '.' || regex[regex_offset] == s[s_offset]) &&
-        IsMatchHere(regex, regex_offset + 1, s, s_offset + 1);
+           (regex[regex_offset] == '.' || regex[regex_offset] == s[s_offset]) &&
+           IsMatchHere(regex, regex_offset + 1, s, s_offset + 1);
 }
 // @exclude
 

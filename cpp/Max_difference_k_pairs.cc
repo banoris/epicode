@@ -33,13 +33,13 @@ double MaxKPairsProfits(const vector<double> &A, int k) {
 
 // O(n^k) checking answer.
 void CheckAnsHelper(const vector<double> &A, int l, int k, int pre,
-        double ans, double *max_ans) {
+                    double ans, double *max_ans) {
     if (l == k) {
         *max_ans = max(*max_ans, ans);
     } else {
         for (int i = pre; i < A.size(); ++i) {
             CheckAnsHelper(A, l + 1, k, i + 1, ans + ((l & 1) ? A[i] : -A[i]),
-                    max_ans);
+                           max_ans);
         }
     }
 }

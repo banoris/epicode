@@ -37,7 +37,7 @@ int MinimumMessiness(const vector<string>& words, int line_length) {
     for (int i = 1; i < words.size(); ++i) {
         num_remaining_blanks = line_length - words[i].size();
         minimum_messiness[i] = minimum_messiness[i - 1] +
-            num_remaining_blanks * num_remaining_blanks;
+                               num_remaining_blanks * num_remaining_blanks;
         // Try adding words[i - 1], words[i - 2], ...
         for (int j = i - 1; j >= 0; --j) {
             num_remaining_blanks -= (words[j].size() + 1);
@@ -49,7 +49,7 @@ int MinimumMessiness(const vector<string>& words, int line_length) {
             int current_line_messiness =
                 num_remaining_blanks * num_remaining_blanks;
             minimum_messiness[i] = min(minimum_messiness[i],
-                    first_j_messiness + current_line_messiness);
+                                       first_j_messiness + current_line_messiness);
         }
     }
     return minimum_messiness.back();
@@ -58,7 +58,7 @@ int MinimumMessiness(const vector<string>& words, int line_length) {
 
 void SmallTest() {
     assert(MinimumMessiness({"aaa", "bbb", "c", "d", "ee", "ff", "gggggg"},
-                11) == 45);
+                            11) == 45);
     assert(MinimumMessiness({"a", "b", "c", "d"}, 5) == 8);
 }
 

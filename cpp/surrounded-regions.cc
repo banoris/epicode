@@ -24,7 +24,7 @@ using std::uniform_int_distribution;
 using std::vector;
 
 void MarkBoundaryRegion(int, int, const vector<vector<char>>&,
-        vector<deque<bool>>*);
+                        vector<deque<bool>>*);
 
 // @include
 void FillSurroundedRegions(vector<vector<char>>* board_ptr) {
@@ -34,7 +34,7 @@ void FillSurroundedRegions(vector<vector<char>>* board_ptr) {
     }
 
     vector<deque<bool>> visited(board.size(),
-            deque<bool>(board.front().size(), false));
+                                deque<bool>(board.front().size(), false));
     // Identifies the regions that are reachable via white path starting from
     // the first or last columns.
     for (int i = 0; i < board.size(); ++i) {
@@ -68,7 +68,7 @@ void FillSurroundedRegions(vector<vector<char>>* board_ptr) {
 }
 
 void MarkBoundaryRegion(int i, int j, const vector<vector<char>>& board,
-        vector<deque<bool>>* visited_ptr) {
+                        vector<deque<bool>>* visited_ptr) {
     struct Coordinate {
         int x, y;
     };
@@ -81,7 +81,8 @@ void MarkBoundaryRegion(int i, int j, const vector<vector<char>>& board,
         const Coordinate curr = q.front();
         q.pop();
         const static array<array<int, 2>, 4> kDirs = {
-            {{0, 1}, {0, -1}, {1, 0}, {-1, 0}}};
+            {{0, 1}, {0, -1}, {1, 0}, {-1, 0}}
+        };
         for (const array<int, 2>& d : kDirs) {
             const Coordinate next = Coordinate{curr.x + d[0], curr.y + d[1]};
             if (next.x >= 0 && next.x < board.size() && next.y >= 0 &&
@@ -99,12 +100,14 @@ void SimpleTest() {
     vector<vector<char>> A = {{'B', 'B', 'B', 'B'},
         {'W', 'B', 'W', 'B'},
         {'B', 'W', 'W', 'B'},
-        {'B', 'B', 'B', 'B'}};
+        {'B', 'B', 'B', 'B'}
+    };
     FillSurroundedRegions(&A);
     vector<vector<char>> golden = {{'B', 'B', 'B', 'B'},
         {'W', 'B', 'B', 'B'},
         {'B', 'B', 'B', 'B'},
-        {'B', 'B', 'B', 'B'}};
+        {'B', 'B', 'B', 'B'}
+    };
     assert(equal(A.begin(), A.end(), golden.begin(), golden.end()));
 }
 

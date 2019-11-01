@@ -13,8 +13,8 @@ using std::unique_ptr;
 
 struct Status;
 Status LCAHelper(const unique_ptr<BinaryTreeNode<int>>&,
-        const unique_ptr<BinaryTreeNode<int>>&,
-        const unique_ptr<BinaryTreeNode<int>>&);
+                 const unique_ptr<BinaryTreeNode<int>>&,
+                 const unique_ptr<BinaryTreeNode<int>>&);
 
 // @include
 struct Status {
@@ -23,8 +23,8 @@ struct Status {
 };
 
 BinaryTreeNode<int>* LCA(const unique_ptr<BinaryTreeNode<int>>& tree,
-        const unique_ptr<BinaryTreeNode<int>>& node0,
-        const unique_ptr<BinaryTreeNode<int>>& node1) {
+                         const unique_ptr<BinaryTreeNode<int>>& node0,
+                         const unique_ptr<BinaryTreeNode<int>>& node1) {
     return LCAHelper(tree, node0, node1).ancestor;
 }
 
@@ -33,8 +33,8 @@ BinaryTreeNode<int>* LCA(const unique_ptr<BinaryTreeNode<int>>& tree,
 // the tree. If both are present in the tree, when ancestor is
 // assigned to a non-null value, it is the LCA.
 Status LCAHelper(const unique_ptr<BinaryTreeNode<int>>& tree,
-        const unique_ptr<BinaryTreeNode<int>>& node0,
-        const unique_ptr<BinaryTreeNode<int>>& node1) {
+                 const unique_ptr<BinaryTreeNode<int>>& node0,
+                 const unique_ptr<BinaryTreeNode<int>>& node1) {
     if (tree == nullptr) {
         return {0, nullptr};
     }
@@ -50,8 +50,8 @@ Status LCAHelper(const unique_ptr<BinaryTreeNode<int>>& tree,
         return right_result;
     }
     int num_target_nodes = left_result.num_target_nodes +
-        right_result.num_target_nodes + (tree == node0) +
-        (tree == node1);
+                           right_result.num_target_nodes + (tree == node0) +
+                           (tree == node1);
     return {num_target_nodes, num_target_nodes == 2 ? tree.get() : nullptr};
 }
 // @exclude
@@ -61,17 +61,17 @@ int main(int argc, char* argv[]) {
     //    2   5
     //  1    4 6
     unique_ptr<BinaryTreeNode<int>> tree = make_unique<BinaryTreeNode<int>>(
-            BinaryTreeNode<int>{3, nullptr, nullptr});
+            BinaryTreeNode<int> {3, nullptr, nullptr});
     tree->left = make_unique<BinaryTreeNode<int>>(
-            BinaryTreeNode<int>{2, nullptr, nullptr});
+                     BinaryTreeNode<int> {2, nullptr, nullptr});
     tree->left->left = make_unique<BinaryTreeNode<int>>(
-            BinaryTreeNode<int>{1, nullptr, nullptr});
+                           BinaryTreeNode<int> {1, nullptr, nullptr});
     tree->right = make_unique<BinaryTreeNode<int>>(
-            BinaryTreeNode<int>{5, nullptr, nullptr});
+                      BinaryTreeNode<int> {5, nullptr, nullptr});
     tree->right->left = make_unique<BinaryTreeNode<int>>(
-            BinaryTreeNode<int>{4, nullptr, nullptr});
+                            BinaryTreeNode<int> {4, nullptr, nullptr});
     tree->right->right = make_unique<BinaryTreeNode<int>>(
-            BinaryTreeNode<int>{6, nullptr, nullptr});
+                             BinaryTreeNode<int> {6, nullptr, nullptr});
     // should output 3
     auto* x = LCA(tree, tree->left, tree->right);
     assert(x->data == 3);
