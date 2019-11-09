@@ -17,19 +17,23 @@ using std::vector;
 
 // @include
 vector<int> BSTInSortedOrder(const unique_ptr<BSTNode<int>>& tree) {
-    stack<const BSTNode<int>*> s;
+    stack<const BSTNode<int>*> _stack;
+    // TODO: unique_ptr with cursor technique
+    //   https://stackoverflow.com/questions/25370628/doesnt-get-break-the-idea-behind-stdunique-ptr
+    //   https://stackoverflow.com/questions/10802046/whats-the-point-of-stdunique-ptrget
     const auto* curr = tree.get();
     vector<int> result;
 
-    while (!s.empty() || curr) {
+    // TODO: terminating logic for while
+    while (!_stack.empty() || curr) {
         if (curr) {
-            s.push(curr);
+            _stack.push(curr);
             // Going left.
             curr = curr->left.get();
         } else {
             // Going up.
-            curr = s.top();
-            s.pop();
+            curr = _stack.top();
+            _stack.pop();
             result.emplace_back(curr->data);
             // Going right.
             curr = curr->right.get();

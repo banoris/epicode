@@ -34,7 +34,8 @@ bool IsBalanced(const unique_ptr<BinaryTreeNode<int>>& tree) {
 // First value of the return value indicates if tree is balanced, and if
 // balanced the second value of the return value is the height of tree.
 BalancedStatusWithHeight CheckBalanced(
-    const unique_ptr<BinaryTreeNode<int>>& tree) {
+    const unique_ptr<BinaryTreeNode<int>>& tree)
+{
     if (tree == nullptr) {
         return {true, -1};  // Base case.
     }
@@ -48,6 +49,7 @@ BalancedStatusWithHeight CheckBalanced(
         return {false, 0};  // Right subtree is not balanced.
     }
 
+    // TODO: pening...
     bool is_balanced = abs(left_result.height - right_result.height) <= 1;
     int height = max(left_result.height, right_result.height) + 1;
     return {is_balanced, height};

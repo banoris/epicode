@@ -24,12 +24,17 @@ struct MinMax {
     int min, max;
 };
 
+// TODO: Cool algo. Be proficient on this.
+//   Implement your own without min/max/minmax function. Use comparison operator
 MinMax FindMinMax(const vector<int>& A) {
     if (A.size() <= 1) {
         return {A.front(), A.front()};
     }
 
     pair<int, int> global_min_max = minmax(A[0], A[1]);
+
+    // NOTE: this is called streaming technique. Refer pg41 of the book
+    //   Hmm... that reminds me of TCP sliding window
     // Process two elements at a time.
     for (int i = 2; i + 1 < A.size(); i += 2) {
         pair<int, int> local_min_max = minmax(A[i], A[i + 1]);

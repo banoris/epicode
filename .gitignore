@@ -1,5 +1,6 @@
 *.class
 *.o
+*.exe
 a.out
 
 # Mobile Tools for Java (J2ME)

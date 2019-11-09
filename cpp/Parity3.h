@@ -10,7 +10,13 @@ using std::array;
 namespace Parity3 {
 
 array<short, 1 << 16> BuildTable() {
+    // 1 << 16 = 65,536 in decimal. Which is 2^16
+    // Create an array of size 2^16
     array<short, 1 << 16> result;
+
+    // Don't confuse with tis forloop! You are counting
+    // from 0, 1, 2, 3, ..., 65536. You find the parity for
+    // each number 0, 1, ..., 2^16.
     for (int i = 0; i < (1 << 16); ++i) {
         result[i] = Parity1::Parity(i);
     }

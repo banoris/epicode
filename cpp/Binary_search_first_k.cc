@@ -17,8 +17,12 @@ using std::uniform_int_distribution;
 using std::vector;
 
 // @include
+// TODO: familiarize yourself with the 3 cursors technique for searching array
+//   3 cursors: right, left, mid
+//   Understand how the value of cursors change
 int SearchFirstOfK(const vector<int>& A, int k) {
     int left = 0, right = A.size() - 1, result = -1;
+    printf("Init: k=%d, right=%d, left=%d\n", k, left, right);
     // [left : right] is the candidate set.
     while (left <= right) {
         int mid = left + ((right - left) / 2);
@@ -31,6 +35,8 @@ int SearchFirstOfK(const vector<int>& A, int k) {
         } else {  // A[mid] < k.
             left = mid + 1;
         }
+        printf("mid=%d, right=%d, left=%d\n", mid, left, right);
+
     }
     return result;
 }
@@ -69,28 +75,45 @@ int SearchFirstOfKAlternative(const vector<int>& A, int k) {
 
 int main(int argc, char* argv[]) {
     default_random_engine gen((random_device())());
-    for (int times = 0; times < 1000; ++times) {
+    for (int times = 0; times < 10; ++times) {
         int n;
+
+        std::cout << "=========================\n";
+
         if (argc == 2) {
             n = atoi(argv[1]);
         } else {
-            uniform_int_distribution<int> dis(1, 100000);
-            n = dis(gen);
+            // uniform_int_distribution<int> dis(1, 100);
+            n = 10;
         }
+
         vector<int> A;
         uniform_int_distribution<int> k_dis(0, n - 1);
         int k = k_dis(gen);
+
         for (int i = 0; i < n; ++i) {
             uniform_int_distribution<int> dis(0, n - 1);
             A.emplace_back(dis(gen));
         }
+
         sort(A.begin(), A.end());
+
+        // dump vector A
+        std::cout << "A = ";
+        for (size_t i = 0; i < A.size(); i++) {
+            std::cout << A[i] << ", ";
+        }
+
+        std::cout << std::endl;
+
         int ans = SearchFirstOfK(A, k);
         assert(SearchFirstOfKAlternative(A, k) == ans);
         cout << "k = " << k << " locates at " << ans << endl;
+
         if (ans != -1) {
             cout << "A[k] = " << A[ans] << endl;
         }
+
         auto it = find(A.cbegin(), A.cend(), k);
         assert((it == A.cend() && ans == -1) ||
                (distance(A.cbegin(), it) == ans));

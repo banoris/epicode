@@ -21,8 +21,14 @@ using std::vector;
 // @include
 vector<int> PreorderTraversal(const unique_ptr<BinaryTreeNode<int>>& tree) {
     stack<BinaryTreeNode<int>*> path;
+    // TODO: why emplace? In 10.7 author uses push
+    //   http://clarkkromenaker.com/post/cpp-emplace/
     path.emplace(tree.get());
     vector<int> result;
+
+    // TODO: understand when is the right time to push/pop
+    //   to achieve the behavior that we want. In this case,
+    //   we want to achieve preorder traversal behavior
     while (!path.empty()) {
         auto curr = path.top();
         path.pop();
