@@ -9,6 +9,7 @@
 #include <unordered_set>
 #include <utility>
 #include <vector>
+#include <iterator>
 
 using std::cout;
 using std::default_random_engine;
