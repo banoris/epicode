@@ -24,6 +24,12 @@ using std::vector;
 
 // @include
 vector<vector<string>> FindAnagrams(const vector<string>& dictionary) {
+
+    // TODO: study std::map
+    // In python, maybe looks like this:
+    //   dict1 = {"mykey": ["str1", "str2", "str3"]}
+    // unordered_map<string, vector<string>> --> A map with key of type 'string'
+    //   that points to a vector of strings
     unordered_map<string, vector<string>> sorted_string_to_anagrams;
     for (const string& s : dictionary) {
         // Sorts the string, uses it as a key, and then appends
@@ -33,8 +39,10 @@ vector<vector<string>> FindAnagrams(const vector<string>& dictionary) {
         sorted_string_to_anagrams[sorted_str].emplace_back(s);
     }
 
+    // NOTE: vector to a vector
     vector<vector<string>> anagram_groups;
     for (const auto& p : sorted_string_to_anagrams) {
+        // TODO: Huh? p.second()?
         if (p.second.size() >= 2) {  // Found anagrams.
             anagram_groups.emplace_back(p.second);
         }

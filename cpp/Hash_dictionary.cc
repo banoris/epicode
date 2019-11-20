@@ -24,7 +24,13 @@ string RandString(int len) {
 }
 
 // @include
+// TODO: modulus is for??
+// Again, understand what is a hash function. Given an input key (string 'str' in this case),
+// you want to return a hash code that is unique for that particular key.
+// So how would you calculate this hash code? What formula you will use?
+// What is the requirement for hashing? Unique, distinct, fast?
 int StringHash(const string& str, int modulus) {
+    // TODO: what's this magic number???
     const int kMult = 997;
     // @exclude
     /*
@@ -52,6 +58,6 @@ int main(int argc, char* argv[]) {
         str = RandString(dis(gen));
     }
     cout << "string = " << str << endl;
-    cout << StringHash(str, 1 << (16)) << endl;
+    cout << "StringHash() = " << StringHash(str, 1 << (16)) << endl;
     return 0;
 }
