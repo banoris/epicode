@@ -12,6 +12,10 @@ using std::unordered_set;
 using std::vector;
 
 // @include
+// NOTE: Think of this as same thing as vector<string> but with
+//   overrided operator==
+//   Or try an example with two vector<string> and do
+//   comparator e.g. vec_string1 == vec_string2
 struct ContactList {
     // TODO; study == operator override
     // Equal function for hash.
@@ -43,6 +47,8 @@ struct HashContactList {
             //   What happen if remove the first () ? Compile error
             //   https://stackoverflow.com/questions/40024008/how-to-understand-two-pairs-of-parentheses-in-this-code-fragment
             // Protip: use braces init e.g. hash<string>{}(name)
+            // NOTE: Why XOR the hash? https://stackoverflow.com/questions/5889238/why-is-xor-the-default-way-to-combine-hashes
+            //   Read the top two answers to gain more insight.
             hash_code ^= hash<string>()(name);
         }
 
@@ -69,7 +75,7 @@ vector<ContactList> MergeContactLists(const vector<ContactList>& contacts) {
         contacts.begin(), contacts.end());
 
     // Don't get confused with this {...} notation. Note that this function has
-    // return type of vector<..>. Braces is initialization is very
+    // return type of vector<..>. Braces initialization is very
     // common in C++, not just for vector
     return {unique_contacts.begin(), unique_contacts.end()};
 }
