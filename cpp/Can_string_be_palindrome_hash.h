@@ -6,6 +6,7 @@
 #include <string>
 #include <unordered_map>
 #include <utility>
+#include <algorithm>
 
 using std::string;
 using std::unordered_map;
