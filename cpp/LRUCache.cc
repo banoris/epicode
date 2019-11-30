@@ -35,7 +35,8 @@ public:
         if (it != isbn_price_table_.end()) {
             // Specification says we should make isbn the most recently used.
             MoveToFront(isbn, it);
-        } else {
+        } else { // given isbn does not exist in our table, so add to table
+            // this is where we check whether we have space left. If no, then evict LRU
             if (isbn_price_table_.size() == capacity) {
                 // Removes the least recently used ISBN to get space.
                 isbn_price_table_.erase(lru_queue_.back());
@@ -58,6 +59,8 @@ public:
     }
 
 private:
+    // TODO: ISBN (integer) is the key. value is pair<iterator, int> ??
+    //   pair<iterator, int> --> iterator for LRU queue, int for price
     typedef unordered_map<int, pair<list<int>::iterator, int>> Table;
 
     // Forces this key-value pair to move to the front.
@@ -67,6 +70,7 @@ private:
         it->second.first = lru_queue_.begin();
     }
 
+    // TODO: practice map+queue combo
     Table isbn_price_table_;
     list<int> lru_queue_;
 };
@@ -79,12 +83,17 @@ int main(int argc, char* argv[]) {
         cout << "c.Insert(1, 1)" << endl;
         c.Insert(1, 1);
         cout << "c.Insert(1, 10)" << endl;
+        // insert same ISBN like above, i.e. 1, and set value to 10
+        // Will it override price from 1 to 10?
         c.Insert(1, 10);
         int val;
         cout << "c.Lookup(2, val)" << endl;
+        // NOTE: why Lookup returns false? Because there is not ISBN (or key) 2
         assert(!c.Lookup(2, &val));
         cout << "c.Lookup(1, val)" << endl;
         assert(c.Lookup(1, &val));
+        // From this assert, we can see that the price is 1 although Insert(1, 10)
+        // Why? Read LRUCache::Insert
         assert(val == 1);
         c.Erase(1);
         assert(!c.Lookup(1, &val));
