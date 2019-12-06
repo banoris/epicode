@@ -19,17 +19,25 @@ using std::unordered_set;
 BinaryTreeNode<int>* LCA(const unique_ptr<BinaryTreeNode<int>>& node_0,
                          const unique_ptr<BinaryTreeNode<int>>& node_1) {
     auto *iter_0 = node_0.get(), *iter_1 = node_1.get();
+    cout << "node0=" << iter_0->data << ", node1=" << iter_1->data << endl;
     unordered_set<const BinaryTreeNode<int>*> nodes_on_path_to_root;
     while (iter_0 || iter_1) {
         // Ascend tree in tandem for these two nodes.
         if (iter_0) {
+            // NOTE: second what??
+            // http://www.cplusplus.com/reference/unordered_set/unordered_set/emplace/
+            // emplace will add new element to the set if the element is not there
+            // Remember set in math -- no duplicate
+            // emplace returns pair<iterator, bool>. bool=true if success, false otherwise
             if (nodes_on_path_to_root.emplace(iter_0).second == false) {
+                cout << "Node already visited, iter_0 = " << iter_0->data << endl;
                 return iter_0;
             }
             iter_0 = iter_0->parent;
         }
         if (iter_1) {
             if (nodes_on_path_to_root.emplace(iter_1).second == false) {
+                cout << "Node already visited, iter_1 = " << iter_1->data << endl;
                 return iter_1;
             }
             iter_1 = iter_1->parent;
@@ -62,11 +70,16 @@ int main(int argc, char* argv[]) {
                              BinaryTreeNode<int> {6, nullptr, nullptr});
     root->right->right->parent = root->right.get();
 
-    // should output 3
+    // LCA for 2 and 5, should be 3
     assert(LCA(root->left, root->right)->data == 3);
+    cout << "=======================" << endl;
     cout << (LCA(root->left, root->right))->data << endl;
-    // should output 5
+    cout << "=======================" << endl;
+
+    // LCA for 4 and 6, should be 5
     assert(LCA(root->right->left, root->right->right)->data == 5);
+    cout << "=======================" << endl;
     cout << (LCA(root->right->left, root->right->right)->data) << endl;
+    cout << "=======================" << endl;
     return 0;
 }
